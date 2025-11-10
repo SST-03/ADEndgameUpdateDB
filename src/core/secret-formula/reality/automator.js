@@ -523,15 +523,19 @@ export const automator = {
           <b>ip</b> - Current Infinity Point amount  <br>
           <b>ep</b> - Current Eternity Point amount  <br>
           <b>rm</b> - Current Reality Machine amount  <br>
+          <b>rs</b> - Current Reality Shard amount  <br>
           <b>infinities</b> - Current Infinity amount <br>
           <b>banked infinities</b> - Current Banked Infinity amount <br>
           <b>eternities</b> - Current Eternity amount <br>
           <b>realities</b> - Current Reality amount <br>
+          <b>remnants</b> - Current Remnant amount  <br>
           <b>pending ip</b> - IP gained on Infinity (0 if not available)<br>
           <b>pending ep</b> - EP gained on Eternity (0 if not available)<br>
           <b>pending tp</b> - TP gained on exiting Dilation<br>
           <b>pending rm</b> - RM gained on Reality (0 if not available)<br>
+          <b>pending rs</b> - RS gained on Armageddon (0 if not available)<br>
           <b>pending glyph level</b> - Glyph Level gained on Reality (0 if not available)<br>
+          <b>pending remnants</b> - Remnants gained on Armageddon (0 if not available)<br>
           <b>dt</b> - Current Dilated Time amount <br>
           <b>tp</b> - Current Tachyon Particle amount<br>
           <b>rg</b> - Current Replicanti Galaxy amount (does not use scientific)<br>
