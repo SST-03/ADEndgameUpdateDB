@@ -74,6 +74,10 @@ export const Endgame = {
     giveEndgameRewards();
     updateEndgameRecords();
     GlyphAppearanceHandler.unlockSet();
+    if (player.endgame.respec) {
+      respecEndgameMasteries();
+      player.endgame.respec = false;
+    }
     this.resetStuff();
 
     // Add Glyphs after other Glyphs are purged
@@ -557,6 +561,8 @@ export const Endgame = {
     player.records.bestReality.speedSet = [];
     player.records.bestReality.iMCapSet = [];
     player.records.bestReality.laitelaSet = [];
+    player.records.thisEndgame.time = DC.D0;
+    player.records.thisEndgame.realTime = 0;
     Glyphs.refreshActive();
     if (EndgameMastery(112).isBought) {
       Achievement(146).unlock();
