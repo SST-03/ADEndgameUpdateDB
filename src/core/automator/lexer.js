@@ -266,6 +266,12 @@ createInCategory(PrestigeEvent, "Reality", /reality/i, {
     player.reality.respec = true;
   },
 });
+createInCategory(PrestigeEvent, "Armageddon", /armageddon/i, {
+  $prestigeAvailable: () => Pelle.canArmageddon,
+  $prestigeLevel: 4,
+  $prestigeCurrency: "RS",
+  $prestige: () => Pelle.armageddon(true),
+});
 
 createInCategory(StudyPath, "Idle", /idle/i, { $studyPath: TIME_STUDY_PATH.IDLE });
 createInCategory(StudyPath, "Passive", /passive/i, { $studyPath: TIME_STUDY_PATH.PASSIVE });
