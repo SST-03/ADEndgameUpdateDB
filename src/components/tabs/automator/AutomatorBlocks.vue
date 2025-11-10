@@ -89,6 +89,9 @@ export const automatorBlocks = [
     canWait: true,
     isUnlocked: () => RealityUpgrade(25).isBought
   }, {
+    cmd: "ARMAGEDDON",
+    canWait: true
+  }, {
     cmd: "UNLOCK",
     allowedPatterns: ["AB", "C"],
     A: ["EC"],
