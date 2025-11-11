@@ -220,7 +220,7 @@ export const singularityMilestones = {
     start: 5e12,
     repeat: 0,
     limit: 1,
-    description: `${formatInt(DarkMatterDimensions.highestUnlocked)}th Dark Matter Dimension amount boosts Dark Matter and Dark Energy gain`,
+    description: "Your highest Dark Matter Dimension amount (above the third) boosts Dark Matter and Dark Energy gain",
     effect: () => Math.clampMin(DarkMatterDimension(DarkMatterDimensions.highestUnlocked).amount.pow(0.03).toNumber(), 1),
     effectFormat: x => formatX(x, 2, 2),
     upgradeDirection: LAITELA_UPGRADE_DIRECTION.SELF_BOOST,
