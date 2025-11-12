@@ -14,7 +14,7 @@ export class DarkMatterDimensionAutobuyerState extends IntervaledAutobuyerState 
   }
 
   get interval() {
-    return 1000 * SingularityMilestone.darkAutobuyerSpeed.effectValue;
+    return SingularityMilestone.darkAutobuyerSpeed.effectValue.times(1000);
   }
 
   get hasUnlimitedBulk() {
