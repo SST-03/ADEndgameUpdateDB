@@ -270,16 +270,34 @@ function maxBuyDimBoosts() {
 
 
   if (EternityChallenge(5).isRunning) {
-    calcBoosts = decimalCubicSolution(DC.D1, DC.D1.neg(), multiplierPerDB.add(2), ad.add(18).neg());
+    let estimateTotalAmount = Decimal.floor(Decimal.cbrt(ad)).add(1);
+    const listedCost = estimateTotalAmount.lt(NormalChallenge(10).isRunning ? 2 : 4) ? new Decimal(0) : Decimal.pow(estimateTotalAmount, 3).add(estimateTotalAmount).add((estimateTotalAmount.sub(NormalChallenge(10).isRunning ? 2 : 4)).times(multiplierPerDB).add(amount));
+    if (listedCost.gt(0) {
+      while (listedCost.lt(ad)) {
+        estimateTotalAmount = estimateTotalAmount.add(1);
+      }
+      if (listedCost.gte(ad)) {
+        estimateTotalAmount = estimateTotalAmount.sub(1);
+        if (listedCost.gte(ad)) {
+          estimateTotalAmount = estimateTotalAmount.add(1);
+        }
+      }
+      calcBoosts = estimateTotalAmount;
+    } else {
+      calcBoosts = new Decimal(NormalChallenge(10).isRunning ? 2 : 4);
+    }
+    if (calcBoosts.floor().lte(DimBoost.purchasedBoosts)) return;
+    calcBoosts = calcBoosts.sub(DimBoost.purchasedBoosts);
+    const minBoosts = Decimal.min(DC.E9E15, calcBoosts.floor());
+  } else {
+    calcBoosts = calcBoosts.add(NormalChallenge(10).isRunning ? 2 : 4);
+    // Dimension boosts 1-4 dont use 8th dims, 1-2 dont use 6th dims, so add those extras afterwards.
+  
+    // Add one cause (x-b)/i is off by one otherwise
+    if (calcBoosts.floor().add(1).lte(DimBoost.purchasedBoosts)) return;
+    calcBoosts = calcBoosts.sub(DimBoost.purchasedBoosts);
+    const minBoosts = Decimal.min(DC.E9E15, calcBoosts.floor().add(1));
   }
-
-  calcBoosts = calcBoosts.add(NormalChallenge(10).isRunning ? 2 : 4);
-  // Dimension boosts 1-4 dont use 8th dims, 1-2 dont use 6th dims, so add those extras afterwards.
-
-  // Add one cause (x-b)/i is off by one otherwise
-  if (calcBoosts.floor().add(1).lte(DimBoost.purchasedBoosts)) return;
-  calcBoosts = calcBoosts.sub(DimBoost.purchasedBoosts);
-  const minBoosts = Decimal.min(DC.E9E15, calcBoosts.floor().add(1));
 
   softReset(minBoosts);
 }
