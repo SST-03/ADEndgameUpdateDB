@@ -447,7 +447,7 @@ window.ExponentialCostScaling = class ExponentialCostScaling {
     // Since we times by scale X times per purchase past max, we can find the triangular number of expoPurchases and just mult that by scale
     const scaleCostFinal = expoPurchases.pow(2).add(expoPurchases).div(2).times(scale);
     // Add and pow10
-    return Decimal.pow10(costBeforeExpo.add(scaleCostFinal));
+    return DC.E1.pow(costBeforeExpo.add(scaleCostFinal));
   }
 
   /**
