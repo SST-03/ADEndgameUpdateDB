@@ -511,7 +511,7 @@ window.ExponentialCostScaling = class ExponentialCostScaling {
       if (roundDown) purchaseAmount = purchaseAmount.floor();
       // Return null if its less than the purchases we already have
       if (purchaseAmount.lte(currentPurchases)) return null;
-      const cost = new Decimal(this.calculateCost(purchaseAmount).log10()).add(ppIlog);
+      const cost = new Decimal(this.decimalCalculateCost(purchaseAmount).log10()).add(ppIlog);
       purchaseAmount = purchaseAmount.sub(currentPurchases);
       purchaseAmount = purchaseAmount.times(purchasesPerIncrease);
       return { quantity: purchaseAmount,
@@ -541,7 +541,7 @@ window.ExponentialCostScaling = class ExponentialCostScaling {
 
     if (purchaseAmount.lte(currentPurchases)) return null;
 
-    const purchaseCost = this.calculateCost(purchaseAmount).log10().add(ppIlog);
+    const purchaseCost = this.decimalCalculateCost(purchaseAmount).log10().add(ppIlog);
     purchaseAmount = purchaseAmount.sub(currentPurchases);
     if (roundDown) purchaseAmount = purchaseAmount.floor();
 
