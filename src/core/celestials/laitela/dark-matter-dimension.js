@@ -122,7 +122,7 @@ export class DarkMatterDimensionState extends DimensionState {
   }
 
   get intervalCost() {
-    return this.costScaleInterval.calculateCost(this.data.intervalUpgrades);
+    return this.costScaleInterval.decimalCalculateCost(this.data.intervalUpgrades);
   }
 
   get intervalCostIncrease() {
@@ -217,11 +217,11 @@ export class DarkMatterDimensionState extends DimensionState {
     if (calc === null) return;
     if (Decimal.lte(x, quant.clampMax(this.maxIntervalPurchases))) {
       // eslint-disable-next-line max-len
-      Currency.darkMatter.purchase(this.costScaleInterval.calculateCost(this.data.intervalUpgrades.add(Decimal.min(x, this.maxIntervalPurchases)).sub(1)));
+      Currency.darkMatter.purchase(this.costScaleInterval.decimalCalculateCost(this.data.intervalUpgrades.add(Decimal.min(x, this.maxIntervalPurchases)).sub(1)));
       this.data.intervalUpgrades = this.data.intervalUpgrades.add(Decimal.min(x, this.maxIntervalPurchases));
     }
     // eslint-disable-next-line max-len
-    Currency.darkMatter.purchase(this.costScaleInterval.calculateCost(this.data.intervalUpgrades.add(quant.clampMax(this.maxIntervalPurchases)).sub(1)));
+    Currency.darkMatter.purchase(this.costScaleInterval.decimalCalculateCost(this.data.intervalUpgrades.add(quant.clampMax(this.maxIntervalPurchases)).sub(1)));
     this.data.intervalUpgrades = this.data.intervalUpgrades.add(quant.clampMax(this.maxIntervalPurchases));
     // S this.data.intervalUpgrades
   }
@@ -230,10 +230,10 @@ export class DarkMatterDimensionState extends DimensionState {
     const calc = this.costScaleDM.getMaxBought(this.data.powerDMUpgrades, Currency.darkMatter.value, DC.D1);
     if (calc === null) return;
     if (Decimal.lte(x, calc.quantity)) {
-      Currency.darkMatter.purchase(this.costScaleDM.calculateCost(this.data.powerDMUpgrades.add(x).sub(1)));
+      Currency.darkMatter.purchase(this.costScaleDM.decimalCalculateCost(this.data.powerDMUpgrades.add(x).sub(1)));
       this.data.powerDMUpgrades = this.data.powerDMUpgrades.add(x);
     }
-    Currency.darkMatter.purchase(this.costScaleDM.calculateCost(this.data.powerDMUpgrades.add(calc.quantity.sub(1))));
+    Currency.darkMatter.purchase(this.costScaleDM.decimalCalculateCost(this.data.powerDMUpgrades.add(calc.quantity.sub(1))));
     this.data.powerDMUpgrades = this.data.powerDMUpgrades.add(calc.quantity);
     // S this.data.powerDMUpgrades
   }
@@ -242,10 +242,10 @@ export class DarkMatterDimensionState extends DimensionState {
     const calc = this.costScaleDE.getMaxBought(this.data.powerDEUpgrades, Currency.darkMatter.value, DC.D1);
     if (calc === null) return;
     if (Decimal.lte(x, calc.quantity)) {
-      Currency.darkMatter.purchase(this.costScaleDE.calculateCost(this.data.powerDEUpgrades.add(x).sub(1)));
+      Currency.darkMatter.purchase(this.costScaleDE.decimalCalculateCost(this.data.powerDEUpgrades.add(x).sub(1)));
       this.data.powerDEUpgrades = this.data.powerDEUpgrades.add(x);
     }
-    Currency.darkMatter.purchase(this.costScaleDE.calculateCost(this.data.powerDEUpgrades.add(calc.quantity.sub(1))));
+    Currency.darkMatter.purchase(this.costScaleDE.decimalCalculateCost(this.data.powerDEUpgrades.add(calc.quantity.sub(1))));
     this.data.powerDEUpgrades = this.data.powerDEUpgrades.add(calc.quantity);
     // S this.data.powerDEUpgrades
   }
