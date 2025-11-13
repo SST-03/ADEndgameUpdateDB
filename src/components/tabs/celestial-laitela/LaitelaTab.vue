@@ -28,7 +28,7 @@ export default {
       isDMCapped: false,
       maxDarkMatter: new Decimal(0),
       darkEnergy: new Decimal(0),
-      matterExtraPurchasePercentage: new Decimal(0),
+      matterExtraPurchasePercentage: 0,
       autobuyersUnlocked: false,
       singularityPanelVisible: false,
       singularitiesUnlocked: false,
@@ -51,7 +51,7 @@ export default {
       this.isDMCapped = this.darkMatter.eq(Laitela.darkMatterCap);
       this.maxDarkMatter.copyFrom(Currency.darkMatter.max);
       this.darkEnergy.copyFrom(player.celestials.laitela.darkEnergy);
-      this.matterExtraPurchasePercentage.copyFrom(Laitela.matterExtraPurchaseFactor.sub(1));
+      this.matterExtraPurchasePercentage = Laitela.matterExtraPurchaseFactor - 1;
       this.autobuyersUnlocked = SingularityMilestone.darkDimensionAutobuyers.canBeApplied ||
         SingularityMilestone.darkDimensionAutobuyers.canBeApplied ||
         SingularityMilestone.autoCondense.canBeApplied ||
