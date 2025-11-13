@@ -370,6 +370,11 @@ window.ExponentialCostScaling = class ExponentialCostScaling {
         (ExponentialCostScaling.log10(param.scalingCostThreshold) - this._logBaseCost) / this._logBaseIncrease);
     } else throw new Error("Must specify either scalingCostThreshold or purchasesBeforeScaling");
     this.updateCostScale();
+    this.log = {
+      _baseCost: new Decimal(param.baseCost.log10()),
+      _baseIncrease: new Decimal(param.baseIncrease.log10()),
+      _costScale: new Decimal(param.costScale.log10()),
+    };
   }
 
   get costScale() {
@@ -403,6 +408,29 @@ window.ExponentialCostScaling = class ExponentialCostScaling {
       ? currentPurchases * logMult + logBase + 0.5 * excess * (excess + 1) * this._logCostScale
       : currentPurchases * logMult + logBase;
     return DC.E1.pow(logCost);
+  }
+
+  decimalCalculateCost(currentPurchases) {
+    // Define these here just cause theyre easier to type
+    const base = this.log._baseCost;
+    const inc = this.log._baseIncrease;
+    const scale = this.log._costScale;
+    const purchases = this._purchasesBeforeScaling;
+
+    // If it never becomes exponential cost, just return linear and stop
+    if (currentPurchases.lte(purchases)) {
+      return Decimal.pow10(base.add(inc.times(currentPurchases)));
+    }
+
+    // Calculate linear cost
+    const costBeforeExpo = base.add(inc.times(currentPurchases));
+    // How many exponential purchases?
+    const expoPurchases = currentPurchases.sub(purchases);
+    // eslint-disable-next-line max-len
+    // Since we times by scale X times per purchase past max, we can find the triangular number of expoPurchases and just mult that by scale
+    const scaleCostFinal = expoPurchases.pow(2).add(expoPurchases).div(2).times(scale);
+    // Add and pow10
+    return Decimal.pow10(costBeforeExpo.add(scaleCostFinal));
   }
 
   /**
