@@ -105,7 +105,7 @@ export const Laitela = {
     const buy = function(upgrade, purchases) {
       upgrade[3](purchases);
       upgrade[0] = upgrade[0].times(Decimal.pow(upgrade[1], purchases));
-      upgrade[2] = upgrade[2].sub(purchases);
+      upgrade[2] -= purchases);
     };
     // Buy everything costing less than 0.02 of initial matter.
     const darkMatter = Currency.darkMatter.value;
@@ -113,7 +113,7 @@ export const Laitela = {
       const purchases = Decimal.clamp(Decimal.floor(darkMatter.times(0.02).div(upgrade[0]).log(upgrade[1].toNumber())), 0, upgrade[2]);
       buy(upgrade, purchases);
     }
-    while (upgradeInfo.some(upgrade => upgrade[0].lte(darkMatter) && upgrade[2].gt(0))) {
+    while (upgradeInfo.some(upgrade => upgrade[0].lte(darkMatter) && upgrade[2] > 0)) {
       const cheapestUpgrade = upgradeInfo.filter(upgrade => upgrade[2] > 0).sort((a, b) => a[0].minus(b[0]).sign())[0];
       buy(cheapestUpgrade, DC.D1);
     }
