@@ -185,7 +185,7 @@ export const singularityMilestones = {
     repeat: 0,
     limit: 1,
     description: "Boost Dark Matter and Dark Energy production based on highest Glyph level",
-    effect: () => Decimal.pow(Decimal.clampMin((player.records.bestReality.glyphLevel.sub(15000)).div(2000), 1), 0.5),
+    effect: () => Decimal.pow(Decimal.clampMin((new Decimal(player.records.bestReality.glyphLevel).sub(15000)).div(2000), 1), 0.5),
     effectFormat: x => formatX(x, 2, 2),
     upgradeDirection: LAITELA_UPGRADE_DIRECTION.BOOSTS_LAITELA,
   },
