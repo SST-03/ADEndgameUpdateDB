@@ -105,9 +105,10 @@ export class DarkMatterDimensionState extends DimensionState {
   }
 
   get intervalAfterAscension() {
-    const purchases = this.costScaleInterval.decimalGetMaxBought(this.data.intervalUpgrades, Currency.darkMatter.value, DC.D1);
-    return Decimal.clampMin(this.intervalPurchaseCap, this.rawInterval.mul(Decimal.pow(INTERVAL_PER_UPGRADE, purchases))
-      .mul(SingularityMilestone.ascensionIntervalScaling.effectOrDefault(1200)));
+    const purchases = Decimal.affordGeometricSeries(Currency.darkMatter.value, this.rawIntervalCost,
+      this.intervalCostIncrease, 0);
+    return Decimal.clampMin(this.intervalPurchaseCap, SingularityMilestone.ascensionIntervalScaling.effectOrDefault(new Decimal(1200))
+      .times(this.rawInterval.times(Decimal.pow(INTERVAL_PER_UPGRADE, purchases))));
   }
 
   get adjustedStartingCost() {
@@ -122,7 +123,7 @@ export class DarkMatterDimensionState extends DimensionState {
   }
 
   get intervalCost() {
-    return this.costScaleInterval.decimalCalculateCost(this.data.intervalUpgrades);
+    return this.rawIntervalCost.floor();
   }
 
   get intervalCostIncrease() {
@@ -153,36 +154,6 @@ export class DarkMatterDimensionState extends DimensionState {
 
   get powerDECostIncrease() {
     return new Decimal(POWER_DE_COST_MULTS[this.tier - 1]);
-  }
-
-  get costScaleDE() {
-    return new ExponentialCostScaling({
-      baseCost: this.adjustedStartingCost.mul(SingularityMilestone.darkDimensionCostReduction.effectOrDefault(1))
-        .times(POWER_DE_START_COST),
-      baseIncrease: this.powerDECostIncrease.toNumber(),
-      costScale: 10,
-      scalingCostThreshold: Decimal.NUMBER_MAX_VALUE.div(SingularityMilestone.darkDimensionCostReduction.effectOrDefault(1))
-    });
-  }
-
-  get costScaleDM() {
-    return new ExponentialCostScaling({
-      baseCost: this.adjustedStartingCost.mul(SingularityMilestone.darkDimensionCostReduction.effectOrDefault(1))
-        .times(POWER_DM_START_COST),
-      baseIncrease: this.powerDMCostIncrease.toNumber(),
-      costScale: 10,
-      scalingCostThreshold: Decimal.NUMBER_MAX_VALUE.div(SingularityMilestone.darkDimensionCostReduction.effectOrDefault(1))
-    });
-  }
-
-  get costScaleInterval() {
-    return new ExponentialCostScaling({
-      baseCost: this.adjustedStartingCost.mul(SingularityMilestone.darkDimensionCostReduction.effectOrDefault(1))
-        .times(INTERVAL_START_COST),
-      baseIncrease: this.intervalCostIncrease.toNumber(),
-      costScale: 10,
-      scalingCostThreshold: Decimal.NUMBER_MAX_VALUE.div(SingularityMilestone.darkDimensionCostReduction.effectOrDefault(1))
-    });
   }
 
   get timeSinceLastUpdate() {
