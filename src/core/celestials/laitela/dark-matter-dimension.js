@@ -185,7 +185,9 @@ export class DarkMatterDimensionState extends DimensionState {
   }
 
   buyManyInterval(x) {
-    if (new Decimal(x).gt(this.maxIntervalPurchases)) return false;
+    if (new Decimal(x).gt(this.maxIntervalPurchases)) {
+      x = this.maxIntervalPurchases;
+    }
     const cost = this.rawIntervalCost.times(
       Decimal.pow(this.intervalCostIncrease, x).minus(1)).div(this.intervalCostIncrease.sub(1)).floor();
     if (!Currency.darkMatter.purchase(cost)) return false;
