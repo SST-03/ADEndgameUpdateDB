@@ -30,6 +30,7 @@ export class DarkMatterDimensionState extends DimensionState {
   get productionPerSecond() { return this.powerDE.mul(DC.E3.div(this.interval)); }
 
   get unlockUpgrade() {
+    if (this.tier === 1 && EndgameMilestone.celestialEarlyUnlock.isReached) return true;
     const imaginaryunlock = ((this.tier - 1) % 4) + (Math.floor((this.tier - 1) / 4) * 11) + 15;
     // The 15th Imaginary Upgrade unlocked Laitela and the 1st DMD
     return ImaginaryUpgrade(imaginaryunlock);
