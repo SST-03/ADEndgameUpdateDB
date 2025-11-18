@@ -155,6 +155,9 @@ export default {
         <p><b>Costs: {{ format(tesseractCost) }} IP</b></p>
       </button>
     </div>
+    <div>
+      Free Tesseracts are softcapped past {{ formatInt(50) }}.
+    </div>
     <div v-if="isEnslavedRunning">
       All Infinity Dimensions are limited to a single purchase.
     </div>
