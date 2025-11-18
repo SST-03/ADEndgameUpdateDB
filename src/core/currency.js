@@ -570,7 +570,7 @@ Currency.endgameSkills = new class extends DecimalCurrency {
   reset() {
     respecEndgameMasteries(true);
     super.reset();
-    EndgameSkillPurchaseType.am.reset();
+    EndgameSkillPurchaseType.gg.reset();
     EndgameSkillPurchaseType.cp.reset();
     EndgameSkillPurchaseType.dp.reset();
     player.endgameMasteries.maxSkills = this.startingValue;
