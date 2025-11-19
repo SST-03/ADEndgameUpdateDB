@@ -53,7 +53,7 @@ export default {
     @click="upgrade.purchase()"
   >
     <HintText
-      type="realityUpgrades"
+      type="breakEternityUpgrades"
       class="l-hint-text--reality-upgrade c-hint-text--reality-upgrade"
     >
       {{ upgrade.config.name }}
