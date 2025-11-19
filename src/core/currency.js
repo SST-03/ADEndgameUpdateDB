@@ -576,3 +576,11 @@ Currency.endgameSkills = new class extends DecimalCurrency {
     player.endgameMasteries.maxSkills = this.startingValue;
   }
 }();
+
+Currency.galacticPower = new class extends DecimalCurrency {
+  get value() { return player.endgame.galacticPower; }
+  set value(value) {
+    const newValue = new Decimal(value);
+    player.endgame.galacticPower = newValue;
+  }
+}();
