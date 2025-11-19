@@ -550,7 +550,7 @@ export const tabs = [
         hidable: true,
       },
       {
-        key: "expanion-packs",
+        key: "expansion-packs",
         name: "Expansion Packs",
         symbol: "<i class='fas fa-expand-arrows-alt'></i>",
         component: "ExpansionPacksTab",
