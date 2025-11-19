@@ -64,7 +64,7 @@ export const endgameUpgrades = [
   {
     name: "Resourceful Rebirth",
     id: 6,
-    cost: 1e45,
+    cost: new Decimal(1e45),
     requirement: () => `Have ${format(Decimal.NUMBER_MAX_VALUE)} Reality Shards without purchasing the 6th Galaxy Generator Upgrade`,
     hasFailed: () => GalaxyGeneratorUpgrades.RSMult.boughtAmount > 0,
     checkRequirement: () => GalaxyGeneratorUpgrades.RSMult.boughtAmount === 0 && Currency.realityShards.gte(Decimal.NUMBER_MAX_VALUE) && 
@@ -79,7 +79,7 @@ export const endgameUpgrades = [
   {
     name: "Catastrophic Clocking",
     id: 7,
-    cost: 1e52,
+    cost: new Decimal(1e52),
     requirement: () => `Play for ${format(1e666)} Years`,
     checkRequirement: () => Time.totalTimePlayed.totalYears.gt(1e666),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
@@ -88,7 +88,7 @@ export const endgameUpgrades = [
   {
     name: "Endgame Emolument",
     id: 8,
-    cost: 1e60,
+    cost: new Decimal(1e60),
     requirement: () => `Manually Endgame in under ${formatInt(10)} minutes (real time)`,
     hasFailed: () => Time.thisEndgameRealTime.totalMinutes.gte(10),
     checkRequirement: () => Time.bestEndgameRealTime.totalMinutes.lt(10),
@@ -107,7 +107,7 @@ export const endgameUpgrades = [
   {
     name: "Imagination Illumination",
     id: 9,
-    cost: 1e70,
+    cost: new Decimal(1e70),
     requirement: "Finish the 4th Row of Imaginary Upgrades without purchasing Fabrication of Ideals",
     hasFailed: () => ImaginaryUpgrade(15).isBought,
     checkRequirement: () => !ImaginaryUpgrade(15).isBought && ImaginaryUpgrade(16).isBought && ImaginaryUpgrade(17).isBought &&
@@ -120,7 +120,7 @@ export const endgameUpgrades = [
   {
     name: "Celestial Chaos",
     id: 10,
-    cost: 1e85,
+    cost: new Decimal(1e85),
     requirement: () => "Complete Effarig, Nameless, V and Ra before pouring anything into Teresa",
     hasFailed: () => player.celestials.teresa.pouredAmount.gt(0),
     checkRequirement: () => player.celestials.teresa.pouredAmount.eq(0) &&
@@ -133,7 +133,7 @@ export const endgameUpgrades = [
   {
     name: "Nonary Neutralization",
     id: 11,
-    cost: 1e50,
+    cost: new Decimal(1e50),
     requirement: () => `Reach ${format(1e50)} Celestial Matter`,
     checkRequirement: () => Currency.celestialMatter.exponent >= 50,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
@@ -143,7 +143,7 @@ export const endgameUpgrades = [
   {
     name: "Unstable Undermining",
     id: 12,
-    cost: 1e56,
+    cost: new Decimal(1e56),
     requirement: "Reach the second Galaxy Generator softcap",
     checkRequirement: () => GalaxyGenerator.generatedGalaxies >= 1e60,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
@@ -153,7 +153,7 @@ export const endgameUpgrades = [
   {
     name: "Barrier Breaching",
     id: 13,
-    cost: 1e66,
+    cost: new Decimal(1e66),
     requirement: () => `Reach a Glyph Level of ${formatInt(76543)}`,
     checkRequirement: () => player.records.bestEndgame.glyphLevel >= 76543,
     checkEvent: GAME_EVENT.REALITY_RESET_AFTER,
@@ -162,7 +162,7 @@ export const endgameUpgrades = [
   {
     name: "Stellar Supplimentation",
     id: 14,
-    cost: 1e84,
+    cost: new Decimal(1e84),
     requirement: () => `Reach ${format(1e60)} Galaxies without purchasing the 6th Galaxy Generator Upgrade`,
     hasFailed: () => GalaxyGeneratorUpgrades.RSMult.boughtAmount > 0,
     checkRequirement: () => GalaxyGeneratorUpgrades.RSMult.boughtAmount === 0 && GalaxyGenerator.generatedGalaxies >= 1e60 && 
@@ -174,7 +174,7 @@ export const endgameUpgrades = [
   {
     name: "Antimatter Amassment",
     id: 15,
-    cost: 1e111,
+    cost: new Decimal(1e111),
     requirement: () => `Reach ${format(Decimal.pow(10, 1e33))} Antimatter`,
     checkRequirement: () => Currency.antimatter.exponent >= 1e33,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
@@ -185,7 +185,7 @@ export const endgameUpgrades = [
   {
     name: "Infinite Improvements",
     id: 16,
-    cost: 1e80,
+    cost: new Decimal(1e80),
     requirement: "Have Increased Infinity Purchased",
     hasFailed: () => !BreakEternityUpgrade.doubleIPUncap.isBought,
     checkRequirement: () => BreakEternityUpgrade.doubleIPUncap.isBought,
@@ -195,7 +195,7 @@ export const endgameUpgrades = [
   {
     name: "Tachyon Transcendence",
     id: 17,
-    cost: 1e140,
+    cost: new Decimal(1e140),
     requirement: "Have Galactic Growth Purchased",
     hasFailed: () => !BreakEternityUpgrade.tgThresholdUncap.isBought,
     checkRequirement: () => BreakEternityUpgrade.tgThresholdUncap.isBought,
@@ -207,7 +207,7 @@ export const endgameUpgrades = [
   {
     name: "Quaternary Quantification",
     id: 18,
-    cost: 1e220,
+    cost: new Decimal(1e220),
     requirement: "Have Tesseract Traversement Purchased",
     hasFailed: () => !BreakEternityUpgrade.tesseractMultiplier.isBought,
     checkRequirement: () => BreakEternityUpgrade.tesseractMultiplier.isBought,
@@ -219,7 +219,7 @@ export const endgameUpgrades = [
   {
     name: "Sacrificial Supercharger",
     id: 19,
-    cost: 1e320,
+    cost: new Decimal(1e320),
     requirement: () => `Have Sacrifice Supplimentation Purchased`,
     hasFailed: () => !BreakEternityUpgrade.glyphSacrificeUncap.isBought,
     checkRequirement: () => BreakEternityUpgrade.glyphSacrificeUncap.isBought,
@@ -231,7 +231,7 @@ export const endgameUpgrades = [
   {
     name: "Supremacy Surge",
     id: 20,
-    cost: 1e440,
+    cost: new Decimal(1e440),
     requirement: () => `Have Sacrifice Supplimentation Purchased`,
     hasFailed: () => !BreakEternityUpgrade.glyphSacrificeUncap.isBought,
     checkRequirement: () => BreakEternityUpgrade.glyphSacrificeUncap.isBought,
@@ -243,7 +243,7 @@ export const endgameUpgrades = [
   {
     name: "Currency Collections",
     id: 21,
-    cost: 1e55,
+    cost: new Decimal(1e55),
     requirement: () => `Have ${format(1e10)} Galactic Power`,
     checkRequirement: () => Currency.galacticPower.gte(1e10),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
@@ -253,7 +253,7 @@ export const endgameUpgrades = [
   {
     name: "Compression Calculations",
     id: 22,
-    cost: 1e65,
+    cost: new Decimal(1e65),
     requirement: () => `Have ${format(1e20)} Galactic Power`,
     checkRequirement: () => Currency.galacticPower.gte(1e20),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
@@ -263,7 +263,7 @@ export const endgameUpgrades = [
   {
     name: "Money Multiplication",
     id: 23,
-    cost: 1e75,
+    cost: new Decimal(1e75),
     requirement: () => `Have ${format(1e30)} Galactic Power`,
     checkRequirement: () => Currency.galacticPower.gte(1e30),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
@@ -273,7 +273,7 @@ export const endgameUpgrades = [
   {
     name: "Dimensional Distension",
     id: 24,
-    cost: 1e85,
+    cost: new Decimal(1e85),
     requirement: () => `Have ${format(1e40)} Galactic Power`,
     checkRequirement: () => Currency.galacticPower.gte(1e40),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
@@ -283,7 +283,7 @@ export const endgameUpgrades = [
   {
     name: "Omnipotent Opulence",
     id: 25,
-    cost: 1e95,
+    cost: new Decimal(1e95),
     requirement: () => `Have ${format(1e50)} Galactic Power`,
     checkRequirement: () => Currency.galacticPower.gte(1e50),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
