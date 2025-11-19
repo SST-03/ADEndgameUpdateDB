@@ -51,6 +51,7 @@ export default {
     <button
       v-if="isAvailable"
       :class="classObject"
+      class="l-break-eternity-upgrade-btn"
       @click="upgrade.purchase()"
     >
       <HintText
