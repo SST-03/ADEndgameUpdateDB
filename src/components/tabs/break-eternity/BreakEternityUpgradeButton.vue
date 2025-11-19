@@ -61,12 +61,8 @@ export default {
         {{ upgrade.config.name }}
       </HintText>
       <DescriptionDisplay :config="upgrade.config" />
-      <EffectDisplay
-        br
-        :config="upgrade.config"
-      />
+      <EffectDisplay :config="upgrade.config" />
       <CostDisplay
-        br
         :config="upgrade.config"
         name="Antimatter"
       />
