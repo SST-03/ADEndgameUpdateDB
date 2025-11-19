@@ -248,6 +248,10 @@ export const tabNotifications = {
         tab: "milestones"
       },
       {
+        parent: "reality",
+        tab: "imag_upgrades"
+      },
+      {
         parent: "dimensions",
         tab: "celestial"
       }
@@ -263,8 +267,8 @@ export const tabNotifications = {
         tab: "break-eternity"
       }
     ],
-    // Always externally triggered
-    condition: () => true,
+    condition: () => PlayerProgress.endgameUnlocked() && Currency.antimatter.gte(DC.E9E15),
+    events: [GAME_EVENT.GAME_TICK_AFTER]
   },
   packsUnlock: {
     id: 19,
@@ -274,8 +278,8 @@ export const tabNotifications = {
         tab: "expansion-packs"
       }
     ],
-    // Always externally triggered
-    condition: () => true,
+    condition: () => PlayerProgress.endgameUnlocked() && GalaxyGenerator.generatedGalaxies >= Math.pow(2, 64),
+    events: [GAME_EVENT.GAME_TICK_AFTER]
   },
   endgameUpgrades: {
     id: 20,
