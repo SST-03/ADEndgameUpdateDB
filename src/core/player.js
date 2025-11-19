@@ -825,7 +825,8 @@ window.player = {
       alchemy: new Set(),
       strikes: new Set()
     },
-    respec: false
+    respec: false,
+    galacticPower: DC.D0,
   },
   endgameMasteries: {
     skills: DC.D0,
