@@ -248,6 +248,10 @@ export const tabNotifications = {
         tab: "milestones"
       },
       {
+        parent: "reality",
+        tab: "imag_upgrades"
+      },
+      {
         parent: "dimensions",
         tab: "celestial"
       }
