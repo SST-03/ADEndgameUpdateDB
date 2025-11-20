@@ -102,6 +102,18 @@ export default {
       const value = this.galaxyGenerator ? player.galaxies + GalaxyGenerator.galaxies : Currency.realityShards.value;
       return Decimal.sub(this.upgrade.cost, value).div(rate);
     },
+    attemptPurchase() {
+      if (this.upgrade === GalaxyGeneratorUpgrades.RSMult && (EndgameUpgrade(6).isLockingMechanics || EndgameUpgrade(14).isLockingMechanics)) {
+        if (EndgameUpgrade(6).isLockingMechanics) {
+          EndgameUpgrade(6).tryShowWarningModal();
+        }
+        if (EndgameUpgrade(14).isLockingMechanics) {
+          EndgameUpgrade(14).tryShowWarningModal();
+        }
+      } else {
+        this.upgrade.purchase();
+      }
+    }
   }
 };
 </script>
@@ -115,7 +127,7 @@ export default {
       'c-pelle-upgrade--faded': faded,
       'c-pelle-upgrade--galaxyGenerator': galaxyGenerator
     }"
-    @click="!faded && upgrade.purchase()"
+    @click="!faded && attemptPurchase"
     @mouseover="hovering = true"
     @mouseleave="hovering = false"
   >
