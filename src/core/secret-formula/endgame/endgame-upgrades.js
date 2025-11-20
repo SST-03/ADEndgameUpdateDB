@@ -94,9 +94,9 @@ export const endgameUpgrades = [
     checkRequirement: () => Time.bestEndgameRealTime.totalMinutes.lt(10),
     checkEvent: GAME_EVENT.ENDGAME_RESET_BEFORE,
     description: () => `Generate Endgames ${formatInt(10)} times slower than your fastest Endgame (real time)`,
-    effect: () => player.records.bestEndgameRealTime.time.times(10),
+    effect: () => player.records.bestEndgame.realTime * 10,
     formatEffect: value => {
-      if (new Decimal(value).gte(Decimal.MAX_VALUE)) return "No Endgame generation";
+      if (new Decimal(value).gte(Decimal.NUMBER_MAX_VALUE)) return "No Endgame generation";
       let endgames = 1;
       const timeStr = Time.bestEndgameRealTime.totalMilliseconds.lte(100)
         ? `${TimeSpan.fromMilliseconds(new Decimal(1000)).toStringShort()} (capped)`
