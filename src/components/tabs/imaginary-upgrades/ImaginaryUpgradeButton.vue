@@ -85,6 +85,10 @@ export default {
     toggleLock(upgrade) {
       if (this.isRebuyable) return;
       upgrade.toggleMechanicLock();
+    },
+    attemptPurchase() {
+      if (this.upgrade.id === 15 && EndgameUpgrade(9).isLockingMechanics) EndgameUpgrade(9).tryShowWarningModal();
+      else this.upgrade.purchase();
     }
   }
 };
@@ -99,7 +103,7 @@ export default {
       :class="classObject"
       class="l-reality-upgrade-btn c-reality-upgrade-btn"
       @click.shift.exact="toggleLock(upgrade)"
-      @click.exact="upgrade.purchase()"
+      @click.exact="attemptPurchase"
     >
       <HintText
         type="realityUpgrades"
