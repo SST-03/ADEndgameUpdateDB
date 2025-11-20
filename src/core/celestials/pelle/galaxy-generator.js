@@ -94,7 +94,7 @@ export const GalaxyGenerator = {
     }
     if (this.sacrificeActive) {
       let reductionSpeed = 0.075;
-      if (EndgameMilestone.galGenAnimation.isReached) reductionSpeed = reductionSpeed * Math.pow(1.2, Math.floor(Currency.endgames.value / 5));
+      if (EndgameMilestone.galGenAnimation.isReached) reductionSpeed = reductionSpeed * Math.pow(1.2, Math.floor(Math.min(Currency.endgames.value, 100) / 5));
       this.capRift.reducedTo = Decimal.max(new Decimal(this.capRift.reducedTo).sub(new Decimal(reductionSpeed).times(diff).div(1000)), 0).toNumber();
       if (this.capRift.reducedTo === 0) {
         player.celestials.pelle.galaxyGenerator.sacrificeActive = false;
