@@ -278,8 +278,12 @@ export const Tesseracts = {
     return (this.bought * (SingularityMilestone.tesseractMultFromSingularities.effectOrDefault(1) - 1)) + Effects.sum(EndgameMastery(61));
   },
 
+  get freeSoftcapStart() {
+    return 50 * EndgameUpgrade(23).effectOrDefault(1);
+  },
+
   get extra() {
-    return Math.max((this.rawExtra - 50) * (1 / (1 + ((this.rawExtra - 50) / 50))), 0) + Math.min(this.rawExtra, 50);
+    return Math.max((this.rawExtra - this.freeSoftcapStart) * (1 / (1 + ((this.rawExtra - this.freeSoftcapStart) / this.freeSoftcapStart))), 0) + Math.min(this.rawExtra, this.freeSoftcapStart);
   },
 
   get totalMult() {
