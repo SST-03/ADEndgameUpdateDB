@@ -9565,7 +9565,7 @@ kbd {
   text-align: center;
   font-family: Typewriter, serif;
   font-size: 1rem;
-  color: var(--color-endgame);
+  color: var(--color-celestials);
   background-color: var(--color-background);
   border: var(--var-border-width, 0.2rem) solid var(--color-endgame);
   border-radius: var(--var-border-radius, 0.5rem);
