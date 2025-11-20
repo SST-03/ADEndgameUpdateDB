@@ -258,10 +258,12 @@ export const Endgame = {
     player.celestials.teresa.quoteBits = 0;
     player.celestials.teresa.unlockBits = 0;
     player.celestials.teresa.run = false;
-    player.celestials.teresa.bestRunAM = DC.D1;
-    player.celestials.teresa.bestAMSet = [];
+    if (!EndgameUpgrade(10).isBought) {
+      player.celestials.teresa.bestRunAM = DC.D1;
+      player.celestials.teresa.bestAMSet = [];
+      player.celestials.teresa.lastRepeatedMachines = DC.D0;
+    }
     player.celestials.teresa.perkShop = Array.repeat(0, 5);
-    player.celestials.teresa.lastRepeatedMachines = DC.D0;
     player.celestials.effarig.relicShards = EndgameUpgrade(6).isBought ? DC.E12 : DC.D0;
     player.celestials.effarig.unlockBits = 0;
     player.celestials.effarig.run = false;
