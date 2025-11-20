@@ -1534,14 +1534,6 @@ export const devMigrations = {
       player.options.lightGlyphs = !player.options.forceDarkGlyphs;
       delete player.options.forceDarkGlyphs;
     },
-    player => {
-      player.records.bestEndgame.time = player.records.bestEndgame.time.eq(0)
-        ? new Decimal(999999999999)
-        : player.records.bestEndgame.time;
-      player.records.bestEndgame.realTime = player.records.bestEndgame.realTime === 0
-        ? 999999999999
-        : player.records.bestEndgame.realTime;
-    },
   ],
 
   patch(player) {
