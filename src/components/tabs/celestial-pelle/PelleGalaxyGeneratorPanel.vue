@@ -118,6 +118,7 @@ export default {
             which is dividing Galaxies above {{ format(1e10, 2, 1) }} by
             <span class="c-galaxies-amount">{{ format(generationReduction, 2, 1) }}</span>.
           </div>
+          <br>
           <div v-if="isSecondInstabilityShown">
             <span class="c-danger-text">
               Your Galaxy Generator has produced too many Galaxies, and is starting to break down.
@@ -323,7 +324,7 @@ export default {
 
 .c-danger-text {
   font-weight: bold;
-  background: var(--color-pelle--base);
+  color: var(--color-pelle--base);
   text-shadow: 0.2rem 0.2rem 0.2rem black;
 }
 </style>
