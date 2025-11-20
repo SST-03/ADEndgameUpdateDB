@@ -340,7 +340,7 @@ export const InfinityDimensions = {
   },
 
   get compressionMagnitude() {
-    const reduction = Effects.product(EndgameMastery(82));
+    const reduction = Effects.product(EndgameMastery(82), EndgameUpgrade(2));
     return 10 * reduction;
   },
 
