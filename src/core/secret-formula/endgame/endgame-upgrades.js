@@ -149,7 +149,7 @@ export const endgameUpgrades = [
   {
     name: "Unstable Undermining",
     id: 12,
-    cost: new Decimal(1e67),
+    cost: new Decimal(1e68),
     requirement: "Reach the second Galaxy Generator softcap",
     checkRequirement: () => GalaxyGenerator.galaxies >= 1e60,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
