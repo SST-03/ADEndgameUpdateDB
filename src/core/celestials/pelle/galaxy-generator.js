@@ -39,15 +39,21 @@ export const GalaxyGenerator = {
   },
 
   get galGenInstability() {
-    const reduction = Effects.sum(EndgameMastery(122), Achievement(196));
+    const reduction = Effects.sum(EndgameMastery(122), Achievement(196), EndgameUpgrade(12));
     let powReduction = 1;
     if (EndgameMilestone.instabilityReduction.isReached) powReduction = Math.pow(1 / Math.log10(Currency.endgames.value + 1), 0.1);
     return Math.pow(10 - reduction, powReduction);
   },
 
+  get harshGalGenInstability() {
+    const currGalaxies = player.galaxies + GalaxyGenerator.galaxies;
+    const startingThreshold = 1e60;
+    return Math.pow(1.03, Math.log10(Math.max(currGalaxies / startingThreshold, 1)));
+  },
+
   get gainPerSecondPostCap() {
     if (!Pelle.hasGalaxyGenerator) return 1;
-    return new Decimal(Math.max(1, Math.pow(this.galGenInstability, Math.log10(Math.max(Math.pow((player.galaxies + GalaxyGenerator.galaxies) / 1e10, 0.75), 1))))
+    return new Decimal(Math.max(1, Math.pow(Math.pow(this.galGenInstability, this.harshGalGenInstability), Math.log10(Math.max(Math.pow((player.galaxies + GalaxyGenerator.galaxies) / 1e10, 0.75), 1))))
     ).toNumber();
   },
 
