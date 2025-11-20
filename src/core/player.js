@@ -369,6 +369,7 @@ window.player = {
       realTime: 0,
       bestCPmin: DC.D0,
       bestDPmin: DC.D0,
+      peakGameSpeed: DC.D1,
     },
     bestEndgame: {
       time: Decimal.MAX_VALUE,
