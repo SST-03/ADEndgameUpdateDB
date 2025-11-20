@@ -757,8 +757,16 @@ function updatePrestigeRates() {
   }
 }
 
-function passivePrestigeGen() {
-  let eternitiedGain = 0;
+function passivePrestigeGen(realDiff) {
+  let endgamedGain = 0;
+  if (EndgameUpgrade(8).isBought) {
+    endgamedGain += realDiff.div(Decimal.clampMin(1000, EndgameUpgrade(8).effectValue));
+    if (endgamedGain >= 1) {
+      Currency.endgames.add(Math.floor(endgamedGain));
+      endgamedGain -= (endgamedGain - Math.floor(endgamedGain));
+    }
+  }
+  let eternitiedGain = DC.D0;
   if (RealityUpgrade(14).isBought) {
     eternitiedGain = DC.D1.timesEffectsOf(
       Achievement(113),
