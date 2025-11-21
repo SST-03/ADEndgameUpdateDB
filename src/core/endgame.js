@@ -151,20 +151,6 @@ export const Endgame = {
     player.reality.glyphs.protectedRows = 0;
     Glyphs.autoClean(0);
     player.reality.glyphs.protectedRows = 2;
-    player.reality.glyphs.filter = {
-      select: AUTO_GLYPH_SCORE.LOWEST_SACRIFICE,
-      trash: AUTO_GLYPH_REJECT.SACRIFICE,
-      simple: 0,
-      types: GlyphTypes.list
-        .filter(t => ALCHEMY_BASIC_GLYPH_TYPES.includes(t.id))
-        .mapToObject(t => t.id, t => ({
-          rarity: 0,
-          score: 0,
-          effectCount: 0,
-          specifiedMask: 0,
-          effectScores: Array.repeat(0, t.effects.length),
-        })),
-    };
     player.reality.glyphs.createdRealityGlyph = false;
     player.reality.initialSeed = Math.floor(Date.now() * Math.random() + 1);
     player.reality.seed = 1;
