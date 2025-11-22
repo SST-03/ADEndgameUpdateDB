@@ -18,6 +18,7 @@ export * from "./notations";
 export * from "./tutorial";
 
 export * from "./endgame";
+export * from "./galactic-power";
 
 export * from "./celestials/quotes";
 export * from "./celestials/teresa";
