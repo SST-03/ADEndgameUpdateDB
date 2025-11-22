@@ -582,6 +582,15 @@ export const tabs = [
         id: 6,
         hidable: true,
       },
+      {
+        key: "power",
+        name: "Galactic Power",
+        symbol: "Ω",
+        component: "GalacticPowerTab",
+        condition: () => GalacticPower.isUnlocked,
+        id: 7,
+        hidable: true,
+      },
     ],
   }
 ];
