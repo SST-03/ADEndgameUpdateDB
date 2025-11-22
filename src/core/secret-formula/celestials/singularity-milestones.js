@@ -375,7 +375,7 @@ export const singularityMilestones = {
     limit: 1,
     description: "Singularities give a power effect to the Antimatter Exponent",
     effect: () => 1 + (Math.pow(Math.log10(Decimal.log10(Currency.singularities.add(1)) + 1) / 2, 3) / 100),
-    effectFormat: x => (x === 1 ? "Unlocked" : "Locked"),
+    effectFormat: x => formatPow(x, 2, 3),
     upgradeDirection: LAITELA_UPGRADE_DIRECTION.BOOSTS_MAIN,
   }
 };
