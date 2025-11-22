@@ -17,7 +17,7 @@ export default {
       return GalacticPowers.all;
     },
     rows() {
-      return Math.ceil(this.milestones.length);
+      return Math.ceil(this.powers.length);
     },
     nextAtDisplay() {
       const first = this.nextPow?.id === 1;
