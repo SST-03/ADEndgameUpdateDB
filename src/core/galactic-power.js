@@ -22,6 +22,12 @@ export const GalacticPowers = mapGameDataToObject(
 export const GalacticPower = {
   get isUnlocked() {
     return SingularityMilestone.galacticPower.isUnlocked;
+  },
+  get nextPower() {
+    return GalacticPowers.all.find(x => !x.isUnlocked);
+  },
+  get nextPowerUnlockGP() {
+    return this.nextPower?.unlockGP;
   }
 };
 
