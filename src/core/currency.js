@@ -583,7 +583,7 @@ Currency.endgameSkills = new class extends DecimalCurrency {
 Currency.galacticPower = new class extends DecimalCurrency {
   get value() { return player.endgame.galacticPower; }
   set value(value) {
-    const newValue = new Decimal(value);
+    const newValue = Decimal.min(value, Decimal.NUMBER_MAX_VALUE);
     player.endgame.galacticPower = newValue;
   }
 }();
