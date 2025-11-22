@@ -24,7 +24,7 @@ class SingularityMilestoneState extends GameMechanicState {
   }
 
   get isUnique() {
-    return this.repeat === 0;
+    return this.repeat.eq(0);
   }
 
   get isUnlocked() {
