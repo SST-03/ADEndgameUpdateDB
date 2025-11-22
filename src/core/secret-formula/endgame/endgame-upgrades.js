@@ -169,9 +169,9 @@ export const endgameUpgrades = [
     name: "Stellar Supplimentation",
     id: 14,
     cost: new Decimal(1e84),
-    requirement: () => `Reach ${format(1e60)} Galaxies without purchasing the 6th Galaxy Generator Upgrade`,
+    requirement: () => `Reach ${format(1e40)} Galaxies without purchasing the 6th Galaxy Generator Upgrade`,
     hasFailed: () => GalaxyGeneratorUpgrades.RSMult.boughtAmount > 0,
-    checkRequirement: () => GalaxyGeneratorUpgrades.RSMult.boughtAmount === 0 && GalaxyGenerator.galaxies >= 1e60 && 
+    checkRequirement: () => GalaxyGeneratorUpgrades.RSMult.boughtAmount === 0 && GalaxyGenerator.galaxies >= 1e40 && 
       player.endgames >= 20,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     canLock: true,
