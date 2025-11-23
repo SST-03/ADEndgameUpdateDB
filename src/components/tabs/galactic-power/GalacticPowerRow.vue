@@ -25,7 +25,7 @@ export default {
       return this.power.config;
     },
     description() {
-      return this.config.description;
+      return this.config.reward;
     },
     reward() {
       const reward = this.config.effect;
