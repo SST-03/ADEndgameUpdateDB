@@ -1,13 +1,7 @@
 <script>
-import DescriptionDisplay from "@/components/DescriptionDisplay";
-import EffectDisplay from "@/components/EffectDisplay";
 
 export default {
   name: "GalacticPowerRow",
-  components: {
-    DescriptionDisplay,
-    EffectDisplay
-  },
   props: {
     getPower: {
       type: Function,
@@ -26,12 +20,15 @@ export default {
     config() {
       return this.power.config;
     },
+    description() {
+      return this.config.description;
+    },
     reward() {
       const reward = this.config.effect;
       return typeof reward === "function" ? reward() : reward;
     },
     title() {
-      return `Galactic Power ${this.config.id}`;
+      return `Galactic Power ${this.config.id}:`;
     }
   },
   methods: {
@@ -43,14 +40,10 @@ export default {
 </script>
 
 <template>
-  <div v-show="isUnlocked">
-    <DescriptionDisplay
-      :config="reward"
-      title="title"
-    />
-    <EffectDisplay
-      :config="reward"
-    />
+  <div>
+    {{ title }} {{ description }}.
+    <br>
+    Currently: {{ reward }}
   </div>
 </template>
 
