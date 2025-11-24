@@ -53,9 +53,9 @@ export default {
 <template>
   <div class="l-endgame-milestone-grid">
     <div>
-      <span class="c-galactic-power-description-text">You have</span>
+      <span class="c-galactic-power-description-text">You have </span>
       <span :style="galacticPowerAmountStyle">{{ format(galacticPower, 2, 2) }}</span>
-      <span class="c-galactic-power-description-text">Galactic Power.</span>
+      <span class="c-galactic-power-description-text"> Galactic Power.</span>
     </div>
     <div
       v-for="row in rows"
