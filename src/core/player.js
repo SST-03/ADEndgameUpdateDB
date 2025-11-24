@@ -838,6 +838,7 @@ window.player = {
     upgradeBits: 0,
     upgReqs: 0,
     reqLock: 0,
+    partEndgamed: 0,
   },
   endgameMasteries: {
     skills: DC.D0,
