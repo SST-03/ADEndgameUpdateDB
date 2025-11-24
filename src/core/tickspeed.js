@@ -35,7 +35,8 @@ export function getTickSpeedMultiplier() {
     EndgameMastery(52),
     InfinityChallenge(5).reward,
     PelleUpgrade.galaxyPower,
-    PelleRifts.decay.milestones[1]
+    PelleRifts.decay.milestones[1],
+    GalacticPowers.galaxyStrength.reward
   );
   if (galaxies < 3) {
     // Magic numbers are to retain balancing from before while displaying
