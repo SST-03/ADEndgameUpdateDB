@@ -269,9 +269,9 @@ export const endgameMasteries = [
     cost: 3,
     requirement: [141],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: () => `Improve the Infinity Point Conversion Rate based on Celestial Points`,
-    effect: () => 1 + (Math.log10(Decimal.log10(Currency.celestialPoints.value.plus(1)) + 1) / 20),
-    formatEffect: value => `/${format(value, 2, 2)}`
+    description: () => `Make the Infinity Point formula better`,
+    effect: () => Effects.min(308, Achievement(103), TimeStudy(111)) / (1 + (Math.log10(Decimal.log10(Currency.celestialPoints.value.plus(1)) + 1) / 20)),
+    formatEffect: value => `log(x)/${format(Effects.min(308, Achievement(103), TimeStudy(111)), 2, 2)} ➜ log(x)/${format(value, 2, 2)}`
   },
   {
     id: 152,
