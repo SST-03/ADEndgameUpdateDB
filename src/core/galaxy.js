@@ -22,7 +22,8 @@ export class Galaxy {
   }
   
   static get remoteStart() {
-    return this.baseRemoteStart + Effects.sum(BreakEternityUpgrade.galaxyScaleDelay) + GalacticPowers.remoteGalaxyScale.reward;
+    const extraDelay = GalacticPowers.remoteGalaxyScale.isUnlocked ? GalacticPowers.remoteGalaxyScale.reward : 0;
+    return this.baseRemoteStart + Effects.sum(BreakEternityUpgrade.galaxyScaleDelay) + extraDelay;
   }
 
   static get remoteGalaxyStrength() {
