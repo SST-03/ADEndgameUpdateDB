@@ -745,11 +745,10 @@ function updatePrestigeRates() {
 function passivePrestigeGen(realDiff) {
   let endgamedGain = 0;
   if (EndgameUpgrade(8).isBought) {
-    endgamedGain += realDiff / Decimal.clampMin(1000, EndgameUpgrade(8).effectValue).toNumber();
-    if (endgamedGain >= 1) {
-      Currency.endgames.add(Math.floor(endgamedGain));
-      endgamedGain -= (endgamedGain - Math.floor(endgamedGain));
-    }
+    endgamedGain = Time.unscaledDeltaTime.div(Decimal.clampMin(1000, EndgameUpgrade(8).effectValue)).toNumber();
+    player.endgame.partEndgamed += endgamedGain;
+    Currency.endgames.add(Math.floor(player.endgame.partEndgamed));
+    player.endgame.partEndgamed -= (player.endgame.partEndgamed - Math.floor(player.endgame.partEndgamed));
   }
   let eternitiedGain = DC.D0;
   if (RealityUpgrade(14).isBought) {
