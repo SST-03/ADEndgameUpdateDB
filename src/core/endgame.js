@@ -39,6 +39,62 @@ function giveEndgameRewards() {
 }
 
 export const Endgame = {
+  resetNoReward() {
+    GameEnd.creditsClosed = false;
+    GameEnd.creditsEverClosed = false;
+    player.isGameEnd = false;
+    // We set this ASAP so that the AD tab is immediately recreated without END formatting, and any lag which could
+    // happen is instead hidden by the overlay from the credits rollback
+    player.celestials.pelle.doomed = false;
+
+    // This is where we "confirm" a speedrun as completed and store all its information into the previous run prop
+    // before resetting everything.
+    const speedrun = player.speedrun;
+    if (speedrun.isActive) {
+      player.speedrun.previousRuns[player.records.fullGameCompletions + 1] = {
+        isSegmented: speedrun.isSegmented,
+        usedSTD: speedrun.usedSTD,
+        startDate: speedrun.startDate,
+        name: speedrun.name,
+        offlineTimeUsed: speedrun.offlineTimeUsed,
+        records: [...speedrun.records],
+        achievementTimes: JSON.parse(JSON.stringify(speedrun.achievementTimes)),
+        seedSelection: speedrun.seedSelection,
+        initialSeed: speedrun.initialSeed,
+      };
+
+      // For the sake of keeping a bounded savefile size, we only keep a queue of the last 100 full runs. The earliest
+      // this will feasibly become an issue from nonstop speedruns is around 2030; I guess we can revisit it at that
+      // point if we really need to, but I suspect this limit should be high enough
+      const prevRunIndices = Object.keys(speedrun.previousRuns).map(k => Number(k));
+      if (prevRunIndices.length > 100) player.speedrun.previousRuns[prevRunIndices.min()] = undefined;
+    }
+    EventHub.dispatch(GAME_EVENT.ENDGAME_RESET_BEFORE);
+
+    // Modify beaten-game quantities before doing a carryover reset
+    if (player.endgame.respec) {
+      respecEndgameMasteries();
+      player.endgame.respec = false;
+    }
+    this.resetStuff();
+
+    // Add Glyphs after other Glyphs are purged
+    if (EndgameMastery(71).isBought) {
+      for (const type of BASIC_GLYPH_TYPES) Glyphs.addToInventory(GlyphGenerator.endgameGlyph(type));
+      for (const type of BASIC_GLYPH_TYPES) Glyphs.addToInventory(GlyphGenerator.endgameGlyph(type));
+      for (const type of BASIC_GLYPH_TYPES) Glyphs.addToInventory(GlyphGenerator.endgameGlyph(type));
+      for (const type of BASIC_GLYPH_TYPES) Glyphs.addToInventory(GlyphGenerator.endgameGlyph(type));
+      for (const type of BASIC_GLYPH_TYPES) Glyphs.addToInventory(GlyphGenerator.endgameGlyph(type));
+    }
+    EventHub.dispatch(GAME_EVENT.ENDGAME_RESET_AFTER);
+
+    // The ending animation ends at 12.5, although the value continues to increase after that. We set it to a bit above
+    // 12.5 when we start the rollback animation to hide some of the unavoidable lag from all the reset functions
+    GameEnd.removeAdditionalEnd = true;
+    GameEnd.additionalEnd = 15;
+    // Without the delay, this causes the saving (and its notification) to occur during the credits rollback
+    setTimeout(() => GameStorage.save(), 10000);
+  },
   newEndgame() {
     GameEnd.creditsClosed = false;
     GameEnd.creditsEverClosed = false;
