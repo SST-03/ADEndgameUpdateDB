@@ -586,7 +586,7 @@ class AntimatterDimensionState extends DimensionState {
     const postBreak = (player.break && !NormalChallenge.isRunning) ||
       InfinityChallenge.isRunning ||
       Enslaved.isRunning;
-    const trueHardcap = player.break2 ? DC.E9E115 : DC.E9E15;
+    const trueHardcap = player.break2 ? DC.ENUMMAX : DC.E9E15;
     return postBreak ? trueHardcap : DC.E315;
   }
 
