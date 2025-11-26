@@ -473,10 +473,18 @@ EventHub.logic.on(GAME_EVENT.GAME_TICK_AFTER, () => {
   if (player.celestials.pelle.records.totalEndgameAntimatter.gte(DC.E9E15) && player.endgames >= 1) Pelle.quotes.end2.show();
 });
 EventHub.logic.on(GAME_EVENT.GAME_TICK_AFTER, () => {
-  if (PelleAchievementUpgrade.all.filter(u => u.isBought).length >= 1 || PelleDestructionUpgrade.all.filter(u => u.isBought).length >= 1) Pelle.quotes.disable.show();
-});
-EventHub.logic.on(GAME_EVENT.GAME_TICK_AFTER, () => {
-  if (PelleDestructionUpgrade.disableGalaxyNerf.isBought) Pelle.quotes.galaxyDebuffDisable.show();
+  if (Pelle.isDoomed && (PelleAchievementUpgrade.all.filter(u => u.isBought).length >= 1 || PelleDestructionUpgrade.all.filter(u => u.isBought).length >= 1)) {
+    Pelle.quotes.disable.show();
+  }
+  if (Pelle.isDoomed && PelleDestructionUpgrade.disableGalaxyNerf.isBought) {
+    Pelle.quotes.galaxyDebuffDisable.show();
+  }
+  if (Pelle.isDoomed && Achievement(194).isUnlocked) {
+    Pelle.quotes.allPelleAchs.show();
+  }
+  if (Pelle.isDoomed && Achievement(195).isUnlocked) {
+    Pelle.quotes.allPelleNerfs.show();
+  }
 });
 EventHub.logic.on(GAME_EVENT.GAME_TICK_AFTER, () => {
   if (PelleStrikeUpgrade.all.filter(u => u.isBought).length >= 1) Pelle.quotes.strikeDisable1.show();
