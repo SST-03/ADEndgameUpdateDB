@@ -9756,6 +9756,23 @@ kbd {
   }
 }
 
+.l-endgame-button-column {
+  display: flex;
+  flex-direction: column;
+  width: 44rem;
+  align-items: center;
+  margin-right: 2rem;
+}
+
+.l-endgame-button-group {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 6rem;
+  padding: 0.5rem;
+}
+
+
 /* #region reality-tab */
 
 .c-reality-tab__reality-machines {
