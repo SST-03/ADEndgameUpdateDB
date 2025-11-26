@@ -44,7 +44,7 @@ export default {
       };
     },
     formatContinuumPercentage() {
-      return this.matterExtraPurchasePercentage >= 11
+      return Laitela.matterExtraPurchaseFactor >= 11
         ? formatX(this.matterExtraPurchasePercentage, 2, 2)
         : formatPercents(this.matterExtraPurchasePercentage, 2);
     }
@@ -56,7 +56,9 @@ export default {
       this.isDMCapped = this.darkMatter.eq(Laitela.darkMatterCap);
       this.maxDarkMatter.copyFrom(Currency.darkMatter.max);
       this.darkEnergy.copyFrom(player.celestials.laitela.darkEnergy);
-      this.matterExtraPurchasePercentage = Laitela.matterExtraPurchaseFactor - 1;
+      this.matterExtraPurchasePercentage = Laitela.matterExtraPurchaseFactor >= 11
+        ? Laitela.matterExtraPurchaseFactor
+        : Laitela.matterExtraPurchaseFactor - 1;
       this.autobuyersUnlocked = SingularityMilestone.darkDimensionAutobuyers.canBeApplied ||
         SingularityMilestone.darkDimensionAutobuyers.canBeApplied ||
         SingularityMilestone.autoCondense.canBeApplied ||
