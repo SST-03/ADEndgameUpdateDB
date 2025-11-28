@@ -31,6 +31,6 @@ export const ExpansionPacks = {
     return ExpansionPack.all.find(x => !x.isUnlocked);
   },
   get nextPackUnlockAM() {
-    return this.nextPower?.unlockAM;
+    return this.nextPack?.unlockAM;
   }
 }
