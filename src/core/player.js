@@ -839,6 +839,10 @@ window.player = {
     upgReqs: 0,
     reqLock: 0,
     partEndgamed: 0,
+    expansionPacks: {
+      areUnlocked: false,
+      boughtPacks: new Set()
+    },
   },
   endgameMasteries: {
     skills: DC.D0,
