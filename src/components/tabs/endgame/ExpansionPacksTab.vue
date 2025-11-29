@@ -96,7 +96,7 @@ export default {
         <ExpansionPacksContainer
           v-for="pack in row"
           :key="pack.id"
-          :upgrade="pack"
+          :pack="pack"
           class="l-expansion-packs-grid__cell"
         />
       </div>
