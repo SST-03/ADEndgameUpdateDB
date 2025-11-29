@@ -9772,8 +9772,6 @@ kbd {
   width: 98rem;
   margin: 1rem;
   padding: 1rem;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 .o-expansion-pack--teresa {
