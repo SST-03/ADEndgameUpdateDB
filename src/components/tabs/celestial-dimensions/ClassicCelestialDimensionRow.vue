@@ -87,7 +87,7 @@ export default {
       this.isCapped = dimension.isCapped;
       if (this.isCapped) {
         this.capCP.copyFrom(dimension.hardcapCPAmount);
-        this.hardcap = dimension.purchaseCap;
+        this.hardcap.copyFrom(dimension.purchaseCap);
       }
     },
     buySingleCelestialDimension() {
