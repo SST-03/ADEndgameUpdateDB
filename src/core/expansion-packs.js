@@ -13,6 +13,10 @@ class ExpansionPackState extends SetPurchasableMechanicState {
     return this.config.cost;
   }
 
+  get symbol() {
+    return this.config.symbol;
+  }
+
   get isUnlocked() {
     return this.isBought || Currency.antimatter.gte(this.unlockAM);
   }
