@@ -169,6 +169,8 @@ export const Endgame = {
     if (ImaginaryUpgrade(28).isBought) darkremains += 268435456;
     if (ImaginaryUpgrade(29).isBought) darkremains += 536870912;
     if (ImaginaryUpgrade(30).isBought) darkremains += 1073741824;
+    let maxPerkCharges = 0;
+    maxPerkCharges = player.celestials.teresa.perkShop[6];
     player.isGameEnd = false;
     Tab.dimensions.antimatter.show();
     AchievementTimers.marathon2.reset();
@@ -307,7 +309,8 @@ export const Endgame = {
       player.celestials.teresa.bestAMSet = [];
       player.celestials.teresa.lastRepeatedMachines = DC.D0;
     }
-    player.celestials.teresa.perkShop = Array.repeat(0, 5);
+    player.celestials.teresa.perkShop = Array.repeat(0, 6);
+    player.celestials.teresa.perkShop[6] = maxPerkCharges;
     player.celestials.effarig.relicShards = EndgameUpgrade(6).isBought ? DC.E12 : DC.D0;
     player.celestials.effarig.unlockBits = 0;
     player.celestials.effarig.run = false;
