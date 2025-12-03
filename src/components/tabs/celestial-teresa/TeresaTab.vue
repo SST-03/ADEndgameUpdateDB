@@ -52,6 +52,7 @@ export default {
         PerkShopUpgrade.musicGlyph,
       ];
       if (this.raisedPerkShop) upgrades.push(PerkShopUpgrade.fillMusicGlyph);
+      if (ExpansionPack.teresaPack.isBought) upgrades.push(PerkShopUpgrade.addCharges);
       return upgrades;
     },
     runButtonClassObject() {
