@@ -602,7 +602,7 @@ window.player = {
       run: false,
       bestRunAM: DC.D1,
       bestAMSet: [],
-      perkShop: Array.repeat(0, 6),
+      perkShop: Array.repeat(0, 7),
       lastRepeatedMachines: DC.D0,
       charged: new Set(),
       disCharge: false
