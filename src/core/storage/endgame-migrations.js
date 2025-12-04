@@ -27,6 +27,6 @@ export function endgameMigration(player) {
         : player.records.bestEndgame.realTime;
   if (!GalacticPower.isUnlocked && player.endgame.galacticPower.gt(0)) player.endgame.galacticPower = new Decimal(0);
   if (player.celestials.teresa.perkShop.length === 5) {
-    player.celestials.teresa.perkShop = Array.repeat(0, 6);
+    player.celestials.teresa.perkShop = Array.repeat(0, 7);
   }
 }
