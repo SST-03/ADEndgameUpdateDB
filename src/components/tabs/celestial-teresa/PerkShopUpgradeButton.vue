@@ -61,7 +61,7 @@ export default {
       <CostDisplay
         v-if="!isCapped"
         :config="upgrade.config"
-        name="otherCurr ? 'Celestial Point' : 'Perk Point'"
+        :name="otherCurr ? 'Celestial Point' : 'Perk Point'"
       />
     </button>
   </div>
