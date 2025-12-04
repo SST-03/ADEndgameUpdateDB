@@ -88,7 +88,7 @@ export const perkShop = {
     initialCost: 1e10,
     increment: 1e10,
     description: () => `Unlock a new Charged Perk Upgrade`,
-    effect: bought => bought,
+    effect: bought => Math.floor(bought),
     formatEffect: value => formatInt(value),
     formatCost: value => format(value, 2),
     costCap: () => 1e60,
