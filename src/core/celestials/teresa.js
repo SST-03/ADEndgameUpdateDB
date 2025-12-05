@@ -66,7 +66,7 @@ export const Teresa = {
     return this.totalCharges - player.celestials.teresa.charged.size;
   },
   get chargeModeOn() {
-    return false;
+    return player.celestials.teresa.chargeMode;
   },
   quotes: Quotes.teresa,
   symbol: "Ϟ"
