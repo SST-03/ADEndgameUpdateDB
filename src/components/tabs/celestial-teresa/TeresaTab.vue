@@ -105,7 +105,7 @@ export default {
       };
     },
     chargeDisplay() {
-      return this.chargeView ? "ON" : "OFF";
+      return `Toggle Charge Mode: ${this.chargeView ? "ON" : "OFF"}`;
     },
   },
   watch: {
@@ -319,7 +319,7 @@ export default {
           class="o-primary-btn--subtab-option"
           @click="chargeView = !chargeView"
         >
-          Toggle Charge Mode: {{ chargeDisplay }}
+          {{ chargeDisplay }}
         </PrimaryButton>
         You can now modify the appearance of your Glyphs to look like Music Glyphs.
       </div>
