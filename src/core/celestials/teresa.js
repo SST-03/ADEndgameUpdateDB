@@ -65,6 +65,9 @@ export const Teresa = {
   get chargesLeft() {
     return this.totalCharges - player.celestials.teresa.charged.size;
   },
+  get chargeModeOn() {
+    return false;
+  },
   quotes: Quotes.teresa,
   symbol: "Ϟ"
 };
@@ -121,6 +124,46 @@ class PerkShopUpgradeState extends RebuyableMechanicState {
       GameUI.notify.success(`Created ${quantifyInt("Music Glyph", toCreate)}`);
     }
   }
+
+  get viewCharge() {
+    return Teresa.chargeModeOn || this.isCharged;
+  }
+
+  get ableToCharge() {
+    return this.id <= 4;
+  }
+
+  get isCharged() {
+    return player.celestials.teresa.charged.has(this.id);
+  }
+
+  get canCharge() {
+    return !this.isCharged && Teresa.chargesLeft !== 0 && this.ableToCharge;
+  }
+
+  charge() {
+    player.celestials.teresa.charged.add(this.id);
+  }
+
+  disCharge() {
+    player.celestials.teresa.charged.delete(this.id);
+  }
+}
+
+export function disChargeAllPerkUpgrades() {
+  const upgrades = [
+    PerkShopUpgrade.glyphLevel,
+    PerkShopUpgrade.rmMult,
+    PerkShopUpgrade.bulkDilation,
+    PerkShopUpgrade.autoSpeed,
+    PerkShopUpgrade.musicGlyph
+  ];
+  for (const upgrade of upgrades) {
+    if (upgrade.isCharged) {
+      upgrade.disCharge();
+    }
+  }
+  player.celestials.teresa.disCharge = false;
 }
 
 class TeresaUnlockState extends BitUpgradeState {
