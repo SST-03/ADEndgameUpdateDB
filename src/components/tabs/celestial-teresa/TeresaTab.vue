@@ -35,6 +35,10 @@ export default {
       raisedPerkShop: false,
       isRunning: false,
       canUnlockNextPour: false,
+      chargeUnlocked: false,
+      totalCharges: 0,
+      chargesUsed: 0,
+      disCharge: false,
     };
   },
   computed: {
@@ -90,6 +94,17 @@ export default {
       };
     },
     isDoomed: () => Pelle.isDoomed,
+    disChargeClassObject() {
+      return {
+        "o-primary-btn--subtab-option": true,
+        "o-primary-btn--charged-respec-active": this.disCharge
+      };
+    },
+  },
+  watch: {
+    disCharge(newValue) {
+      player.celestials.teresa.disCharge = newValue;
+    }
   },
   methods: {
     update() {
@@ -122,6 +137,10 @@ export default {
       this.isRunning = Teresa.isRunning;
       this.canUnlockNextPour = TeresaUnlocks.all
         .filter(unlock => this.rm.plus(this.pouredAmount).gte(unlock.price) && !unlock.isUnlocked).length > 0;
+      this.chargeUnlocked = ExpansionPack.teresaPack.isBought;
+      this.totalCharges = Teresa.totalCharges;
+      this.chargesUsed = Teresa.totalCharges - Teresa.chargesLeft;
+      this.disCharge = player.celestials.teresa.disCharge;
     },
     startRun() {
       if (this.isDoomed) return;
@@ -148,6 +167,23 @@ export default {
 <template>
   <div class="l-teresa-celestial-tab">
     <CelestialQuoteHistory celestial="teresa" />
+    <div
+      v-if="chargeUnlocked"
+      class="c-subtab-option-container"
+    >
+      <PrimaryButton
+        :class="disChargeClassObject"
+        @click="disCharge = !disCharge"
+      >
+        Respec Charged Perk Upgrades on next Endgame
+      </PrimaryButton>
+    </div>
+    <div v-if="chargeUnlocked">
+      You have charged {{ formatInt(chargesUsed) }}/{{ formatInt(totalCharges) }} Perk Upgrades.
+      Charged Perk Upgrades have their effect altered.
+      <br>
+      Hold shift to show Charged Perk Upgrades. You can freely respec your choices on Endgame.
+    </div>
     <div>
       You have {{ quantify("Reality Machine", rm, 2, 2) }}.
     </div>
