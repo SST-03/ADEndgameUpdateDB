@@ -26,7 +26,7 @@ export const perkShop = {
     id: 0,
     initialCost: 1,
     increment: 2,
-    description: () => PerkShopUpgrade.glyphLevel.isCharged ? `Multiply pre-instability Glyph level based on highest-ever
+    description: () => PerkShopUpgrade.glyphLevel.viewCharge ? `Multiply pre-instability Glyph level based on highest-ever
       Glyph level` : `Increase pre-instability Glyph levels by ${formatPercents(0.05)}`,
     effect: bought => PerkShopUpgrade.glyphLevel.isCharged ? Math.pow(player.records.bestEndgame.glyphLevel, 0.2) : Math.pow(1.05, bought),
     chargedEffect: () => Math.pow(player.records.bestEndgame.glyphLevel, 0.2),
@@ -40,7 +40,7 @@ export const perkShop = {
     id: 1,
     initialCost: 1,
     increment: 2,
-    description: () => PerkShopUpgrade.rmMult.isCharged ? `Multiply Reality Machine gain and cap based on
+    description: () => PerkShopUpgrade.rmMult.viewCharge ? `Multiply Reality Machine gain and cap based on
       Antimatter amount` : `Double Reality Machine gain`,
     effect: bought => PerkShopUpgrade.rmMult.isCharged ? Decimal.log10(player.antimatter) : Math.pow(2, bought),
     chargedEffect: () => Decimal.log10(player.antimatter),
@@ -54,7 +54,7 @@ export const perkShop = {
     id: 2,
     initialCost: 100,
     increment: 2,
-    description: () => PerkShopUpgrade.bulkDilation.isCharged ? `Dilation Autobuyers always buy max.` : `Dilation
+    description: () => PerkShopUpgrade.bulkDilation.viewCharge ? `Dilation Autobuyers always buy max.` : `Dilation
       autobuyers buy twice as many Dilation Upgrades at once.`,
     effect: bought => PerkShopUpgrade.bulkDilation.isCharged ? Math.pow(10, 300) : Math.pow(2, bought),
     formatEffect: value => formatX(value, 2),
@@ -67,7 +67,7 @@ export const perkShop = {
     id: 3,
     initialCost: 1000,
     increment: 2,
-    description: () => PerkShopUpgrade.autoSpeed.isCharged ? `Infinity Dimension, Time Dimension, Dilation, and Replicanti autobuyer
+    description: () => PerkShopUpgrade.autoSpeed.viewCharge ? `Infinity Dimension, Time Dimension, Dilation, and Replicanti autobuyer
       intervals are Instant.` : `Infinity Dimension, Time Dimension, Dilation, and Replicanti autobuyers are ${formatX(2)} faster.`,
     effect: bought => PerkShopUpgrade.autoSpeed.isCharged ? Math.pow(10, 300) : Math.pow(2, bought),
     formatEffect: value => formatX(value, 2),
@@ -78,7 +78,7 @@ export const perkShop = {
   }),
   musicGlyph: rebuyable({
     id: 4,
-    description: () => PerkShopUpgrade.musicGlyph.isCharged ? `Unlock an Autobuyer to automatically purchase and purge Music
+    description: () => PerkShopUpgrade.musicGlyph.viewCharge ? `Unlock an Autobuyer to automatically purchase and purge Music
       Glyphs.` : `Receive a Music Glyph of a random type that is ${formatPercents(0.8)} of your highest level. (Try clicking it!)`,
     cost: () => 1,
     formatCost: value => formatInt(value),
