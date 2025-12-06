@@ -34,7 +34,7 @@ export default {
         return;
       }
       Glyphs.addToInventory(GlyphGenerator.realityGlyph(this.realityGlyphLevel));
-      AlchemyResource.reality.amount = 0;
+      if (!ExpansionPack.effarigPack.isBought) AlchemyResource.reality.amount = 0;
       player.reality.glyphs.createdRealityGlyph = true;
       this.emitClose();
     },
