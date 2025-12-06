@@ -17,7 +17,7 @@ export default {
       incomeType: "",
       conversionExponent: 0,
       nextDimCapIncrease: 0,
-      totalDimCap: 0,
+      totalDimCap: new Decimal(0),
       creditsClosed: false,
       showLockedDimCostNote: true,
       softcapPow: 0,
@@ -35,7 +35,7 @@ export default {
       this.dimMultiplier.copyFrom(this.celestialMatter.pow(this.conversionExponent).max(1));
       this.matterPerSecond.copyFrom(CelestialDimension(1).productionPerSecond);
       this.incomeType = "Celestial Matter";
-      this.totalDimCap = CelestialDimensions.totalDimCap;
+      this.totalDimCap.copyFrom(CelestialDimensions.totalDimCap);
       this.creditsClosed = GameEnd.creditsEverClosed;
       this.softcapPow = CelestialDimensions.softcapPow;
       this.softcap = CelestialDimensions.SOFTCAP;
