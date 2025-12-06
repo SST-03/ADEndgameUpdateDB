@@ -387,13 +387,13 @@ export const Endgame = {
           amount: 0,
           reaction: false
         }));
+      player.celestials.ra.highestRefinementValue.power = 0;
+      player.celestials.ra.highestRefinementValue.infinity = 0;
+      player.celestials.ra.highestRefinementValue.time = 0;
+      player.celestials.ra.highestRefinementValue.replication = 0;
+      player.celestials.ra.highestRefinementValue.dilation = 0;
+      player.celestials.ra.highestRefinementValue.effarig = 0;
     }
-    player.celestials.ra.highestRefinementValue.power = 0;
-    player.celestials.ra.highestRefinementValue.infinity = 0;
-    player.celestials.ra.highestRefinementValue.time = 0;
-    player.celestials.ra.highestRefinementValue.replication = 0;
-    player.celestials.ra.highestRefinementValue.dilation = 0;
-    player.celestials.ra.highestRefinementValue.effarig = 0;
     if (!ExpansionPacks.areUnlocked) {
       player.celestials.ra.quoteBits = 0;
     }
