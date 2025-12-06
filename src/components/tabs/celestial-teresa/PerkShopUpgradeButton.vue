@@ -36,10 +36,10 @@ export default {
       };
     },
     effectConfig() {
-      const config = this.config;
+      const upgrade = this.upgrade;
       return {
-        effect: () => this.upgrade.chargedValue !== config.effect ? config.chargedEffect : config.effect,
-        formatEffect: () => config.formatEffect,
+        effect: () => upgrade.chargedValue,
+        formatEffect: upgrade.config.formatEffect
       };
     },
   },
@@ -61,12 +61,14 @@ export default {
       @click="upgrade.purchase()"
     >
       <DescriptionDisplay
-        v-if="displayEffect"
         :config="upgrade.config"
         :length="70"
       />
       <br>
-      <EffectDisplay :config="effectConfig" />
+      <EffectDisplay
+        v-if="displayEffect"
+        :config="effectConfig"
+      />
       <br>
       <CostDisplay
         v-if="!isCapped"
