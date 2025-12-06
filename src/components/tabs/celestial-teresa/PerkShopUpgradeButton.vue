@@ -38,7 +38,7 @@ export default {
     effectConfig() {
       const upgrade = this.upgrade;
       return {
-        effect: () => upgrade.chargedValue,
+        effect: () => upgrade.chargedValue(),
         formatEffect: upgrade.config.formatEffect
       };
     },
