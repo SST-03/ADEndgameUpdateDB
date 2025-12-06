@@ -35,7 +35,9 @@ export const perkShop = {
     formatEffect: value => formatX(value, 2, 2),
     formatCost: value => format(value, 2),
     costCap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 1048576 : 2048),
-    cap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? Math.pow(1.05, 20) : Math.pow(1.05, 11)),
+    cap: () => PerkShopUpgrade.glyphLevel.isCharged
+      ? Number.MAX_VALUE
+      : (Ra.unlocks.perkShopIncrease.canBeApplied ? Math.pow(1.05, 20) : Math.pow(1.05, 11)),
     showEffectAfterCharge: true
   }),
   rmMult: rebuyable({
@@ -52,7 +54,9 @@ export const perkShop = {
     formatEffect: value => formatX(value, 2),
     formatCost: value => format(value, 2),
     costCap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 1048576 : 2048),
-    cap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 1048576 : 2048),
+    cap: () => PerkShopUpgrade.rmMult.isCharged
+      ? Number.MAX_VALUE
+      : (Ra.unlocks.perkShopIncrease.canBeApplied ? 1048576 : 2048),
     showEffectAfterCharge: true
   }),
   bulkDilation: rebuyable({
@@ -69,7 +73,9 @@ export const perkShop = {
     formatEffect: value => formatX(value, 2),
     formatCost: value => format(value, 2),
     costCap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 1638400 : 1600),
-    cap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 16384 : 16),
+    cap: () => PerkShopUpgrade.bulkDilation.isCharged
+      ? Number.MAX_VALUE
+      : (Ra.unlocks.perkShopIncrease.canBeApplied ? 16384 : 16),
     showEffectAfterCharge: false
   }),
   autoSpeed: rebuyable({
@@ -86,7 +92,9 @@ export const perkShop = {
     formatEffect: value => formatX(value, 2),
     formatCost: value => format(value, 2),
     costCap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 64000 : 4000),
-    cap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 64 : 4),
+    cap: () => PerkShopUpgrade.autoSpeed.isCharged
+      ? Number.MAX_VALUE
+      : (Ra.unlocks.perkShopIncrease.canBeApplied ? 64 : 4),
     showEffectAfterCharge: false
   }),
   musicGlyph: rebuyable({
