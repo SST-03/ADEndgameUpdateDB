@@ -43,6 +43,7 @@ export default {
       disCharge: false,
       chargeView: false,
       chargeUnlocked: false,
+      autoPour: false,
     };
   },
   computed: {
@@ -81,6 +82,16 @@ export default {
         "c-disabled-pour": this.isPouredAmountCapped
       };
     },
+    autoClassObject() {
+      return {
+        "o-teresa-shop-button": true,
+        "c-teresa-pour": true,
+        "o-teresa-shop-button--available": true
+      };
+    },
+    autoText() {
+      return this.autoPour ? "Auto ON" : "Auto OFF";
+    }
     pourText() {
       return this.isPouredAmountCapped ? "Filled" : "Pour RM";
     },
@@ -153,6 +164,7 @@ export default {
       this.disCharge = player.celestials.teresa.disCharge;
       this.chargeView = Teresa.chargeModeOn;
       this.chargeUnlocked = ExpansionPack.teresaPack.isBought;
+      this.autoPour = player.celestials.teresa.autoPour;
     },
     startRun() {
       if (this.isDoomed) return;
@@ -171,6 +183,9 @@ export default {
         "c-teresa-unlock-description": true,
         "c-teresa-unlock-description--unlocked": this.hasUnlock(unlockInfo)
       };
+    },
+    toggleAuto() {
+      return player.celestials.teresa.autoPour = !player.celestials.teresa.autoPour;
     }
   }
 };
@@ -252,6 +267,12 @@ export default {
         </div>
       </div>
       <div class="l-rm-container l-teresa-mechanic-container">
+        <PrimaryButton
+          :class="autoClassObject"
+          @click="toggleAuto"
+        >
+          {{ autoText }}
+        </PrimaryButton>
         <button
           :class="pourButtonClassObject"
           @mousedown="pour = true"
