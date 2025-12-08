@@ -6,6 +6,7 @@ import { DarkMatterDimensionAscensionAutobuyerState } from "./dark-matter-dimens
 import { DarkMatterDimensionAutobuyerState } from "./dark-matter-dimension-autobuyer";
 import { DilationUpgradeAutobuyerState } from "./dilation-upgrade-autobuyer";
 import { DimBoostAutobuyerState } from "./dimboost-autobuyer";
+import { EndgameAutobuyerState } from "./endgame-autobuyer";
 import { EternityAutobuyerState } from "./eternity-autobuyer";
 import { GalaxyAutobuyerState } from "./galaxy-autobuyer";
 import { ImaginaryUpgradeAutobuyerState } from "./imaginary-upgrade-autobuyer";
@@ -30,6 +31,7 @@ export const Autobuyer = {
   darkMatterDims: new DarkMatterDimensionAutobuyerState(),
   dilationUpgrade: DilationUpgradeAutobuyerState.createAccessor(),
   dimboost: new DimBoostAutobuyerState(),
+  endgame: new EndgameAutobuyerState(),
   eternity: new EternityAutobuyerState(),
   galaxy: new GalaxyAutobuyerState(),
   imaginaryUpgrade: ImaginaryUpgradeAutobuyerState.createAccessor(),
@@ -58,6 +60,7 @@ export const Autobuyers = (function() {
     Autobuyer.bigCrunch,
     Autobuyer.eternity,
     Autobuyer.reality,
+    Autobuyer.endgame,
   ];
 
   const single = [
@@ -116,7 +119,8 @@ export const Autobuyers = (function() {
         Autobuyer.galaxy,
         Autobuyer.bigCrunch,
         Autobuyer.eternity,
-        Autobuyer.reality].some(autobuyer => autobuyer.isUnlocked);
+        Autobuyer.reality,
+        Autobuyer.endgame].some(autobuyer => autobuyer.isUnlocked);
     },
 
     toggle() {
@@ -159,3 +163,4 @@ EventHub.logic.on(GAME_EVENT.GALAXY_RESET_AFTER, () => Autobuyers.resetTick(PRES
 EventHub.logic.on(GAME_EVENT.BIG_CRUNCH_AFTER, () => Autobuyers.resetTick(PRESTIGE_EVENT.INFINITY));
 EventHub.logic.on(GAME_EVENT.ETERNITY_RESET_AFTER, () => Autobuyers.resetTick(PRESTIGE_EVENT.ETERNITY));
 EventHub.logic.on(GAME_EVENT.REALITY_RESET_AFTER, () => Autobuyers.resetTick(PRESTIGE_EVENT.REALITY));
+EventHub.logic.on(GAME_EVENT.ENDGAME_RESET_AFTER, () => Autobuyers.resetTick(PRESTIGE_EVENT.ENDGAME));
