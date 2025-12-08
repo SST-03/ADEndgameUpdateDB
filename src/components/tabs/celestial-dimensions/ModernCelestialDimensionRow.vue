@@ -82,10 +82,8 @@ export default {
       this.cost.copyFrom(dimension.cost);
       this.isAvailableForPurchase = dimension.isAvailableForPurchase;
       this.isCapped = dimension.isCapped;
-      if (this.isCapped) {
-        this.capCP.copyFrom(dimension.hardcapCPAmount);
-        this.hardcap.copyFrom(dimension.purchaseCap);
-      }
+      this.capCP.copyFrom(dimension.hardcapCPAmount);
+      this.hardcap.copyFrom(dimension.purchaseCap);
     },
     buySingleCelestialDimension() {
       CelestialDimension(this.tier).buySingle();
