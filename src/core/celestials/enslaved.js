@@ -316,7 +316,7 @@ export const Tesseracts = {
   capIncrease(count = this.bought, extra = this.extra, mult = this.totalMult) {
     const totalCount = (count + extra) * mult;
     const base = totalCount < 1 ? 0 : 250e3 * Math.pow(2, totalCount);
-    return base * (AlchemyResource.boundless.effectValue + 1);
+    return base * (AlchemyResource.boundless.effectValue + 1) * (ExpansionPack.enslavedPack.isBought ? 2 : 1);
   },
 
   get nextTesseractIncrease() {
