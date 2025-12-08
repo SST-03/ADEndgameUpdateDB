@@ -42,7 +42,7 @@ export default {
       this.negativeBHDivisor = Math.pow(10, this.negativeSlider);
       const maxInversion = player.requirementChecks.reality.slowestBH <= 1e-300;
       this.isDisabled = ImaginaryUpgrade(24).isLockingMechanics && Ra.isRunning && maxInversion;
-      this.amountSlider = player.celestials.enslaved.pulseAmount * 1000;
+      this.amountSlider = player.celestials.enslaved.pulseAmount * 500;
       this.timeSlider = player.celestials.enslaved.pulseTime;
       this.areExtraSlidersUnlocked = ExpansionPack.enslavedPack.isBought;
     },
@@ -56,7 +56,7 @@ export default {
     },
     adjustSliderPulseAmount(value) {
       this.amountSlider = value;
-      player.celestials.enslaved.pulseAmount = this.amountSlider / 1000;
+      player.celestials.enslaved.pulseAmount = this.amountSlider / 500;
     },
     adjustSliderPulseTime(value) {
       this.timeSlider = value;
@@ -74,7 +74,7 @@ export default {
     sliderPropsAmount() {
       return {
         min: 1,
-        max: 1000,
+        max: 500,
         interval: 1,
         width: "55rem",
         tooltip: false
@@ -83,7 +83,7 @@ export default {
     sliderPropsTime() {
       return {
         min: 1,
-        max: 1000,
+        max: 100,
         interval: 1,
         width: "55rem",
         tooltip: false
@@ -130,7 +130,7 @@ export default {
       class="l-black-hole-sliders"
     >
       <b>
-        Black Holes currently auto-release {{ formatPercents(amountSlider / 1000, 2, 1) }} of Stored Game Time per second if Pulse is on.
+        Black Holes currently auto-release {{ formatPercents(amountSlider / 500, 2, 1) }} of Stored Game Time per second if Pulse is on.
       </b>
       <SliderComponent
         v-if="areExtraSlidersUnlocked"
