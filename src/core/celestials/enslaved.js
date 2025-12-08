@@ -135,7 +135,7 @@ export const Enslaved = {
     const effectiveGamespeed = release.div(50);
     player.celestials.ra.peakGamespeed = Decimal.max(player.celestials.ra.peakGamespeed, effectiveGamespeed);
     this.autoReleaseSpeed = (release.div(player.options.updateRate)).div(player.celestials.enslaved.pulseTime);
-    player.celestials.enslaved.stored = player.celestials.enslaved.stored.times(autoRelease ? 0.99 : 0);
+    player.celestials.enslaved.stored = player.celestials.enslaved.stored.times(autoRelease ? 1 - player.celestials.enslaved.pulseAmount : 0);
   },
   has(info) {
     return player.celestials.enslaved.unlocks.includes(info.id);
