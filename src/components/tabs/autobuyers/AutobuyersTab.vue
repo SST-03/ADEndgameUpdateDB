@@ -109,7 +109,7 @@ when they're open. It looks slightly hacky but actually can't be done any other 
 its own stacking context, which means that all z-indices specified within are essentially scoped and the
 AutobuyerBox components will always render in page order regardless of internal z-indices without these. */
 .c-endgame-pos {
-  z-index: 3;
+  z-index: 4;
 }
   
 .c-reality-pos {
