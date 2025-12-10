@@ -475,8 +475,8 @@ window.player = {
   reality: {
     realityMachines: DC.D0,
     maxRM: DC.D0,
-    imaginaryMachines: 0,
-    iMCap: 0,
+    imaginaryMachines: DC.D0,
+    iMCap: DC.D0,
     glyphs: {
       active: [],
       inventory: [],
