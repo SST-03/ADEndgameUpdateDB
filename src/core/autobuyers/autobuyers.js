@@ -18,6 +18,7 @@ import { ReplicantiGalaxyAutobuyerState } from "./replicanti-galaxy-autobuyer";
 import { ReplicantiUpgradeAutobuyerState } from "./replicanti-upgrade-autobuyer";
 import { SacrificeAutobuyerState } from "./sacrifice-autobuyer";
 import { SingularityAutobuyerState } from "./singularity-autobuyer";
+import { TesseractAutobuyerState } from "./tesseract-autobuyer";
 import { TickspeedAutobuyerState } from "./tickspeed-autobuyer";
 import { TimeDimensionAutobuyerState } from "./time-dimension-autobuyer";
 import { TimeTheoremAutobuyerState } from "./time-theorem-autobuyer";
@@ -44,6 +45,7 @@ export const Autobuyer = {
   replicantiUpgrade: ReplicantiUpgradeAutobuyerState.createAccessor(),
   sacrifice: new SacrificeAutobuyerState(),
   singularity: new SingularityAutobuyerState(),
+  tesseract: new TesseractAutobuyerState(),
   tickspeed: new TickspeedAutobuyerState(),
   timeDimension: TimeDimensionAutobuyerState.createAccessor(),
   timeTheorem: new TimeTheoremAutobuyerState()
@@ -73,6 +75,7 @@ export const Autobuyers = (function() {
     Autobuyer.darkMatterDimsAscension,
     Autobuyer.singularity,
     Autobuyer.annihilation,
+    Autobuyer.tesseract
   ];
 
   const singleComplex = [
