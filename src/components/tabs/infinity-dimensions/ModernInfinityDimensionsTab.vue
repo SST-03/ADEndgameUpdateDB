@@ -176,6 +176,7 @@ export default {
         <p>Increase dimension caps by {{ format(nextDimCapIncrease, 2) }}</p>
         <p><b>Costs: {{ format(tesseractCost) }} IP</b></p>
       </button>
+      <br>
       <PrimaryToggleButton
         v-if="isAutoUnlocked"
         :value="isAutoActive"
