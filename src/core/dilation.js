@@ -116,8 +116,8 @@ export function getTachyonGalaxyMult(thresholdUpgrade) {
   const contingentStrength = Math.pow(1.0002, Math.max(player.dilation.baseTachyonGalaxies - contingentTG, 0));
   const pelleExclusivePower = DilationUpgrade.galaxyThresholdPelle.canBeApplied ? DilationUpgrade.galaxyThresholdPelle.effectValue : 1;
   const extraPower = GalacticPowers.tachyonGalaxies.isUnlocked ? 1 / GalacticPowers.tachyonGalaxies.reward : 1;
-  const power = pelleExclusivePower * contingentStrength * EndgameUpgrade(22).effectOrDefault(1) * extraPower;
-  return (1 + thresholdMult * glyphReduction) ** power;
+  const power = pelleExclusivePower * EndgameUpgrade(22).effectOrDefault(1) * extraPower;
+  return (1 + thresholdMult * glyphReduction * contingentStrength) ** power;
 }
 
 export function getDilationGainPerSecond() {
