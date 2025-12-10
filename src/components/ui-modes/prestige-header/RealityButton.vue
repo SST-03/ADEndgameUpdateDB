@@ -8,7 +8,7 @@ export default {
       hasRealityStudy: false,
       machinesGained: new Decimal(),
       projectedRM: new Decimal(),
-      newIMCap: 0,
+      newIMCap: new Decimal(),
       realityTime: 0,
       glyphLevel: 0,
       nextGlyphPercent: 0,
@@ -33,10 +33,10 @@ export default {
       if (this.machinesGained.gt(0) && this.machinesGained.lt(100)) {
         return `(Next at ${format(this.nextMachineEP, 2)} EP)`;
       }
-      if (this.machinesGained.eq(0) && this.newIMCap === 0) {
+      if (this.machinesGained.eq(0) && this.newIMCap.eq(0)) {
         return `(Projected: ${format(this.projectedRM, 2)} RM)`;
       }
-      if (this.newIMCap !== 0) {
+      if (this.newIMCap.neq(0)) {
         return `(iM Cap: ${formatMachines(0, this.newIMCap)})`;
       }
       if (this.machinesGained.lt(Number.MAX_VALUE)) {
@@ -92,7 +92,7 @@ export default {
       const multiplier = simulatedRealityCount(false) + 1;
       this.projectedRM = MachineHandler.gainedRealityMachines.times(multiplier)
         .clampMax(MachineHandler.hardcapRM);
-      this.newIMCap = MachineHandler.projectedIMCap;
+      this.newIMCap.copyFrom(MachineHandler.projectedIMCap);
       this.machinesGained = this.projectedRM.clampMax(MachineHandler.distanceToRMCap);
       this.realityTime = Time.thisRealityRealTime.totalMinutes.toNumber();
       this.glyphLevel = gainedGlyphLevel().actualLevel;
