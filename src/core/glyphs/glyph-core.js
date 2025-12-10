@@ -674,6 +674,9 @@ export const Glyphs = {
   get extremeInstabilityThreshold() {
     return 75000;
   },
+  get immenseInstabilityThreshold() {
+    return 200000;
+  },
   get levelCap() {
     return Number.MAX_VALUE;
   },
