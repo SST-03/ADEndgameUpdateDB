@@ -1,7 +1,7 @@
 import { DC } from "../../constants";
 
 const rebuyable = props => {
-  props.cost = () => props.initialCost * Math.pow(props.costMult + (Math.max(player.reality.imaginaryRebuyables[props.id] - props.scaleStart, 0) * props.costMult / 2), player.reality.imaginaryRebuyables[props.id]);
+  props.cost = () => new Decimal(props.initialCost).times(Decimal.pow(new Decimal(props.costMult).add(Decimal.max(new Decimal(player.reality.imaginaryRebuyables[props.id]).sub(props.scaleStart), 0).times(new Decimal(props.costMult).div(2))), player.reality.imaginaryRebuyables[props.id]));
   const { effect } = props;
   if (props.isDecimal) props.effect = () => Decimal.pow(effect, player.reality.imaginaryRebuyables[props.id]);
   else props.effect = () => effect * player.reality.imaginaryRebuyables[props.id];
