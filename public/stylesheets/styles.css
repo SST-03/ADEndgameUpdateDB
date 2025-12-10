@@ -3044,6 +3044,10 @@ br {
   100% { box-shadow: -1.5rem -1.5rem 0.5rem white, 1.5rem 1.5rem 0.5rem white; }
 }
 
+.o-primary-btn--tesseract-toggle {
+  font-size: 1.2rem;
+}
+
 /* #endregion l-infinity-dim-tab */
 
 /* #region c-infinity-dim-description__accent */
