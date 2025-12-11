@@ -67,7 +67,7 @@ export default {
     },
     levelStats() {
       // Bit annoying to read due to needing >, <, and =, with = needing a different format.
-      return `You will get a level ${formatInt(this.level)} Glyph on Reality, which is
+      return `You will get a level ${formatHybridLarge(this.level, 3)} Glyph on Reality, which is
         ${this.level === this.bestLevel ? "equal to" : `
         ${quantifyInt("level", this.levelDifference)}
         ${this.level > this.bestLevel ? "higher" : "lower"} than`} your best.`;
