@@ -17,7 +17,8 @@ export const expansionPacks = {
       `Multiply Relic Shard gain by the logarithm of your Antimatter amount. The Effarig Level ${formatInt(10)} reward in Ra
       is improved so that Effarig Glyphs are always generated with ${formatInt(7)} effects. Increase Glyph Alchemy caps to one-third
       of your all-time maximum Glyph Level. Alchemy resources are kept on Endgame, and making a Reality Glyph no longer spends
-      Reality resources. Layers of Effarig's Reality will automatically complete at one-tenth the time of your fastest Endgame.`,
+      Reality resources. Effarig's Shop starts completed. Layers of Effarig's Reality will automatically complete at one-tenth the
+      time of your fastest Endgame.`,
     cost: Decimal.pow(10, 1e50),
     formatCost: value => formatPostBreak(value, 2, 0)
   },
@@ -39,7 +40,7 @@ export const expansionPacks = {
     symbol: "⌬",
     description: () =>
       `Automatically unlock one V-Achievement every ${TimeSpan.fromSeconds(new Decimal(60))}, which can be reduced by spending
-      Celestial Points. This includes Hard V-Achievements.`,
+      Celestial Points. This includes Hard V-Achievements. Double all gained Space Theorems.`,
     cost: Decimal.pow(10, 1e90),
     formatCost: value => formatPostBreak(value, 2, 0)
   },
