@@ -8,7 +8,7 @@ export const endgameMasteries = [
     reqType: EM_REQUIREMENT_TYPE.ALL,
     description: () => `Generate ${formatInt(1)} Perk Point per minute per Endgame`,
     effect: () => player.endgames,
-    formatEffect: value => `${formatInt(value)}/min`
+    formatEffect: value => `${formatHybridSmall(value, 3)}/min`
   },
   {
     id: 21,
@@ -94,7 +94,7 @@ export const endgameMasteries = [
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
     description: () => `Start with ${formatInt(5)} of each basic Glyph on Endgame at ${formatInt(4)} effects, ${formatPercents(1)} rarity, and level based on Endgames and peak GL`,
     effect: () => (1 - ((1 / Math.max(player.endgames, 1)) ** 0.1)) * player.records.bestEndgame.glyphLevel,
-    formatEffect: value => formatInt(value)
+    formatEffect: value => formatHybridSmall(value, 3)
   },
   {
     id: 81,
