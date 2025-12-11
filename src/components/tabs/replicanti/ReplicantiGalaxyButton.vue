@@ -28,7 +28,7 @@ export default {
     galaxyCountDisplay() {
       const bought = this.boughtGalaxies;
       const extra = this.extraGalaxies;
-      const galaxyCount = extra > 0 ? `${formatInt(bought)}+${formatInt(extra)}` : formatInt(bought);
+      const galaxyCount = extra > 0 ? `${formatHybridLarge(bought, 3)}+${formatHybridLarge(extra, 3)}` : formatHybridLarge(bought, 3);
       return `Currently: ${galaxyCount}`;
     },
     autobuyer() {
