@@ -709,7 +709,7 @@ export function gameLoop(passedDiff, options = {}) {
 
   const uncapped = Decimal.min(player.endgame.unnerfedCelestialMatter, CelestialDimensions.SOFTCAP);
   const instability = Decimal.pow(Decimal.max(player.endgame.unnerfedCelestialMatter.div(CelestialDimensions.SOFTCAP), 1), 1 / CelestialDimensions.softcapPow);
-  player.endgame.celestialMatter = uncapped.times(instability);
+  player.endgame.celestialMatter = Decimal.min(uncapped.times(instability), Decimal.NUMBER_MAX_VALUE);
   if (EndgameMastery(111).isBought) {
     player.reality.imaginaryMachines = MachineHandler.currentIMCap;
   }
