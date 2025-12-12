@@ -1,4 +1,4 @@
-import { BitUpgradeState, GameMechanicState } from "../game-mechanics";
+import { BitUpgradeState, GameMechanicState, RebuyableMechanicState } from "../game-mechanics";
 import { GameDatabase } from "../secret-formula/game-database";
 
 import { SpeedrunMilestones } from "../speedrun";
@@ -150,6 +150,39 @@ export const VRunUnlocks = {
 export const VUnlocks = mapGameDataToObject(
   GameDatabase.celestials.v.unlocks,
   config => new VUnlockState(config)
+);
+
+class VUpgradeState extends RebuyableMechanicState {
+  constructor(config) {
+    super(config);
+    this.costCap = config.costCap;
+    this.effect = config.effect;
+  }
+
+  get currency() {
+    return Currency.celestialPoints;
+  }
+
+  get boughtAmount() {
+    return player.celestials.v.upgrades[this.id];
+  }
+
+  set boughtAmount(value) {
+    player.celestials.v.upgrades[this.id] = value;
+  }
+
+  get isCapped() {
+    return new Decimal(this.cost).gte(this.costCap(this.bought));
+  }
+
+  get isAvailableForPurchase() {
+    return new Decimal(this.cost).lte(new Decimal(this.currency.value));
+  }
+}
+
+export const VUpgrades = mapGameDataToObject(
+  GameDatabase.celestials.vUnlocks,
+  config => new VUpgradeState(config)
 );
 
 export const V = {
