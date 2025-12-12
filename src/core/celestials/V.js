@@ -181,7 +181,7 @@ class VUpgradeState extends RebuyableMechanicState {
 }
 
 export const VUpgrades = mapGameDataToObject(
-  GameDatabase.celestials.vUnlocks,
+  GameDatabase.celestials.vUpgrades,
   config => new VUpgradeState(config)
 );
 
