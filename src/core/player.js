@@ -671,6 +671,10 @@ window.player = {
       runRecords: [-10, 0, 0, 0, 0, 0, 0, 0, 0],
       wantsFlipped: true,
       upgrades: Array.repeat(0, 1),
+      vTime: 0,
+      vAuto: 0,
+      vTotal: 0,
+      vLayer: 0,
     },
     ra: {
       pets: {
