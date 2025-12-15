@@ -651,6 +651,61 @@ export function gameLoop(passedDiff, options = {}) {
     }
   }
 
+  if (ExpansionPack.vPack.isBought) {
+    const vTick = Time.unscaledDeltaTime.totalMilliseconds.div(VUpgrade.auto.effectValue * 1000).toNumber();
+    player.celestials.v.vTime += vTick;
+    if (player.celestials.v.vAuto === 0 && player.celestials.v.vTime >= 1 && player.celestials.v.runUnlocks[0] < 6 && player.celestials.v.vLayer === 0) {
+      player.celestials.v.runUnlocks[0] += 1;
+      V.updateTotalRunUnlocks();
+    }
+    if (player.celestials.v.vAuto === 1 && player.celestials.v.vTime >= 1 && player.celestials.v.runUnlocks[1] < 6 && player.celestials.v.vLayer === 0) {
+      player.celestials.v.runUnlocks[1] += 1;
+      V.updateTotalRunUnlocks();
+    }
+    if (player.celestials.v.vAuto === 2 && player.celestials.v.vTime >= 1 && player.celestials.v.runUnlocks[2] < 6 && player.celestials.v.vLayer === 0) {
+      player.celestials.v.runUnlocks[2] += 1;
+      V.updateTotalRunUnlocks();
+    }
+    if (player.celestials.v.vAuto === 3 && player.celestials.v.vTime >= 1 && player.celestials.v.runUnlocks[3] < 6 && player.celestials.v.vLayer === 0) {
+      player.celestials.v.runUnlocks[3] += 1;
+      V.updateTotalRunUnlocks();
+    }
+    if (player.celestials.v.vAuto === 4 && player.celestials.v.vTime >= 1 && player.celestials.v.runUnlocks[4] < 6 && player.celestials.v.vLayer === 0) {
+      player.celestials.v.runUnlocks[4] += 1;
+      V.updateTotalRunUnlocks();
+    }
+    if (player.celestials.v.vAuto === 5 && player.celestials.v.vTime >= 1 && player.celestials.v.runUnlocks[5] < 6 && player.celestials.v.vLayer === 0) {
+      player.celestials.v.runUnlocks[5] += 1;
+      V.updateTotalRunUnlocks();
+    }
+    if (player.celestials.v.vAuto === 0 && player.celestials.v.vTime >= 1 && player.celestials.v.runUnlocks[6] < 5 && player.celestials.v.vLayer === 1) {
+      player.celestials.v.runUnlocks[6] += 1;
+      V.updateTotalRunUnlocks();
+    }
+    if (player.celestials.v.vAuto === 1 && player.celestials.v.vTime >= 1 && player.celestials.v.runUnlocks[7] < 5 && player.celestials.v.vLayer === 1) {
+      player.celestials.v.runUnlocks[7] += 1;
+      V.updateTotalRunUnlocks();
+    }
+    if (player.celestials.v.vAuto === 2 && player.celestials.v.vTime >= 1 && player.celestials.v.runUnlocks[8] < 5 && player.celestials.v.vLayer === 1) {
+      player.celestials.v.runUnlocks[8] += 1;
+      V.updateTotalRunUnlocks();
+    }
+    if (player.celestials.v.vTime >= 1) {
+      player.celestials.v.vTime -= 1;
+      player.celestials.v.vAuto += 1;
+      player.celestials.v.vTotal += 1;
+    }
+    if (player.celestials.v.vAuto >= 6) {
+      player.celestials.v.vAuto = 0;
+    }
+    if (player.celestials.v.vTotal >= 36 && V.isFlipped && player.celestials.v.vLayer === 0) {
+      player.celestials.v.vTime = 0;
+      player.celestials.v.vAuto = 0;
+      player.celestials.v.vTotal = 0;
+      player.celestials.v.vLayer = 1;
+    }
+  }
+
   const uncountabilityGain = AlchemyResource.uncountability.effectValue * Time.unscaledDeltaTime.totalSeconds.toNumber();
   Currency.realities.add(uncountabilityGain);
   Currency.perkPoints.add(uncountabilityGain);
