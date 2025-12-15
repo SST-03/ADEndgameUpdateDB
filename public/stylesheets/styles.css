@@ -7644,9 +7644,10 @@ kbd {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: absolute;
   width: 25rem;
   height: 10rem;
-  justify-content: space-around;
+  justify-content: center;
   font-family: Typewriter;
   font-size: 1.2rem;
   color: black;
