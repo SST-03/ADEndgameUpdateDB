@@ -319,7 +319,7 @@ export const ra = {
       displayIcon: `<span class="fas fa-star"></span>`,
       disabledByPelle: false
     },
-    celestialDimensionConversionPower: {
+    chargeBoost: {
       id: 31,
       reward: "Charged Infinity Upgrades act as if your Teresa Level was twice as high",
       pet: "teresa",
@@ -440,7 +440,7 @@ export const ra = {
       displayIcon: `<span class="fas fa-power-off"></span>`,
       disabledByPelle: false
     },
-    tickspeedPower: {
+    gameSpeedTesseractBoost: {
       id: 44,
       reward: "Tesseracts boost Game Speed",
       effect: () => Decimal.pow(10, Tesseracts.effectiveCount),
@@ -467,7 +467,7 @@ export const ra = {
       displayIcon: `∆`,
       disabledByPelle: false
     },
-    eternityGenBuff: {
+    imaginaryMachineEternityPower: {
       id: 47,
       reward: "Gain a power to Imaginary Machines based on Eternities",
       effect: () => 1 + Math.log10(Decimal.log10(player.eternities) + 1) / 20,
