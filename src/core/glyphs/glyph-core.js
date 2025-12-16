@@ -666,13 +666,14 @@ export const Glyphs = {
     }
   },
   get instabilityThreshold() {
-    return 1000 + getAdjustedGlyphEffect("effarigglyph") + ImaginaryUpgrade(7).effectOrDefault(0);
+    return 1000 + getAdjustedGlyphEffect("effarigglyph") + ImaginaryUpgrade(7).effectOrDefault(0) +
+      Ra.unlocks.instabilityDelay.effectOrDefault(0);
   },
   get hyperInstabilityThreshold() {
     return 3000 + this.instabilityThreshold;
   },
   get extremeInstabilityThreshold() {
-    return 75000;
+    return 75000 + Ra.unlocks.instabilityDelay.effectOrDefault(0);
   },
   get immenseInstabilityThreshold() {
     return 200000;
