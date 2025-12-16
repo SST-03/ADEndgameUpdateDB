@@ -162,6 +162,7 @@ export function gainedEternityPoints() {
   if (EndgameMastery(142).isBought) {
     ep = ep.powEffectsOf(EndgameMastery(142));
   }
+  ep = ep.powEffectOf(Ra.unlocks.eternityPointPower);
 
   return ep.floor();
 }
