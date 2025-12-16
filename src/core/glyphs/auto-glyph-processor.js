@@ -345,7 +345,7 @@ export function getGlyphLevelInputs() {
   const incAfterInstability = staticFactors.realityUpgrades + staticFactors.achievements;
   baseLevel += incAfterInstability;
   scaledLevel += incAfterInstability;
-  const postInstabilityMult = Effects.product(EndgameUpgrade(25));
+  const postInstabilityMult = Effects.product(EndgameUpgrade(25), Ra.unlocks.glyphLevelBuff);
   baseLevel *= postInstabilityMult;
   scaledLevel *= postInstabilityMult;
   return {
