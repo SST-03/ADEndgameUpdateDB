@@ -341,7 +341,7 @@ export const ra = {
       reward: "Imaginary Machines gain a power based on total Glyph Sacrifice amount",
       effect: () => {
         const sacrificeSum = new Decimal(player.reality.glyphs.sac.power).add(player.reality.glyphs.sac.infinity).add(
-          player.reality.glyphs.sac.time).add(player.reality.glyphs.sac.replication).add(player.reality.glyphs.sac.dilation.add(
+          player.reality.glyphs.sac.time).add(player.reality.glyphs.sac.replication).add(player.reality.glyphs.sac.dilation).add(
           player.reality.glyphs.sac.effarig).add(player.reality.glyphs.sac.reality);
         return 1 + Math.log10(Decimal.log10(sacrificeSum.add(1)) + 1) / 20;
       },
