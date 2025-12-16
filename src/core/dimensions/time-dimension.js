@@ -221,6 +221,7 @@ class TimeDimensionState extends DimensionState {
     mult = mult.pow(ImaginaryUpgrade(11).effectOrDefault(1));
     mult = mult.powEffectOf(PelleRifts.paradox);
     mult = mult.powEffectOf(SingularityMilestone.dimensionPow);
+    mult = mult.powEffectOf(Ra.unlocks.allDimPowTT);
 
     if (player.dilation.active || PelleStrikes.dilation.hasStrike) {
       mult = dilatedValueOf(mult);
