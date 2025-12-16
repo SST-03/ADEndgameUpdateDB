@@ -381,26 +381,28 @@ export const Endgame = {
     player.celestials.v.vAuto = 0;
     player.celestials.v.vTotal = 0;
     player.celestials.v.vLayer = 0;
-    player.celestials.ra.pets.teresa.level = 1;
-    player.celestials.ra.pets.teresa.memories = 0;
-    player.celestials.ra.pets.teresa.memoryChunks = 0;
-    player.celestials.ra.pets.teresa.memoryUpgrades = 0;
-    player.celestials.ra.pets.teresa.chunkUpgrades = 0;
-    player.celestials.ra.pets.effarig.level = 1;
-    player.celestials.ra.pets.effarig.memories = 0;
-    player.celestials.ra.pets.effarig.memoryChunks = 0;
-    player.celestials.ra.pets.effarig.memoryUpgrades = 0;
-    player.celestials.ra.pets.effarig.chunkUpgrades = 0;
-    player.celestials.ra.pets.enslaved.level = 1;
-    player.celestials.ra.pets.enslaved.memories = 0;
-    player.celestials.ra.pets.enslaved.memoryChunks = 0;
-    player.celestials.ra.pets.enslaved.memoryUpgrades = 0;
-    player.celestials.ra.pets.enslaved.chunkUpgrades = 0;
-    player.celestials.ra.pets.v.level = 1;
-    player.celestials.ra.pets.v.memories = 0;
-    player.celestials.ra.pets.v.memoryChunks = 0;
-    player.celestials.ra.pets.v.memoryUpgrades = 0;
-    player.celestials.ra.pets.v.chunkUpgrades = 0;
+    if (!ExpansionPack.raPack.isBought) {
+      player.celestials.ra.pets.teresa.level = 1;
+      player.celestials.ra.pets.teresa.memories = 0;
+      player.celestials.ra.pets.teresa.memoryChunks = 0;
+      player.celestials.ra.pets.teresa.memoryUpgrades = 0;
+      player.celestials.ra.pets.teresa.chunkUpgrades = 0;
+      player.celestials.ra.pets.effarig.level = 1;
+      player.celestials.ra.pets.effarig.memories = 0;
+      player.celestials.ra.pets.effarig.memoryChunks = 0;
+      player.celestials.ra.pets.effarig.memoryUpgrades = 0;
+      player.celestials.ra.pets.effarig.chunkUpgrades = 0;
+      player.celestials.ra.pets.enslaved.level = 1;
+      player.celestials.ra.pets.enslaved.memories = 0;
+      player.celestials.ra.pets.enslaved.memoryChunks = 0;
+      player.celestials.ra.pets.enslaved.memoryUpgrades = 0;
+      player.celestials.ra.pets.enslaved.chunkUpgrades = 0;
+      player.celestials.ra.pets.v.level = 1;
+      player.celestials.ra.pets.v.memories = 0;
+      player.celestials.ra.pets.v.memoryChunks = 0;
+      player.celestials.ra.pets.v.memoryUpgrades = 0;
+      player.celestials.ra.pets.v.chunkUpgrades = 0;
+    }
     if (!ExpansionPack.effarigPack.isBought) {
       player.celestials.ra.alchemy = Array.repeat(0, 21)
         .map(() => ({
@@ -442,7 +444,9 @@ export const Endgame = {
       player.celestials.ra.quoteBits = 0;
     }
     player.celestials.ra.momentumTime = 0;
-    player.celestials.ra.unlockBits = 0;
+    if (!ExpansionPack.raPack.isBought) {
+      player.celestials.ra.unlockBits = 0;
+    }
     player.celestials.ra.run = false;
     player.celestials.ra.charged = new Set();
     player.celestials.ra.disCharge = false;
