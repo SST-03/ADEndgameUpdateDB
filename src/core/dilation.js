@@ -148,6 +148,10 @@ export function getDilationGainPerSecond() {
     Math.clampMin(Decimal.log10(Replicanti.amount) * getAdjustedGlyphEffect("replicationdtgain"), 1));
   if (Enslaved.isRunning && !dtRate.eq(0)) dtRate = Decimal.pow10(Math.pow(dtRate.plus(1).log10(), 0.85) - 1);
   if (V.isRunning) dtRate = dtRate.pow(0.5);
+  if (dtRate.gte(DilationSoftcapStart.PRIMARY_THRESHOLD)) {
+    dtRate = Decimal.pow(10, ((Decimal.log10(dtRate) - Decimal.log10(DilationSoftcapStart.PRIMARY_THRESHOLD) / 10) +
+      Decimal.log10(DilationSoftcapStart.PRIMARY_THRESHOLD)));
+  }
   return dtRate;
 }
 
@@ -302,4 +306,8 @@ export const DilationUpgrades = {
 
 export const DilationUpgradeScaling = {
   PRIMARY_SCALING: DC.E5000
+};
+
+export const DilationSoftcapStart = {
+  PRIMARY_THRESHOLD: DC.E16000
 };
