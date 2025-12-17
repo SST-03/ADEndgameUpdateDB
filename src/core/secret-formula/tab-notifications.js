@@ -295,7 +295,7 @@ export const tabNotifications = {
         tab: "upgrades"
       }
     ],
-    condition: () => EndgameUpgrades.isUnlocked,
-    events: [GAME_EVENT.GAME_TICK_AFTER]
+    // Always externally triggered
+    condition: () => true,
   },
 };
