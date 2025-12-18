@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     topLabel() {
-      return `You are about to purchase ${quantifyInt("Replicanti Galaxy", this.canBeBought)}`;
+      return `You are about to purchase ${quantifyHybridLarge("Replicanti Galaxy", this.canBeBought)}`;
     },
     message() {
       const reductionString = this.divideReplicanti
