@@ -112,8 +112,8 @@ export const breakEternityUpgrades = {
     initialCost: 1e22,
     costIncrease: 1e10,
     maxUpgrades: 10,
-    effect: value => Math.pow(2, value),
-    description: () => "Square the start of the 5x EP Multiplier Cost Scalings",
+    effect: value => Math.pow(10, value),
+    description: () => `Raise the start of the 5x EP Multiplier Cost Scalings to ${formatPow(10)}`,
     isDisabled: effect => effect.eq(0),
     formatEffect: value => `^${formatHybridSmall(value, 3)}`,
     noLabel: false
