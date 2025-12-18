@@ -60,7 +60,7 @@ export default {
     },
     capTooltip() {
       if (this.isCapped) return `Cap reached at ${format(this.capCP)} CP`;
-      return `Purchased ${quantifyInt("time", this.purchases)}`;
+      return `Purchased ${quantifyHybridLarge("time", this.purchases)}`;
     },
     showRow() {
       return this.isUnlocked || this.canUnlock || this.amount.gt(0) ||
