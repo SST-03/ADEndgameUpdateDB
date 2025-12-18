@@ -553,7 +553,7 @@ export const normalTimeStudies = [
     requiresST: [223],
     description() {
       const effect = TimeStudy(224).effectValue;
-      return `Distant Galaxy cost scaling starts ${quantifyInt("Galaxy", effect)} later
+      return `Distant Galaxy cost scaling starts ${quantifyHybridLarge("Galaxy", effect)} later
         (${formatInt(1)} per ${formatInt(2000)} Dim Boosts)`;
     },
     effect: () => Decimal.floor(DimBoost.totalBoosts.div(2000)).toNumber()
