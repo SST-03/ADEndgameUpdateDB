@@ -1,6 +1,7 @@
 <script>
 import AutobuyerToggles from "./AutobuyerToggles";
 import BigCrunchAutobuyerBox from "./BigCrunchAutobuyerBox";
+import BulkSingularityAutobuyerBox from "./BulkSingularityAutobuyerBox";
 import DimensionAutobuyerBox from "./DimensionAutobuyerBox";
 import DimensionBoostAutobuyerBox from "./DimensionBoostAutobuyerBox";
 import EndgameAutobuyerBox from "./EndgameAutobuyerBox";
@@ -22,6 +23,7 @@ export default {
     BigCrunchAutobuyerBox,
     GalaxyAutobuyerBox,
     DimensionBoostAutobuyerBox,
+    BulkSingularityAutobuyerBox,
     TickspeedAutobuyerBox,
     DimensionAutobuyerBox,
     SimpleAutobuyersMultiBox
@@ -91,6 +93,7 @@ export default {
     <BigCrunchAutobuyerBox class="c-infinity-pos" />
     <GalaxyAutobuyerBox />
     <DimensionBoostAutobuyerBox />
+    <BulkSingularityAutobuyerBox />
     <TickspeedAutobuyerBox v-if="!hasContinuum" />
     <template v-if="displayADAutobuyersIndividually">
       <DimensionAutobuyerBox
