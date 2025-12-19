@@ -2,6 +2,7 @@ import { AnnihilationAutobuyerState } from "./annihilation-autobuyer";
 import { AntimatterDimensionAutobuyerState } from "./antimatter-dimension-autobuyer";
 import { BigCrunchAutobuyerState } from "./big-crunch-autobuyer";
 import { BlackHolePowerAutobuyerState } from "./black-hole-power-autobuyer";
+import { BulkSingularityAutobuyerState } from "./bulk-singularity-autobuyer";
 import { DarkMatterDimensionAscensionAutobuyerState } from "./dark-matter-dimension-ascension-autobuyer";
 import { DarkMatterDimensionAutobuyerState } from "./dark-matter-dimension-autobuyer";
 import { DilationUpgradeAutobuyerState } from "./dilation-upgrade-autobuyer";
@@ -28,6 +29,7 @@ export const Autobuyer = {
   antimatterDimension: AntimatterDimensionAutobuyerState.createAccessor(),
   bigCrunch: new BigCrunchAutobuyerState(),
   blackHolePower: BlackHolePowerAutobuyerState.createAccessor(),
+  bulkSingularity: new BulkSingularityAutobuyerState(),
   darkMatterDimsAscension: new DarkMatterDimensionAscensionAutobuyerState(),
   darkMatterDims: new DarkMatterDimensionAutobuyerState(),
   dilationUpgrade: DilationUpgradeAutobuyerState.createAccessor(),
@@ -82,6 +84,7 @@ export const Autobuyers = (function() {
     Autobuyer.tickspeed,
     Autobuyer.galaxy,
     Autobuyer.dimboost,
+    Autobuyer.bulkSingularity
   ].concat(single);
 
   const arrays = [
@@ -118,7 +121,8 @@ export const Autobuyers = (function() {
     },
 
     get hasAutobuyersForEditModal() {
-      return [Autobuyer.dimboost,
+      return [Autobuyer.bulkSingularity,
+        Autobuyer.dimboost,
         Autobuyer.galaxy,
         Autobuyer.bigCrunch,
         Autobuyer.eternity,
