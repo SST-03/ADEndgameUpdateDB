@@ -216,6 +216,10 @@ Currency.antimatter = new class extends DecimalCurrency {
       player.celestials.pelle.records.totalAntimatter = player.celestials.pelle.records.totalAntimatter.max(value);
       player.celestials.pelle.records.totalEndgameAntimatter = player.celestials.pelle.records.totalEndgameAntimatter.max(value);
     }
+
+    if (!Pelle.isDoomed) {
+      player.records.totalAntimatterOutsideDoom = player.records.totalAntimatterOutsideDoom.max(value);
+    }
   }
 
   add(amount) {
