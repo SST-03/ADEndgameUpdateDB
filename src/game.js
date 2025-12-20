@@ -781,11 +781,11 @@ export function gameLoop(passedDiff, options = {}) {
   const unnerfedDM = player.celestials.laitela.unnerfedDarkMatter;
   darkMatterProd = unnerfedDM;
   const darkMatterThreshold1 = DC.E10000;
-  if (darkMatterProd.gt(darkMatterThreshold1) {
+  if (darkMatterProd.gt(darkMatterThreshold1)) {
     darkMatterProd = Decimal.min(darkMatterProd, darkMatterThreshold1).times(Decimal.pow(Decimal.max(darkMatterProd.div(darkMatterThreshold1), 1), 0.5));
   }
   const darkMatterThreshold2 = DC.E100000;
-  if (darkMatterProd.gt(darkMatterThreshold2) {
+  if (darkMatterProd.gt(darkMatterThreshold2)) {
     darkMatterProd = Decimal.min(darkMatterProd, darkMatterThreshold2).times(Decimal.pow(Decimal.max(darkMatterProd.div(darkMatterThreshold2), 1), 0.1));
   }
   player.celestials.laitela.darkMatter = Decimal.min(darkMatterProd, Laitela.darkMatterCap);
