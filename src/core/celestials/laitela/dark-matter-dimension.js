@@ -51,9 +51,10 @@ export class DarkMatterDimensionState extends DimensionState {
   get rawInterval() {
     const perUpgrade = INTERVAL_PER_UPGRADE;
     const tierFactor = Decimal.pow(4, this.tier - 1);
+    const intervalReduction = ExpansionPack.laitelaPack.isBought ? 200 : 0;
     return DC.E3.mul(tierFactor).mul(Decimal.pow(perUpgrade, this.data.intervalUpgrades)).mul(
-      Decimal.pow(SingularityMilestone.ascensionIntervalScaling.effectOrDefault(1200), this.ascensions)).mul(
-      SingularityMilestone.darkDimensionIntervalReduction.effectOrDefault(1));
+      Decimal.pow(SingularityMilestone.ascensionIntervalScaling.effectOrDefault(1200).sub(
+      intervalReduction), this.ascensions)).mul(SingularityMilestone.darkDimensionIntervalReduction.effectOrDefault(1));
   }
 
   get interval() {
@@ -108,8 +109,9 @@ export class DarkMatterDimensionState extends DimensionState {
   get intervalAfterAscension() {
     const purchases = Decimal.affordGeometricSeries(Currency.darkMatter.value, this.rawIntervalCost,
       this.intervalCostIncrease, 0);
-    return Decimal.clampMin(this.intervalPurchaseCap, SingularityMilestone.ascensionIntervalScaling.effectOrDefault(new Decimal(1200))
-      .times(this.rawInterval.times(Decimal.pow(INTERVAL_PER_UPGRADE, purchases))));
+    const intervalReduction = ExpansionPack.laitelaPack.isBought ? 200 : 0;
+    return Decimal.clampMin(this.intervalPurchaseCap, SingularityMilestone.ascensionIntervalScaling.effectOrDefault(
+      new Decimal(1200).sub(intervalReduction)).times(this.rawInterval.times(Decimal.pow(INTERVAL_PER_UPGRADE, purchases))));
   }
 
   get adjustedStartingCost() {
