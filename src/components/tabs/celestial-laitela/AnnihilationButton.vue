@@ -12,6 +12,9 @@ export default {
       darkMatterMultRatio: new Decimal(0),
       autoAnnihilationInput: player.auto.annihilation.multiplier,
       isEnabled: true,
+      modeUnlocked: false,
+      annihilationMode: 0,
+      isBasic: true,
     };
   },
   computed: {
@@ -29,9 +32,20 @@ export default {
       this.matterRequirement = Laitela.annihilationDMRequirement;
       this.darkMatterMultRatio.copyFrom(Laitela.darkMatterMultRatio);
       this.isEnabled = player.auto.annihilation.isActive;
+      this.modeUnlocked = ExpansionPack.laitelaPack.isBought;
+      this.annihilationMode = player.auto.annihilation.mode;
+      this.isBasic = this.annihilationMode === 0;
     },
     annihilate() {
       Laitela.annihilate();
+    },
+    modeToggle() {
+      if (player.auto.annihilation.mode === 0) {
+        player.auto.annihilation.mode = 1;
+      }
+      if (player.auto.annihilation.mode === 1) {
+        player.auto.annihilation.mode = 0;
+      }
     },
     handleAutoAnnihilationInputChange() {
       const float = parseFloat(this.autoAnnihilationInput);
@@ -73,7 +87,12 @@ export default {
       <span v-if="autobuyerUnlocked">
         <br>
         <br>
-        Auto-Annihilate when adding
+        <span v-if="isBasic">
+          Auto-Annihilate when adding
+        </span>
+        <span v-if="!isBasic">
+          Auto-Annihilate when the pending multiplier is
+        </span>
         <input
           v-model="autoAnnihilationInput"
           type="text"
@@ -81,12 +100,24 @@ export default {
           class="c-small-autobuyer-input c-laitela-annihilation-input"
           @change="handleAutoAnnihilationInputChange()"
         >
-        to the multiplier.
+        <span v-if="isBasic">
+          to the multiplier.
+        </span>
+        <span v-if="!isBasic">
+          times higher than the current multiplier.
+        </span>
       </span>
     </span>
     <span v-else>
       Annihilation will reset your Dark Matter and Dark Matter Dimension amounts, but will give a permanent
       multiplier of <b>{{ formatX(darkMatterMultGain.add(1), 2, 2) }}</b> to all Dark Matter Dimensions.
     </span>
+    <button
+      v-if="modeUnlocked"
+      class="l-laitela-annihilation-button c-laitela-annihilation-button"
+      @click="modeToggle"
+    >
+      <b>Toggle Autobuyer Mode</b>
+    </button>
   </div>
 </template>
