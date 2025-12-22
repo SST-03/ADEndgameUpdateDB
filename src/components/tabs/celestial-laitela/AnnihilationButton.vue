@@ -112,6 +112,7 @@ export default {
       Annihilation will reset your Dark Matter and Dark Matter Dimension amounts, but will give a permanent
       multiplier of <b>{{ formatX(darkMatterMultGain.add(1), 2, 2) }}</b> to all Dark Matter Dimensions.
     </span>
+    <br>
     <button
       v-if="modeUnlocked"
       class="l-laitela-annihilation-button c-laitela-annihilation-button"
