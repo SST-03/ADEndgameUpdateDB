@@ -773,6 +773,7 @@ window.player = {
       singularityCapIncreases: DC.D0,
       lastCheckedMilestones: DC.D0,
       milestoneGlow: true,
+      hadronizes: 0,
     },
     pelle: {
       doomed: false,
