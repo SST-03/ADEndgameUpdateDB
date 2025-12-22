@@ -49,14 +49,19 @@ export const Laitela = {
     return (Decimal.pow(new Decimal(Decimal.log10(Currency.darkMatter.max)).div(50), 0.4).times(0.5).add(1).times(
       SingularityMilestone.continuumMult.effectOrDefault(new Decimal(0)).add(1))).toNumber();
   },
+  get hadronizes() {
+    return this.celestial.hadronizes;
+  },
   get realityReward() {
     const fullLaitelaCompletion = Decimal.clampMin(Decimal.pow(100, 8).times(Decimal.pow(new Decimal(360).div(300), 2)), 1);
-    return Decimal.clampMin(Decimal.pow(100, this.difficultyTier).times(
+    const currentLaitelaProgress = Decimal.clampMin(Decimal.pow(100, this.difficultyTier).times(
       Decimal.pow(new Decimal(360).div(player.celestials.laitela.fastestCompletion), 2)), 1);
+    return Decimal.pow(currentLaitelaProgress, this.hadronizes + 1).times(Decimal.pow(
+      fullLaitelaCompletion, (this.hadronizes * (this.hadronizes + 1)) / 2));
   },
   get realityRewardDE() {
     const fullDestabilization = this.isFullyDestabilized ? 8 : 1;
-    return fullDestabilization;
+    return fullDestabilization * Math.pow(8, (this.hadronizes * (this.hadronizes + 1)) / 2);
   },
   // Note that entropy goes from 0 to 1, with 1 being completion
   get entropyGainPerSecond() {
