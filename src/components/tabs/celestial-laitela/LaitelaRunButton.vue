@@ -51,7 +51,8 @@ export default {
     classObject() {
       return {
         "o-laitela-run-button": true,
-        "o-laitela-run-button--large": !this.singularitiesUnlocked
+        "o-laitela-run-button--large": !this.singularitiesUnlocked,
+        "o-laitela-run-button--larger": this.hadronizeUnlocked
       };
     },
     runButtonClassObject() {
