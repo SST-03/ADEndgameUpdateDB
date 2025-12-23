@@ -66,8 +66,8 @@ export const Laitela = {
   // Note that entropy goes from 0 to 1, with 1 being completion
   get entropyGainPerSecond() {
     const maxSpeed = ExpansionPack.laitelaPack.isBought ? 1000 : 100;
-    const hardonizeBump = this.hadronizes > 0 ? 1e12 : 1;
-    const hardonizeAntimatter = Math.pow(1000, this.hardonizes) * hadronizeBump * 1e11;
+    const hadronizeBump = this.hadronizes > 0 ? 1e12 : 1;
+    const hadronizeAntimatter = Math.pow(1000, this.hardonizes) * hadronizeBump * 1e11;
     return Math.clamp(Math.pow(Currency.antimatter.value.add(1).log10() / hadronizeAntimatter, 2), 0, maxSpeed) / 200;
   },
   get darkMatterMultGain() {
