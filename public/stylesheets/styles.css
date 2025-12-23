@@ -9190,6 +9190,7 @@ kbd {
   width: 20rem;
   height: 3rem;
   font-family: Typewriter, serif;
+  font-size: 1.2rem;
   color: var(--color-laitela--accent);
   background: linear-gradient(var(--color-laitela--base), var(--color-laitela--accent));
   border: var(--var-border-width, 0.2rem) solid var(--color-laitela--accent);
