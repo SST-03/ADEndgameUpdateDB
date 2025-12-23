@@ -18,6 +18,7 @@ export default {
       hadronizeUnlocked: false,
       darkEnergyBoost: 0,
       hasHadronizes: false,
+      hadronizes: 0,
     };
   },
   computed: {
@@ -44,7 +45,8 @@ export default {
       this.tierNotCompleted = this.realityTime === 3600 || (this.realityTime === 300 && this.maxDimTier < 8);
       this.hadronizeUnlocked = ExpansionPack.laitelaPack.isBought;
       this.darkEnergyBoost = Laitela.realityRewardDE;
-      this.hasHadronizes = Laitela.hadronizes > 0;
+      this.hasHadronizes = this.hadronizes > 0;
+      this.hadronizes = Laitela.hadronzies;
     },
     startRun() {
       if (this.isDoomed) return;
@@ -89,6 +91,11 @@ export default {
       <span v-if="maxDimTier === 0 || hasHadronizes">
         <b>
           You also gain an additional {{ formatX(darkEnergyBoost) }} Dark Energy.
+        </b>
+      </span>
+      <span v-if="hasHadronizes">
+        <b>
+          You have Hadronized Lai'tela's Reality {{ formatHybridSmall(hadronizes, 3) }} times.
         </b>
       </span>
       <span v-if="maxDimTier > 0">
