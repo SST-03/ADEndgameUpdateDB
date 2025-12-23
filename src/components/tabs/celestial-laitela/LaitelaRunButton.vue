@@ -46,7 +46,7 @@ export default {
       this.hadronizeUnlocked = ExpansionPack.laitelaPack.isBought;
       this.darkEnergyBoost = Laitela.realityRewardDE;
       this.hasHadronizes = this.hadronizes > 0;
-      this.hadronizes = Laitela.hadronzies;
+      this.hadronizes = Laitela.hadronizes;
     },
     startRun() {
       if (this.isDoomed) return;
