@@ -28,9 +28,11 @@ export class PelleDilationUpgradeAutobuyerState extends IntervaledAutobuyerState
   }
 
   tick() {
-    super.tick();
-    const upgradeName = this._upgradeName;
-    DilationUpgrade[upgradeName].purchase(this.bulk);
+    if (PelleRifts.paradox.milestones[0].canBeApplied) {
+      super.tick();
+      const upgradeName = this._upgradeName;
+      DilationUpgrade[upgradeName].purchase(this.bulk);
+    }
   }
 
   static get entryCount() { return 3; }
