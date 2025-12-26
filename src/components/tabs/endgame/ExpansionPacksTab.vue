@@ -12,7 +12,7 @@ export default {
     return {
       isUnlocked: false,
       isUnlockAffordable: false,
-      unlockCost: 0,
+      unlockCost: new Decimal(),
       nextPack: 0
     };
   },
@@ -63,9 +63,9 @@ export default {
   methods: {
     update() {
       this.isUnlocked = ExpansionPacks.areUnlocked;
-      this.unlockCost = Math.pow(2, 64);
+      this.unlockCost.copyFrom(Decimal.pow(2, 64));
       if (!this.isUnlocked) {
-        this.isUnlockAffordable = player.galaxies + GalaxyGenerator.galaxies >= this.unlockCost;
+        this.isUnlockAffordable = player.galaxies.add(GalaxyGenerator.galaxies).gte(this.unlockCost);
         return;
       }
       this.nextPack = ExpansionPacks.nextPack;
