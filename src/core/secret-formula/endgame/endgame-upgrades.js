@@ -154,7 +154,7 @@ export const endgameUpgrades = [
     id: 12,
     cost: new Decimal(1e68),
     requirement: "Reach the second Galaxy Generator softcap",
-    checkRequirement: () => GalaxyGenerator.galaxies >= 1e60,
+    checkRequirement: () => GalaxyGenerator.galaxies.gte(1e60),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: () => `Reduce the Galaxy Generator Instability Magnitude by ${formatInt(1)}`,
     effect: 1
@@ -174,7 +174,7 @@ export const endgameUpgrades = [
     cost: new Decimal(1e84),
     requirement: () => `Reach ${format(1e40)} Galaxies without purchasing the 6th Galaxy Generator Upgrade`,
     hasFailed: () => GalaxyGeneratorUpgrades.RSMult.boughtAmount > 0,
-    checkRequirement: () => GalaxyGeneratorUpgrades.RSMult.boughtAmount === 0 && GalaxyGenerator.galaxies >= 1e40 && 
+    checkRequirement: () => GalaxyGeneratorUpgrades.RSMult.boughtAmount === 0 && GalaxyGenerator.galaxies.gte(1e40) && 
       player.endgames >= 20,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     canLock: true,
