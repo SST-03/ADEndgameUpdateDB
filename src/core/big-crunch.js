@@ -125,7 +125,7 @@ export function bigCrunchResetValues(enteringAntimatterChallenge) {
   // code structure similar to what it was before to avoid new bugs.
   secondSoftReset(enteringAntimatterChallenge);
 
-  let remainingGalaxies = 0;
+  let remainingGalaxies = DC.D0;
   if (Achievement(95).isUnlocked && (!Pelle.isDoomed || PelleAchievementUpgrade.achievement95.isBought)) {
     Replicanti.amount = currentReplicanti;
     remainingGalaxies = remainingGalaxies.add(Decimal.min(currentReplicantiGalaxies, 1));
