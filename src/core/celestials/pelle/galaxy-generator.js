@@ -64,7 +64,7 @@ export const GalaxyGenerator = {
 
   get gainPerSecondPostCap() {
     if (!Pelle.hasGalaxyGenerator) return new Decimal(1);
-    return Decimal.max(1, Decimal.pow(Math.pow(this.galGenInstability, this.harshGalGenInstability), Decimal.log10(Decimal.max(Decimal.pow((player.galaxies.add(GalaxyGenerator.galaxies)).div(this.instabilityStart), 0.75), 1))));
+    return Decimal.max(1, Decimal.pow(Decimal.pow(this.galGenInstability, this.harshGalGenInstability), Decimal.log10(Decimal.max(Decimal.pow((player.galaxies.add(GalaxyGenerator.galaxies)).div(this.instabilityStart), 0.75), 1))));
   },
 
   get gainPerSecond() {
