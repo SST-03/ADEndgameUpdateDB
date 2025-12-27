@@ -41,11 +41,11 @@ export class Galaxy {
    * @returns {number} Max number of galaxies (total)
    */
   static buyableGalaxies(currency, currGal = player.galaxies) {
-    const pow = GlyphAlteration.isAdded("power") ? getSecondaryGlyphEffect("powerpow") : new Decimal(1);
+    const pow = GlyphAlteration.isAdded("power") ? getSecondaryGlyphEffect("powerpow") : 1;
     const distantStart = Galaxy.costScalingStart;
     const scale = Galaxy.costMult;
-    let base = Galaxy.baseCost.sub(Effects.sum(InfinityUpgrade.resetBoost));
-    if (InfinityChallenge(5).isCompleted) base = base.sub(1);
+    let base = Galaxy.baseCost - Effects.sum(InfinityUpgrade.resetBoost);
+    if (InfinityChallenge(5).isCompleted) base -= 1;
 
     const firstScale = Decimal.min(Galaxy.costScalingStart, Galaxy.remoteStart);
 
@@ -55,8 +55,8 @@ export class Galaxy {
 
     if (currency.lt(Galaxy.requirementAt(Galaxy.remoteStart).amount)) {
       const a = new Decimal(1);
-      const b = scale.add(1).sub(dis.mul(2));
-      const c = base.add(distantStart.pow(2)).sub(distantStart).sub(scale).sub(currency.div(pow));
+      const b = new Decimal(scale).add(1).sub(distantStart * 2);
+      const c = new Decimal(base + Math.pow(distantStart, 2) - distantStart - scale).sub(currency.div(pow));
       const quad = decimalQuadraticSolution(a, b, c).floor();
       return Decimal.max(quad, currGal);
     }
