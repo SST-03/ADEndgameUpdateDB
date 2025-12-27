@@ -582,7 +582,7 @@ export const ReplicantiUpgrade = {
       const distantReplicatedGalaxyStart = (100 + GlyphSacrifice.replication.effectValue.toNumber()) * Effects.product(BreakEternityUpgrade.replicantiGalaxyPower);
       const remoteReplicatedGalaxyStart = (1000 + GlyphSacrifice.replication.effectValue.toNumber()) * Effects.product(BreakEternityUpgrade.replicantiGalaxyPower);
       const contingentReplicatedGalaxyStart = 1000000;
-      let logCost = new Decimal(logBase).add(count.times(logBaseIncrease)).add((count * (count - 1) / 2).times(logCostScaling)).toNumber();
+      let logCost = new Decimal(logBase).add(count.times(logBaseIncrease)).add((count.times(count.sub(1)).div(2)).times(logCostScaling)).toNumber();
       if (count.gt(distantReplicatedGalaxyStart)) {
         const logDistantScaling = 50;
         // When distant scaling kicks in, the price increase jumps by a few extra steps.
