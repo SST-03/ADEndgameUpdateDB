@@ -542,28 +542,28 @@ export const ReplicantiUpgrade = {
         logDistantScaling.times(numDistant).times(numDistant.add(extraIncrements.times(2)).sub(1)).div(2)).add(
         logRemoteScaling.times(numRemote).times(numRemote.add(1)).times(numRemote.times(2).add(1)).div(6));
       let simpleEstimate = new Decimal(Decimal.log(cur.div(logCostAtContingent), contingentScalingFactor)).add(contingentReplicatedGalaxyStart);
-      let estimatedCost = new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate)));
+      let estimatedCost = new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate).dividedByEffectsOf(TimeStudy(233), PelleRifts.vacuum.milestones[1])));
       let n = 0;
-      while (n < 25 && (cur.gte(new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate.add(1))))) || cur.lt(estimatedCost))) {
+      while (n < 25 && (cur.gte(new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate.add(1)).dividedByEffectsOf(TimeStudy(233), PelleRifts.vacuum.milestones[1])))) || cur.lt(estimatedCost))) {
         simpleEstimate = simpleEstimate.add(new Decimal(Decimal.log(cur.div(estimatedCost), contingentScalingFactor)));
-        estimatedCost = new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate)));
+        estimatedCost = new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate).dividedByEffectsOf(TimeStudy(233), PelleRifts.vacuum.milestones[1])));
         n++;
       }
       let x = 0;
       // eslint-disable-next-line consistent-return
-      if (cur.gte(estimatedCost) && cur.lt(new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate.add(1)))))) return simpleEstimate;
+      if (cur.gte(estimatedCost) && cur.lt(new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate.add(1)).dividedByEffectsOf(TimeStudy(233), PelleRifts.vacuum.milestones[1]))))) return simpleEstimate;
       if (cur.lt(estimatedCost)) {
         while (x < 50 && cur.lt(estimatedCost)) {
           simpleEstimate = simpleEstimate.sub(1);
-          estimatedCost = new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate)));
+          estimatedCost = new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate).dividedByEffectsOf(TimeStudy(233), PelleRifts.vacuum.milestones[1])));
           x++;
         }
         return simpleEstimate;
       }
-      if (cur.gte(new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate.add(1)))))) {
-        while (x < 50 && cur.gte(new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate.add(1)))))) {
+      if (cur.gte(new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate.add(1)).dividedByEffectsOf(TimeStudy(233), PelleRifts.vacuum.milestones[1]))))) {
+        while (x < 50 && cur.gte(new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate.add(1)).dividedByEffectsOf(TimeStudy(233), PelleRifts.vacuum.milestones[1]))))) {
           simpleEstimate = simpleEstimate.add(1);
-          estimatedCost = new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate)));
+          estimatedCost = new Decimal(Decimal.log10(this.baseCostAfterCount(simpleEstimate).dividedByEffectsOf(TimeStudy(233), PelleRifts.vacuum.milestones[1])));
           x++;
         }
         return simpleEstimate;
