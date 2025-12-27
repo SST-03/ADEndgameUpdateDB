@@ -62,8 +62,33 @@ export class Galaxy {
     }
 
     if (Galaxy.requirementAt(Galaxy.remoteStart).amount.lt(currency)) {
-      return new Decimal(Decimal.log(currency.div(Galaxy.requirementAt(Galaxy.remoteStart).amount), Galaxy.remoteGalaxyStrength))
-        .add(Galaxy.remoteStart).floor().max(currGal);
+      let estimate = new Decimal(Decimal.log(currency.div(Galaxy.requirementAt(Galaxy.remoteStart).amount), Galaxy.remoteGalaxyStrength))
+        .add(Galaxy.remoteStart).floor();
+      if (Galaxy.requirementAt(estimate).amount.lte(currency) && Galaxy.requirementAt(estimate.add(1)).amount.gt(currency)) {
+        return Decimal.max(estimate.add(1), currGal);
+      }
+      let n = 0;
+      while (n < 20 && !(Galaxy.requirementAt(estimate).amount.lte(currency) && Galaxy.requirementAt(estimate.add(1)).amount.gt(currency))) {
+        estimate = estimate.add(new Decimal(Decimal.log(currency.div(Galaxy.requirementAt(estimate).amount), Galaxy.remoteGalaxyStrength)));
+        n++;
+      }
+      let x = 0;
+      if (Galaxy.requirementAt(estimate).amount.lte(currency) && Galaxy.requirementAt(estimate.add(1)).amount.gt(currency)) return Decimal.max(estimate.add(1), currGal);
+      if (Galaxy.requirementAt(estimate.add(1)).amount.lte(currency)) {
+        while (x < 50) {
+          estimate = estimate.add(1);
+          x++;
+        }
+        return Decimal.max(estimate.add(1), currGal);
+      }
+      if (Galaxy.requirementAt(estimate).amount.gt(currency)) {
+        while (x < 50) {
+          estimate = estimate.sub(1);
+          x++;
+        }
+        return Decimal.max(estimate.add(1), currGal);
+      }
+      throw new Error("A finite value for Galaxy bulk was not found.");
     }
 
     return new Decimal(bulkBuyBinarySearch(new Decimal(currency), {
