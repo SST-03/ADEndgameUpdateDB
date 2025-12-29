@@ -61,7 +61,7 @@ export function getTickSpeedMultiplier() {
   galaxies = galaxies.times(getAdjustedGlyphEffect("cursedgalaxies"));
   galaxies = galaxies.times(getAdjustedGlyphEffect("realitygalaxies"));
   galaxies = galaxies.times(1 + ImaginaryUpgrade(9).effectOrDefault(0));
-  if (Pelle.isDoomed) galaxies = galaxies.times(0.5);
+  if (Pelle.isDoomed && !PelleDestructionUpgrade.disableGalaxyNerf.isBought) galaxies = galaxies.times(0.5);
   if (Pelle.isDoomed && EndgameMilestone.remnantGalaxy.isReached) galaxies = galaxies.times(Decimal.pow(1 + Math.log10(Currency.remnants.value + 1), 0.5));
   if (GalacticPowers.galaxyStrength.isUnlocked) galaxies = galaxies.times(GalacticPowers.galaxyStrength.reward);
 
