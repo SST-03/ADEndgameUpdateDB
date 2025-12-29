@@ -100,10 +100,26 @@ export function gainedInfinityPoints() {
     EndgameMastery(151)
   );
   if (Pelle.isDisabled("IPMults")) {
-    return Decimal.pow10(player.records.thisInfinity.maxAM.log10() / div - 0.75)
+    let ip = Decimal.pow10(player.records.thisInfinity.maxAM.log10() / div - 0.75)
       .timesEffectsOf(PelleRifts.vacuum)
-      .times(Pelle.specialGlyphEffect.infinity)
-      .floor();
+      .times(Pelle.specialGlyphEffect.infinity);
+    if (PelleDestructionUpgrade.timestudy41.isBought) ip = ip.timesEffectOf(TimeStudy(41));
+    if (PelleDestructionUpgrade.timestudy51.isBought) ip = ip.timesEffectOf(TimeStudy(51));
+    if (PelleDestructionUpgrade.timestudy141.isBought) ip = ip.timesEffectOf(TimeStudy(141));
+    if (PelleDestructionUpgrade.timestudy142.isBought) ip = ip.timesEffectOf(TimeStudy(142));
+    if (PelleDestructionUpgrade.timestudy143.isBought) ip = ip.timesEffectOf(TimeStudy(143));
+    if (PelleAchievementUpgrade.achievement85.isBought) ip = ip.timesEffectOf(Achievement(85));
+    if (PelleAchievementUpgrade.achievement93.isBought) ip = ip.timesEffectOf(Achievement(93));
+    if (PelleAchievementUpgrade.achievement116.isBought) ip = ip.timesEffectOf(Achievement(116));
+    if (PelleAchievementUpgrade.achievement125.isBought) ip = ip.timesEffectOf(Achievement(125));
+    if (PelleAchievementUpgrade.achievement141.isBought) ip = ip.timesEffectOf(Achievement(141).effects.ipGain);
+    if (PelleDestructionUpgrade.x2IPUpgrade.isBought) ip = ip.timesEffectOf(InfinityUpgrade.ipMult);
+    if (PelleDestructionUpgrade.reenableIPDilationUpgrade.isBought) ip = ip.timesEffectOf(DilationUpgrade.ipMultDT);
+    if (PelleDestructionUpgrade.destroyedGlyphEffects.isBought) ip = ip.timesEffectOf(GlyphEffect.ipMult);
+    if (PelleAlchemyUpgrade.alchemyExponential.isBought && Replicanti.areUnlocked) ip = ip.times(Replicanti.amount.powEffectOf(AlchemyResource.exponential));
+    if (PelleCelestialUpgrade.raTeresa3.isBought) ip = ip.pow(getSecondaryGlyphEffect("infinityIP"));
+    if (EndgameMastery(141).isBought) ip = ip.powEffectsOf(EndgameMastery(141));
+    return ip.floor();
   }
   let ip = player.break
     ? Decimal.pow10(player.records.thisInfinity.maxAM.log10() / div - 0.75)
