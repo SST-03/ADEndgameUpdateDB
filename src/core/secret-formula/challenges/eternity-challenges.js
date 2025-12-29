@@ -1,6 +1,6 @@
 import { DC } from "../../constants";
 
-const specialInfinityGlyphDisabledEffectText = () => (PelleRifts.chaos.milestones[1].canBeApplied
+const specialInfinityGlyphDisabledEffectText = () => (PelleRifts.chaos.milestones[1].canBeApplied && !PelleDestructionUpgrade.pelleGlyphEffects.isBought
   ? "The Pelle-Specific effect from Infinity Glyphs is also disabled."
   : "");
 
