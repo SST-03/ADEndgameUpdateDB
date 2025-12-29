@@ -146,19 +146,28 @@ export function gainedInfinityPoints() {
 }
 
 function totalEPMult() {
-  return Pelle.isDisabled("EPMults")
-    ? Pelle.specialGlyphEffect.time.timesEffectOf(PelleRifts.vacuum.milestones[2])
-    : getAdjustedGlyphEffect("cursedEP")
-      .times(ShopPurchase.EPPurchases.currentMult)
-      .timesEffectsOf(
-        EternityUpgrade.epMult,
-        TimeStudy(61),
-        TimeStudy(122),
-        TimeStudy(121),
-        TimeStudy(123),
-        RealityUpgrade(12),
-        GlyphEffect.epMult
-      );
+  if Pelle.isDisabled("EPMults") {
+    let ep = Pelle.specialGlyphEffect.time.timesEffectOf(PelleRifts.vacuum.milestones[2])
+    if (PelleDestructionUpgrade.x5EPUpgrade.isBought) ep = ep.timesEffectOf(EternityUpgrade.epMult);
+    if (PelleDestructionUpgrade.timestudy61.isBought) ep = ep.timesEffectOf(TimeStudy(61));
+    if (PelleDestructionUpgrade.timestudy122.isBought) ep = ep.timesEffectOf(TimeStudy(122));
+    if (PelleDestructionUpgrade.timestudy121.isBought) ep = ep.timesEffectOf(TimeStudy(121));
+    if (PelleDestructionUpgrade.timestudy123.isBought) ep = ep.timesEffectOf(TimeStudy(123));
+    if (PelleRealityUpgrade.knowingExistence.isBought) ep = ep.timesEffectOf(RealityUpgrade(12));
+    if (PelleDestructionUpgrade.destroyedGlyphEffects.isBought) ep = ep.timesEffectOf(GlyphEffect.epMult);
+    return ep;
+  }
+  return getAdjustedGlyphEffect("cursedEP")
+    .times(ShopPurchase.EPPurchases.currentMult)
+    .timesEffectsOf(
+      EternityUpgrade.epMult,
+      TimeStudy(61),
+      TimeStudy(122),
+      TimeStudy(121),
+      TimeStudy(123),
+      RealityUpgrade(12),
+      GlyphEffect.epMult
+    );
 }
 
 export function gainedEternityPoints() {
