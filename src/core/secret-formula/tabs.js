@@ -591,6 +591,15 @@ export const tabs = [
         id: 7,
         hidable: true,
       },
+      {
+        key: "ethereal",
+        name: "The Ethereal",
+        symbol: "<i class='fas fa-meteor'></i>",
+        component: "EtherealTab",
+        condition: () => GalacticPowers.ethrealUnlock.isUnlocked,
+        id: 8,
+        hidable: true,
+      },
     ],
   }
 ];
