@@ -168,6 +168,8 @@ class InfinityDimensionState extends DimensionState {
     mult = mult.powEffectOf(Ra.unlocks.allDimPowTT);
     mult = mult.powEffectOf(Ra.unlocks.infinityDimPower);
 
+    if (ExpansionPack.pellePack.isBought) mult = mult.pow(1 + Math.pow(Decimal.log10(player.records.bestEndgame.galaxies) / 100, 3));
+
     if (player.dilation.active || PelleStrikes.dilation.hasStrike) {
       mult = dilatedValueOf(mult);
     }
