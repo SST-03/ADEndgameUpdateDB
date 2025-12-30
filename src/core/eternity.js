@@ -240,7 +240,8 @@ export function gainedEternities() {
     if (PelleAchievementUpgrade.achievement102.isBought) pelleEternities = pelleEternities.timesEffectsOf(Achievement(102));
     if (PelleAchievementUpgrade.achievement113.isBought) pelleEternities = pelleEternities.timesEffectsOf(Achievement(113));
     if (PelleRealityUpgrade.eternalAmplifier.isBought) pelleEternities = pelleEternities.timesEffectsOf(RealityUpgrade(3));
-    //Leave open for future Celestial reward enabling
+    if (PelleDestructionUpgrade.destroyedGlyphEffects.isBought) pelleEternities = pelleEternities.times(getAdjustedGlyphEffect("timeetermult"));
+    if (PelleAlchemyUpgrade.alchemyEternity.isBought) pelleEternities = pelleEternities.pow(AlchemyResource.eternity.effectValue);
     return pelleEternities;
   }
   return new Decimal(getAdjustedGlyphEffect("timeetermult"))
