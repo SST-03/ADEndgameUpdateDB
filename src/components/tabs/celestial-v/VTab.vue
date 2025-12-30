@@ -28,6 +28,7 @@ export default {
       wantsFlipped: true,
       isRunning: false,
       hasAlchemy: false,
+      hasUpgrades: false,
     };
   },
   computed: {
@@ -112,6 +113,7 @@ export default {
       this.wantsFlipped = player.celestials.v.wantsFlipped;
       this.isRunning = V.isRunning;
       this.hasAlchemy = Ra.unlocks.unlockGlyphAlchemy.canBeApplied;
+      this.hasUpgrades = ExpansionPack.vPack.isBought;
     },
     unlockCelestial() {
       if (V.canUnlockCelestial) V.unlockCelestial();
@@ -227,6 +229,7 @@ export default {
       </div>
       <div class="l-v-upgrades-grid">
         <VUpgradeButton
+          v-if="hasUpgrades"
           v-for="upgrade in upgrades"
           :key="upgrade.id"
           :upgrade="upgrade"
