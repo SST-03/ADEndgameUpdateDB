@@ -67,7 +67,7 @@ export default {
       };
     },
     isUseless() {
-      const tpip = this.upgrade.id === 3 || this.upgrade.id === 7;
+      const tpip = (this.upgrade.id === 3 && !PelleDestructionUpgrade.x3TPUpgrade.isBought) || (this.upgrade.id === 7 && !PelleDestructionUpgrade.reenableIPDilationUpgrade.isBought);
       return Pelle.isDoomed && tpip;
     }
   },
