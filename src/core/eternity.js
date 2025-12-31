@@ -286,7 +286,7 @@ class EPMultiplierState extends GameMechanicState {
   }
 
   get isAffordable() {
-    return !Pelle.isDoomed && Currency.eternityPoints.gte(this.cost);
+    return (!Pelle.isDoomed || PelleDestructionUpgrade.x5EPUpgrade.isBought) && Currency.eternityPoints.gte(this.cost);
   }
 
   get cost() {
