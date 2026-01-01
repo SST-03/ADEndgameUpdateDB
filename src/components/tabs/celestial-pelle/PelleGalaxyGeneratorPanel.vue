@@ -12,6 +12,7 @@ export default {
     return {
       isUnlocked: false,
       isDilated: false,
+      isFinalized: false,
       galaxies: new Decimal(0),
       generatedGalaxies: new Decimal(0),
       galaxiesPerSecond: new Decimal(0),
@@ -59,6 +60,7 @@ export default {
     update() {
       this.isUnlocked = Pelle.hasGalaxyGenerator;
       this.isDilated = player.dilation.active;
+      this.isFinalized = PelleStrike.dilation.isDestroyed;
       this.isCapped = GalaxyGenerator.isCapped;
       this.isCollapsed = player.celestials.pelle.collapsed.galaxies && !this.isCapped;
       if (this.isCollapsed || !this.isUnlocked) return;
@@ -188,14 +190,14 @@ export default {
         </div>
       </div>
       <button
-        v-if="isDilated && !isUnlocked"
+        v-if="(isDilated || isFinalized) && !isUnlocked"
         class="c-generator-unlock-button"
         @click="unlock"
       >
         Unlock the Galaxy Generator
       </button>
       <button
-        v-if="!isDilated"
+        v-if="!isDilated && !isFinalized"
         class="c-generator-locked-button"
       >
         You must be inside Dilation to unlock the Galaxy Generator
