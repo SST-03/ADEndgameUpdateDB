@@ -339,7 +339,7 @@ export default {
             :class="{'o-v-milestone--unlocked':
               has(milestone)}"
           >
-            <div :class="{ 'o-pelle-disabled': isDoomed }">
+            <div :class="{ 'o-pelle-disabled': isDoomed && milestone.pelleDisabled }">
               <p>{{ milestone.description }}</p>
               <p>Reward: {{ milestone.rewardText }}</p>
               <p v-if="milestone.formattedEffect">
