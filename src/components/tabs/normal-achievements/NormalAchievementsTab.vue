@@ -85,7 +85,7 @@ export default {
       this.achMultToIDS = Achievement(75).isUnlocked;
       this.achMultToTDS = EternityUpgrade.tdMultAchs.isBought;
       this.achMultToTP = RealityUpgrade(8).isBought && (!Pelle.isDoomed || PelleRealityUpgrade.paradoxicallyAttain.isBought);
-      this.achMultToBH = VUnlocks.achievementBH.canBeApplied;
+      this.achMultToBH = VUnlocks.achievementBH.canBeApplied || PelleCelestialUpgrade.vMilestones3.isBought;
       this.achMultToTT = Ra.unlocks.achievementTTMult.canBeApplied;
     },
     startRowRendering() {
