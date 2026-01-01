@@ -60,7 +60,7 @@ export default {
     update() {
       this.isUnlocked = Pelle.hasGalaxyGenerator;
       this.isDilated = player.dilation.active;
-      this.isFinalized = PelleStrike.dilation.isDestroyed;
+      this.isFinalized = PelleStrikes.dilation.isDestroyed;
       this.isCapped = GalaxyGenerator.isCapped;
       this.isCollapsed = player.celestials.pelle.collapsed.galaxies && !this.isCapped;
       if (this.isCollapsed || !this.isUnlocked) return;
