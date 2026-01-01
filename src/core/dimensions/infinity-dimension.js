@@ -170,7 +170,7 @@ class InfinityDimensionState extends DimensionState {
 
     if (ExpansionPack.pellePack.isBought) mult = mult.pow(1 + Math.pow(Decimal.log10(player.records.bestEndgame.galaxies) / 100, 3));
 
-    if (player.dilation.active || PelleStrikes.dilation.hasStrike) {
+    if (player.dilation.active || (PelleStrikes.dilation.hasStrike && !PelleStrikes.dilation.isDestroyed)) {
       mult = dilatedValueOf(mult);
     }
 
