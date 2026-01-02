@@ -13,7 +13,7 @@ export const alchemyResources = {
     unlockedAt: 2,
     description: "provides a power to Antimatter Dimensions",
     formatEffect: value => `Antimatter Dimension multipliers ${formatPow(value, 4, 4)}`,
-    destroyed: !PelleAlchemyUpgrade.alchemyPower.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyPower.isBought
   },
   "infinity": {
     id: ALCHEMY_RESOURCE.INFINITY,
@@ -26,7 +26,7 @@ export const alchemyResources = {
     unlockedAt: 3,
     description: "provides a power to Infinity Dimensions",
     formatEffect: value => `Infinity Dimension multipliers ${formatPow(value, 4, 4)}`,
-    destroyed: !PelleAlchemyUpgrade.alchemyInfinity.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyInfinity.isBought
   },
   "time": {
     id: ALCHEMY_RESOURCE.TIME,
@@ -39,7 +39,7 @@ export const alchemyResources = {
     unlockedAt: 4,
     description: "provides a power to Time Dimensions",
     formatEffect: value => `Time Dimension multipliers ${formatPow(value, 4, 4)}`,
-    destroyed: !PelleAlchemyUpgrade.alchemyTime.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyTime.isBought
   },
   "replication": {
     id: ALCHEMY_RESOURCE.REPLICATION,
@@ -52,7 +52,7 @@ export const alchemyResources = {
     unlockedAt: 5,
     description: `increases Replication speed`,
     formatEffect: value => `Replication speed is increased by ${formatX(value, 2, 2)}`,
-    destroyed: !PelleAlchemyUpgrade.alchemyReplication.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyReplication.isBought
   },
   "dilation": {
     id: ALCHEMY_RESOURCE.DILATION,
@@ -65,7 +65,7 @@ export const alchemyResources = {
     unlockedAt: 6,
     description: "increases Dilated Time production",
     formatEffect: value => `Dilated Time production is increased by ${formatX(value, 2, 2)}`,
-    destroyed: !PelleAlchemyUpgrade.alchemyDilation.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyDilation.isBought
   },
 
   // T2 resources (combinations of pairs of T1 resources)
@@ -91,7 +91,7 @@ export const alchemyResources = {
         amount: 7
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyCardinality.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyCardinality.isBought
   },
   "eternity": {
     id: ALCHEMY_RESOURCE.ETERNITY,
@@ -114,7 +114,7 @@ export const alchemyResources = {
         amount: 4
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyEternity.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyEternity.isBought
   },
   "dimensionality": {
     id: ALCHEMY_RESOURCE.DIMENSIONALITY,
@@ -137,7 +137,7 @@ export const alchemyResources = {
         amount: 5
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyDimensionality.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyDimensionality.isBought
   },
   "inflation": {
     id: ALCHEMY_RESOURCE.INFLATION,
@@ -161,7 +161,7 @@ export const alchemyResources = {
         amount: 6
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyInflation.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyInflation.isBought
   },
   "alternation": {
     id: ALCHEMY_RESOURCE.ALTERNATION,
@@ -185,7 +185,7 @@ export const alchemyResources = {
         amount: 10
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyAlternation.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyAlternation.isBought
   },
 
   // T3 resources (Effarig and conbinations of T1/T2 with Effarig)
@@ -200,7 +200,7 @@ export const alchemyResources = {
     unlockedAt: 7,
     description: "increases Relic Shard gain",
     formatEffect: value => `Relic Shard gain is multiplied ${formatX(value, 2, 2)}`,
-    destroyed: !PelleAlchemyUpgrade.alchemyEffarig.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyEffarig.isBought
   },
   "synergism": {
     id: ALCHEMY_RESOURCE.SYNERGISM,
@@ -233,7 +233,7 @@ export const alchemyResources = {
         amount: 14
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemySynergism.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemySynergism.isBought
   },
   "momentum": {
     id: ALCHEMY_RESOURCE.MOMENTUM,
@@ -262,7 +262,7 @@ export const alchemyResources = {
         amount: 20
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyMomentum.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyMomentum.isBought
   },
   "decoherence": {
     id: ALCHEMY_RESOURCE.DECOHERENCE,
@@ -286,7 +286,7 @@ export const alchemyResources = {
         amount: 8
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyDecoherence.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyDecoherence.isBought
   },
 
   // T4 resources (resources which feed directly into the final resource)
@@ -311,7 +311,7 @@ export const alchemyResources = {
         amount: 3
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyExponential.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyExponential.isBought
   },
   "force": {
     id: ALCHEMY_RESOURCE.FORCE,
@@ -334,7 +334,7 @@ export const alchemyResources = {
         amount: 8
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyForce.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyForce.isBought
   },
   "uncountability": {
     id: ALCHEMY_RESOURCE.UNCOUNTABILITY,
@@ -361,7 +361,7 @@ export const alchemyResources = {
         amount: 16
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyUncountability.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyUncountability.isBought
   },
   "boundless": {
     id: ALCHEMY_RESOURCE.BOUNDLESS,
@@ -384,7 +384,7 @@ export const alchemyResources = {
         amount: 18
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyBoundless.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyBoundless.isBought
   },
   "multiversal": {
     id: ALCHEMY_RESOURCE.MULTIVERSAL,
@@ -408,7 +408,7 @@ export const alchemyResources = {
         amount: 3
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyMultiversal.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyMultiversal.isBought
   },
   "unpredictability": {
     id: ALCHEMY_RESOURCE.UNPREDICTABILITY,
@@ -437,7 +437,7 @@ export const alchemyResources = {
         amount: 10
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyUnpredictability.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyUnpredictability.isBought
   },
 
   // T5 (Reality)
@@ -477,6 +477,6 @@ export const alchemyResources = {
         amount: 1
       }
     ],
-    destroyed: !PelleAlchemyUpgrade.alchemyReality.isBought
+    destroyed: () => !PelleAlchemyUpgrade.alchemyReality.isBought
   },
 };
