@@ -15,7 +15,7 @@ export const pelleRifts = {
       Decimal.pow(10, (percentage * 100) ** (1 / 2.5)).div(10).minus(0.1)
     ).minus(1),
     effect: totalFill => {
-      if (player.challenge.eternity.current !== 0 && !PelleStrikes.ECs.isDestroyed) {
+      if (player.challenge.eternity.current !== 0 && !PelleStrikes.ECs.isDestroyed()) {
         const chall = EternityChallenge.current;
         const goal = chall.goalAtCompletions(chall.gainedCompletionStatus.totalCompletions);
         return totalFill.plus(1).pow(0.1).min(goal.pow(0.15));
