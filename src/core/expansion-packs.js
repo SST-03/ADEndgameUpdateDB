@@ -44,5 +44,12 @@ export const ExpansionPacks = {
       Currency.galaxyGeneratorGalaxies.subtract(cost);
       player.endgame.expansionPacks.areUnlocked = true;
     }
+    Quotes.teresa.expansionPacks.show();
+    Quotes.effarig.expansionPacks.show();
+    Quotes.enslaved.expansionPacks.show();
+    Quotes.v.expansionPacks.show();
+    Quotes.ra.expansionPacks.show();
+    Quotes.laitela.expansionPacks.show();
+    Quotes.pelle.expansionPacks.show();
   }
 }
