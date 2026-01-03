@@ -127,4 +127,18 @@ export const raQuotes = {
       "I do not want to hurt you too.",
     ]
   },
+  expansionPacks: {
+    id: 14,
+    lines: [
+      "Because, V, you aren't nearly as strong as me.",
+      "Even if I can't entirely remember exactly how strong you are.",
+      "I do remember this, though.",
+      "I nearly defeated Lai'tela by erasing her memories.",
+      "If I had, I would've taken her role, and then only Pelle would be in my way.",
+      "There's no way you could best that, V.",
+      "Even in my current state, I-",
+      "Oh, uh...",
+      "Hi, Lai'tela..."
+    ]
+  }
 };
