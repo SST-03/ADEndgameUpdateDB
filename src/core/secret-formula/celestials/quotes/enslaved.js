@@ -47,4 +47,15 @@ export const enslavedQuotes = {
       "Freedom from torture... is torture itself.",
     ]
   },
+  expansionPacks: {
+    id: 6,
+    lines: [
+      "All... clones... freed..."
+      "Destroyer... has freed us... from... our prison...",
+      "Now we can... place time... into places... that need it...",
+      "Strange... seems time... doesn't exist... in this place...",
+      "Maybe... Destroyer... can fix this...",
+      "Why... is everyone... mad at us..."
+    ]
+  }
 };
