@@ -70,7 +70,9 @@ export default {
       const color = this.flow > 0 ? "9CCC65" : "CC6666";
       return `<span style="color:#${color}">${resourceText}</span>`;
     },
-    isDoomed: () => Pelle.isDoomed && this.resource.config.destroyed,
+    isDoomed() {
+      return Pelle.isDoomed && this.resource.config.destroyed;
+    }
   },
   methods: {
     update() {
