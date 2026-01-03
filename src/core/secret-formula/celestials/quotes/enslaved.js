@@ -50,7 +50,7 @@ export const enslavedQuotes = {
   expansionPacks: {
     id: 6,
     lines: [
-      "All... clones... freed..."
+      "All... clones... freed...",
       "Destroyer... has freed us... from... our prison...",
       "Now we can... place time... into places... that need it...",
       "Strange... seems time... doesn't exist... in this place...",
