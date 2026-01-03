@@ -62,5 +62,20 @@ export const effarigQuotes = {
       "And for what purpose? You could have joined, we could have cooperated.",
       "But no. It is over. Leave while I cling onto what is left.",
     ]
+  },
+  expansionPacks: {
+    id: 8,
+    lines: [
+      "Oh, hey Teresa.",
+      "Do you know where we are?",
+      "Guess not.",
+      "Hold on, that's the guy who keeps destroying my home!",
+      "What does Pelle call him...",
+      "Destroyer?",
+      "Did you bring me here?",
+      "Why are you glowing with power?",
+      "Wait...",
+      "How did the Nameless break out of their prison?"
+    ]
   }
 };
