@@ -151,6 +151,7 @@ export const laitelaQuotes = {
   },
   dmd5: {
     id: 11,
+    requirement: () => ImaginaryUpgrade(26).isBought,
     lines: [
       "Ah, so you found my secret dimensions...",
       "How did you get the needed Singularities?",
@@ -169,6 +170,7 @@ export const laitelaQuotes = {
   },
   dmd6: {
     id: 12,
+    requirement: () => ImaginaryUpgrade(27).isBought,
     lines: [
       "Took you long enough.",
       "I was beginning to think you only ever found the 5th.",
@@ -178,6 +180,7 @@ export const laitelaQuotes = {
   },
   dmd7: {
     id: 13,
+    requirement: () => ImaginaryUpgrade(28).isBought,
     lines: [
       "So fast...",
       "You must have found a loophole.",
@@ -187,6 +190,7 @@ export const laitelaQuotes = {
   },
   dmd8: {
     id: 14,
+    requirement: () => ImaginaryUpgrade(29).isBought,
     lines: [
       "And there's the 8th.",
       "You've found them all...",
@@ -207,6 +211,7 @@ export const laitelaQuotes = {
   },
   laitelaPack: {
     id: 15,
+    requirement: () => ExpansionPack.laitelaPack.isBought,
     lines: [
       "Just when I thought you couldn't get any more powerful...",
       "Not only did you find and master the darkness I hid from you...",
