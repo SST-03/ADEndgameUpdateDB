@@ -60,6 +60,7 @@ export const enslavedQuotes = {
   },
   enslavedPack: {
     id: 7,
+    requirement: () => ExpansionPack.enslavedPack.isBought,
     lines: [
       "We... grant you... control... of time...",
       "Use it...",
@@ -68,6 +69,7 @@ export const enslavedQuotes = {
   },
   highGameSpeed: {
     id: 8,
+    requirement: () => player.records.thisEndgame.peakGameSpeed.gte(new Decimal("1e1000")),
     lines: [
       "Mastery... of time... you have obtained...",
       "Done things... we have only wished... we could do...",
