@@ -68,7 +68,7 @@ export class InfinityUpgradeState extends SetPurchasableMechanicState {
       this.hasChargeEffect &&
       !this.isCharged &&
       Ra.chargesLeft !== 0 &&
-      !Pelle.isDisabled("chargedInfinityUpgrades");
+      (!Pelle.isDisabled("chargedInfinityUpgrades") || PelleCelestialUpgrade.raTeresa2.isBought);
   }
 
   charge() {
