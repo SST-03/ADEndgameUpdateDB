@@ -58,7 +58,7 @@ export default {
         type="breakEternityUpgrades"
         class="l-hint-text--reality-upgrade c-hint-text--reality-upgrade"
       >
-        {{ upgrade.config.name }}
+        {{ upgrade.name }}
       </HintText>
       <DescriptionDisplay :config="upgrade.config" />
       <EffectDisplay :config="upgrade.config" />
