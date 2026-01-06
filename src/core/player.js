@@ -272,6 +272,7 @@ window.player = {
   lastUpdate: new Date().getTime(),
   backupTimer: 0,
   storedTime: 0,
+  lastExportTime: Date.now(),
   chall2Pow: 1,
   chall3Pow: DC.D0_01,
   matter: DC.D1,
