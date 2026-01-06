@@ -26,24 +26,34 @@ export default {
       return `Spend all Stored Time`;
     },
     classObj1() {
-      "o-primary-btn": true,
-      "o-primary-btn--disabled": this.storedTime < 60
+      return {
+        "o-primary-btn": true,
+        "o-primary-btn--disabled": this.storedTime < 60
+      };
     },
     classObj2() {
-      "o-primary-btn": true,
-      "o-primary-btn--disabled": this.storedTime < 600
+      return {
+        "o-primary-btn": true,
+        "o-primary-btn--disabled": this.storedTime < 600
+      };
     },
     classObj3() {
-      "o-primary-btn": true,
-      "o-primary-btn--disabled": this.storedTime < 3600
+      return {
+        "o-primary-btn": true,
+        "o-primary-btn--disabled": this.storedTime < 3600
+      };
     },
     classObj4() {
-      "o-primary-btn": true,
-      "o-primary-btn--disabled": this.storedTime < 18000
+      return {
+        "o-primary-btn": true,
+        "o-primary-btn--disabled": this.storedTime < 18000
+      };
     },
     classObj5() {
-      "o-primary-btn": true,
-      "o-primary-btn--disabled": this.storedTime <= 0
+      return {
+        "o-primary-btn": true,
+        "o-primary-btn--disabled": this.storedTime <= 0
+      };
     },
   },
   methods: {
