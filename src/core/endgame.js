@@ -468,7 +468,7 @@ export const Endgame = {
         timeSinceLastUpdate: 0,
         ascensionCount: DC.D0
       }));
-    player.celestials.laitela.entropy = 0;
+    player.celestials.laitela.entropy = DC.D0;
     player.celestials.laitela.thisCompletion = 3600;
     player.celestials.laitela.fastestCompletion = 3600;
     player.celestials.laitela.difficultyTier = 0;
