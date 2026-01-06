@@ -980,12 +980,12 @@ function applyAutoUnlockPerks() {
 function laitelaRealityTick(realDiff) {
   const laitelaInfo = player.celestials.laitela;
   if (!Laitela.isRunning) return;
-  if (laitelaInfo.entropy >= 0) {
-    laitelaInfo.entropy += Math.min((realDiff / 1000) * Laitela.entropyGainPerSecond, 1 - laitelaInfo.entropy);
+  if (laitelaInfo.entropy.gte(0)) {
+    laitelaInfo.entropy = laitelaInfo.entropy.add(new Decimal(realDiff / 1000).times(Laitela.entropyGainPerSecond));
   }
 
   // Setting entropy to -1 on completion prevents the modal from showing up repeatedly
-  if (laitelaInfo.entropy >= 1) {
+  if (laitelaInfo.entropy.gte(1)) {
     let completionText = `Lai'tela's Reality has been destabilized after ${Time.thisRealityRealTime.toStringShort()}.`;
     laitelaInfo.entropy = -1;
     const oldInfo = {
