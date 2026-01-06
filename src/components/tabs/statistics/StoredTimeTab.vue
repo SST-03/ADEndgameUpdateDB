@@ -1,6 +1,11 @@
 <script>
+import PrimaryButton from "@/components/PrimaryButton";
+
 export default {
   name: "StoredTimeTab",
+  components: {
+    PrimaryButton
+  },
   data() {
     return {
       storedTime: 0
