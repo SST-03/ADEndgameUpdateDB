@@ -76,7 +76,7 @@ export const breakInfinityUpgrades = {
     description: "Passively generate Infinities based on your fastest Infinity",
     effect: () => player.records.bestInfinity.time,
     formatEffect: value => {
-      if (value === Decimal.MAX_VALUE && !Pelle.isDoomed) return "No Infinity generation";
+      if (value === DC.BEMAX && !Pelle.isDoomed) return "No Infinity generation";
       let infinities = DC.D1;
       infinities = infinities.timesEffectsOf(
         RealityUpgrade(5),
