@@ -118,8 +118,8 @@ export const Laitela = {
     const upgradeInfo = unlockedDimensions
       .map(d => [
         [d.rawIntervalCost, d.intervalCostIncrease, d.maxIntervalPurchases, x => d.buyManyInterval(x)],
-        [d.rawPowerDMCost, d.powerDMCostIncrease, Decimal.MAX_VALUE, x => d.buyManyPowerDM(x)],
-        [d.rawPowerDECost, d.powerDECostIncrease, Decimal.MAX_VALUE, x => d.buyManyPowerDE(x)]])
+        [d.rawPowerDMCost, d.powerDMCostIncrease, DC.BEMAX, x => d.buyManyPowerDM(x)],
+        [d.rawPowerDECost, d.powerDECostIncrease, DC.BEMAX, x => d.buyManyPowerDE(x)]])
       .flat(1);
     const buy = function(upgrade, purchases) {
       upgrade[3](purchases);
