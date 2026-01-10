@@ -27,10 +27,22 @@ export function endgameMigration(player) {
   if (ImaginaryUpgrade(16).isBought) DarkMatterDimension(2).amount = new Decimal(1);
   if (ImaginaryUpgrade(17).isBought) DarkMatterDimension(3).amount = new Decimal(1);
   if (ImaginaryUpgrade(18).isBought) DarkMatterDimension(4).amount = new Decimal(1);
-  if (ImaginaryUpgrade(26).isBought) DarkMatterDimension(5).amount = new Decimal(1);
-  if (ImaginaryUpgrade(27).isBought) DarkMatterDimension(6).amount = new Decimal(1);
-  if (ImaginaryUpgrade(28).isBought) DarkMatterDimension(7).amount = new Decimal(1);
-  if (ImaginaryUpgrade(29).isBought) DarkMatterDimension(8).amount = new Decimal(1);
+  if (ImaginaryUpgrade(26).isBought) {
+    ImaginaryUpgrade(26).isBought = false;
+    Currency.imaginaryMachines.add(1e50);
+  }
+  if (ImaginaryUpgrade(27).isBought) {
+    ImaginaryUpgrade(27).isBought = false;
+    Currency.imaginaryMachines.add(1e100);
+  }
+  if (ImaginaryUpgrade(28).isBought) {
+    ImaginaryUpgrade(28).isBought = false;
+    Currency.imaginaryMachines.add(1e150);
+  }
+  if (ImaginaryUpgrade(29).isBought) {
+    ImaginaryUpgrade(29).isBought = false;
+    Currency.imaginaryMachines.add(1e200);
+  }
   player.records.bestEndgame.time = new Decimal(player.records.bestEndgame.time).eq(0)
         ? new Decimal(999999999999)
         : new Decimal(player.records.bestEndgame.time);
