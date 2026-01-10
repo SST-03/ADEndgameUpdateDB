@@ -47,41 +47,41 @@ export function toggleAllTimeDims() {
 }
 
 export function calcHighestPurchaseableTD(tier, currency) {
-  const logC = currency.max(1).log10() * (PelleRifts.paradox.milestones[0].canBeApplied ? 2 : 1);
-  const logBase = (TimeDimension(tier)._baseCost.max(1).log10() - (PelleRifts.paradox.milestones[0].canBeApplied ? 2250 : 0)) /
-    (PelleRifts.paradox.milestones[0].canBeApplied ? 2 : 1);
-  let logMult = Decimal.log10(TimeDimension(tier)._costMultiplier);
+  const logC = currency.max(1).log10().times(PelleRifts.paradox.milestones[0].canBeApplied ? 2 : 1);
+  const logBase = (TimeDimension(tier)._baseCost.max(1).log10().sub(PelleRifts.paradox.milestones[0].canBeApplied ? 2250 : 0)).div(
+    PelleRifts.paradox.milestones[0].canBeApplied ? 2 : 1);
+  let logMult = Math.log10(TimeDimension(tier)._costMultiplier);
 
   if (tier > 4 && currency.lt(DC.E6000)) {
-    return Math.floor(Math.max(0, (logC - logBase) / logMult));
+    return Decimal.floor(Decimal.max(0, (logC.sub(logBase)).div(logMult))).toNumber();
   }
 
   if (currency.gte(DC.E6000)) {
     logMult = Math.log10(Math.max(TimeDimension(tier)._costMultiplier * (tier <= 4 ? 2.2 : 1), 1));
-    const preInc = (Decimal.log10(DC.E6000) - logBase) / logMult;
-    const postInc = Math.clampMin(((logC - 6000) / logMult) / TimeDimensions.scalingPast1e6000, 0);
-    return Math.floor(postInc + preInc);
+    const preInc = (Decimal.log10(DC.E6000).sub(logBase)).div(logMult);
+    const postInc = Decimal.clampMin(((logC.sub(6000)).div(logMult)).div(TimeDimensions.scalingPast1e6000), 0);
+    return Decimal.floor(postInc.add(preInc)).toNumber();
   }
 
   if (currency.lt(DC.NUMMAX)) {
-    return Math.floor(Math.max(0, ((logC - logBase) / logMult) + 1));
+    return Decimal.floor(Decimal.max(0, ((logC.sub(logBase)).div(logMult)).add(1))).toNumber();
   }
 
   if (currency.lt(DC.E1300)) {
-    const preInc = Math.floor((Decimal.log10(DC.NUMMAX) - logBase) / logMult);
+    const preInc = Decimal.floor((Decimal.log10(DC.NUMMAX).sub(logBase)).div(logMult));
     logMult = Math.log10(Math.max(TimeDimension(tier)._costMultiplier * 1.5, 1));
-    const decCur = logC - (preInc * logMult);
-    const postInc = Math.floor(Math.clampMin(decCur / logMult, 0));
-    return preInc + postInc;
+    const decCur = logC.sub(preInc.times(logMult));
+    const postInc = Decimal.floor(Decimal.clampMin(decCur.div(logMult), 0));
+    return preInc.add(postInc).toNumber();
   }
 
   if (currency.lt(DC.E6000)) {
     logMult = Math.log10(Math.max(TimeDimension(tier)._costMultiplier * 1.5, 1));
-    const preInc = Math.floor((Decimal.log10(DC.E1300) - logBase) / logMult);
+    const preInc = Decimal.floor((Decimal.log10(DC.E1300).sub(logBase)).div(logMult));
     logMult = Math.log10(Math.max(TimeDimension(tier)._costMultiplier * 2.2, 1));
-    const decCur = logC - (preInc * logMult);
-    const postInc = Math.floor(Math.clampMin(decCur / logMult, 0));
-    return preInc + postInc;
+    const decCur = logC.sub(preInc.times(logMult));
+    const postInc = Decimal.floor(Decimal.clampMin(decCur.div(logMult), 0));
+    return preInc.add(postInc).toNumber();
   }
   throw new Error("calcHighestPurchasableTD reached too far in code");
 }
@@ -258,7 +258,7 @@ class TimeDimensionState extends DimensionState {
     mult = mult.powEffectOf(SingularityMilestone.dimensionPow);
     mult = mult.powEffectOf(Ra.unlocks.allDimPowTT);
 
-    if (ExpansionPack.pellePack.isBought) mult = mult.pow(1 + Math.pow(Decimal.log10(player.records.bestEndgame.galaxies) / 100, 3));
+    if (ExpansionPack.pellePack.isBought) mult = mult.pow(Decimal.pow(Decimal.log10(player.records.bestEndgame.galaxies).div(100), 3).add(1));
 
     if (player.dilation.active || (PelleStrikes.dilation.hasStrike && !PelleStrikes.dilation.isDestroyed())) {
       mult = dilatedValueOf(mult);
@@ -274,7 +274,7 @@ class TimeDimensionState extends DimensionState {
       BreakEternityUpgrade.infinityDimensionPow
     );
 
-    if (mult.gte(TimeDimensions.OVERFLOW)) mult = Decimal.pow(10, Decimal.pow(mult.log10() / Decimal.log10(TimeDimensions.OVERFLOW), 1 / TimeDimensions.compressionMagnitude).times(Decimal.log10(TimeDimensions.OVERFLOW)));
+    if (mult.gte(TimeDimensions.OVERFLOW)) mult = Decimal.pow(10, Decimal.pow(mult.log10().div(Decimal.log10(TimeDimensions.OVERFLOW)), 1 / TimeDimensions.compressionMagnitude).times(Decimal.log10(TimeDimensions.OVERFLOW)));
 
     return mult;
   }
