@@ -137,7 +137,7 @@ export function getDilationGainPerSecond() {
     if (PelleCelestialUpgrade.raNameless4.isBought) pelleExtraDT = pelleExtraDT.timesEffectOf(Ra.unlocks.peakGamespeedDT);
     if (PelleDestructionUpgrade.destroyedGlyphEffects.isBought) pelleExtraDT = pelleExtraDT.times(getAdjustedGlyphEffect("dilationDT"));
     if (PelleDestructionUpgrade.destroyedGlyphEffects.isBought) pelleExtraDT = pelleExtraDT.times(
-      Math.clampMin(Decimal.log10(Replicanti.amount) * getAdjustedGlyphEffect("replicationdtgain"), 1));
+      Decimal.clampMin(Decimal.log10(Replicanti.amount).times(getAdjustedGlyphEffect("replicationdtgain")), 1));
     if (!PelleDestructionUpgrade.disableDTNerf.isBought) pelleExtraDT = pelleExtraDT.div(1e5);
     if (EndgameMilestone.realityShardDTBoost.isReached) pelleExtraDT = pelleExtraDT.times(Currency.realityShards.value.plus(1));
     const tachyonEffect = Currency.tachyonParticles.value.pow(PelleRifts.paradox.milestones[1].effectOrDefault(1));
@@ -146,8 +146,8 @@ export function getDilationGainPerSecond() {
       .times(ShopPurchase.dilatedTimePurchases.currentMult ** 0.5)
       .times(Pelle.specialGlyphEffect.dilation).times(pelleExtraDT);
     if (dtRate.gte(DilationSoftcapStart.PRIMARY_THRESHOLD)) {
-      dtRate = Decimal.pow(10, (((Decimal.log10(dtRate) - Decimal.log10(DilationSoftcapStart.PRIMARY_THRESHOLD)) / 10) +
-        Decimal.log10(DilationSoftcapStart.PRIMARY_THRESHOLD)));
+      dtRate = Decimal.pow(10, (((Decimal.log10(dtRate).sub(Decimal.log10(DilationSoftcapStart.PRIMARY_THRESHOLD))).div(10)).add(
+        Decimal.log10(DilationSoftcapStart.PRIMARY_THRESHOLD))));
     }
     return dtRate;
   }
@@ -164,12 +164,12 @@ export function getDilationGainPerSecond() {
   dtRate = dtRate.times(getAdjustedGlyphEffect("dilationDT"));
   dtRate = dtRate.times(ShopPurchase.dilatedTimePurchases.currentMult);
   dtRate = dtRate.times(
-    Math.clampMin(Decimal.log10(Replicanti.amount) * getAdjustedGlyphEffect("replicationdtgain"), 1));
+    Decimal.clampMin(Decimal.log10(Replicanti.amount).times(getAdjustedGlyphEffect("replicationdtgain")), 1));
   if (Enslaved.isRunning && !dtRate.eq(0)) dtRate = Decimal.pow10(Math.pow(dtRate.plus(1).log10(), 0.85) - 1);
   if (V.isRunning) dtRate = dtRate.pow(0.5);
   if (dtRate.gte(DilationSoftcapStart.PRIMARY_THRESHOLD)) {
-    dtRate = Decimal.pow(10, (((Decimal.log10(dtRate) - Decimal.log10(DilationSoftcapStart.PRIMARY_THRESHOLD)) / 10) +
-      Decimal.log10(DilationSoftcapStart.PRIMARY_THRESHOLD)));
+    dtRate = Decimal.pow(10, (((Decimal.log10(dtRate).sub(Decimal.log10(DilationSoftcapStart.PRIMARY_THRESHOLD))).div(10)).add(
+      Decimal.log10(DilationSoftcapStart.PRIMARY_THRESHOLD))));
   }
   return dtRate;
 }
@@ -217,7 +217,7 @@ export function getBaseTP(antimatter, requireEternity) {
   const am = (isInCelestialReality() || Pelle.isDoomed)
     ? antimatter
     : Ra.unlocks.unlockDilationStartingTP.effectOrDefault(antimatter);
-  let baseTP = Decimal.pow(Decimal.log10(am) / 160, 1.8);
+  let baseTP = Decimal.pow(Decimal.log10(am).div(160), 1.8);
   if (Enslaved.isRunning) baseTP = baseTP.pow(Enslaved.tachyonNerf);
   baseTP = baseTP.powEffectsOf(
     BreakEternityUpgrade.tachyonParticlePow
