@@ -24,7 +24,7 @@ export const galacticPowerRewards = {
     id: 4,
     galacticPower: 1e50,
     reward: "Delay the first Galaxy Generator Instability Threshold",
-    effect: () => Math.pow(10, Decimal.log10(Currency.galacticPower.value.add(1)) / Decimal.log10(Decimal.NUMBER_MAX_VALUE) * 50),
+    effect: () => Math.pow(10, Decimal.log10(Currency.galacticPower.value.add(1)) / Decimal.log10(DC.NUMMAX) * 50),
     formatEffect: value => `The first Galaxy Generator Instability Threshold is delayed by ${formatX(value, 2, 2)} Galaxies`
   },
   replicantiGalaxies: {
