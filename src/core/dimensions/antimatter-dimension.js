@@ -177,7 +177,7 @@ function applyNDPowers(mult, tier) {
       Ra.unlocks.allDimPowTT
     );
 
-  if (ExpansionPack.pellePack.isBought) multiplier = multiplier.pow(1 + Math.pow(Decimal.log10(player.records.bestEndgame.galaxies) / 100, 3));
+  if (ExpansionPack.pellePack.isBought) multiplier = multiplier.pow(Decimal.pow(Decimal.log10(player.records.bestEndgame.galaxies).div(100), 3).add(1));
 
   multiplier = multiplier.pow(getAdjustedGlyphEffect("curseddimensions"));
 
@@ -614,11 +614,11 @@ class AntimatterDimensionState extends DimensionState {
         const log10 = production.log10();
         const endgameMult = Pelle.isDoomed ? 1 + (Math.log10(Currency.endgames.value + 1) / 80) : 1 + (Math.log10(Currency.endgames.value + 1) / 200);
         const endgameMultValue = EndgameMilestone.endgameAntimatter.isReached ? endgameMult : 1;
-        production = Decimal.pow10(Math.pow(log10, getAdjustedGlyphEffect("effarigantimatter") * Effects.product(EndgameMastery(101), EndgameUpgrade(15), SingularityMilestone.antimatterExponentPower) * endgameMult));
+        production = Decimal.pow10(Decimal.pow(log10, getAdjustedGlyphEffect("effarigantimatter") * Effects.product(EndgameMastery(101), EndgameUpgrade(15), SingularityMilestone.antimatterExponentPower) * endgameMult));
       }
       if (production.gt(Decimal.pow10(1e150))) {
         const log10 = production.log10();
-        production = Decimal.pow10(Math.pow(log10 / 1e150, 0.5) * 1e150);
+        production = Decimal.pow10(Decimal.pow(log10.div(1e150), 0.5).times(1e150));
       }
     }
     production = production.min(this.cappedProductionInNormalChallenges);
