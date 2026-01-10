@@ -382,7 +382,7 @@ class EPMultiplierState extends GameMechanicState {
   get costIncreaseThresholds() {
     return [
       DC.E100.powEffectsOf(BreakEternityUpgrade.epMultiplierDelay),
-      Decimal.NUMBER_MAX_VALUE.powEffectsOf(BreakEternityUpgrade.epMultiplierDelay),
+      DC.NUMMAX.powEffectsOf(BreakEternityUpgrade.epMultiplierDelay),
       DC.E1300.powEffectsOf(BreakEternityUpgrade.epMultiplierDelay),
       DC.E4000.powEffectsOf(BreakEternityUpgrade.epMultiplierDelay)
     ];
