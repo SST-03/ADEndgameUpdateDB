@@ -806,7 +806,7 @@ export function gameLoop(passedDiff, options = {}) {
 
   const uncapped = Decimal.min(player.endgame.unnerfedCelestialMatter, CelestialDimensions.SOFTCAP);
   const instability = Decimal.pow(Decimal.max(player.endgame.unnerfedCelestialMatter.div(CelestialDimensions.SOFTCAP), 1), 1 / CelestialDimensions.softcapPow);
-  player.endgame.celestialMatter = Decimal.min(uncapped.times(instability), Decimal.NUMBER_MAX_VALUE);
+  player.endgame.celestialMatter = Decimal.min(uncapped.times(instability), DC.NUMMAX);
 
   let darkMatterProd = DC.D1;
   const unnerfedDM = player.celestials.laitela.unnerfedDarkMatter;
@@ -1149,7 +1149,7 @@ export function gainedCelestialPoints() {
   if (Achievement(197).isUnlocked) {
     cp = cp.times(Decimal.max(9e115, player.celestials.pelle.records.totalEndgameAntimatter.log10()).div(9e115));
   }
-  cp = Decimal.min(cp, Decimal.NUMBER_MAX_VALUE.sub(player.endgame.celestialPoints));
+  cp = Decimal.min(cp, DC.NUMMAX.sub(player.endgame.celestialPoints));
   return cp.floor();
 }
 
