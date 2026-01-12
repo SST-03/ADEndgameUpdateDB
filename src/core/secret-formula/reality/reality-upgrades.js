@@ -269,7 +269,7 @@ export const realityUpgrades = [
     checkRequirement: () => Glyphs.activeWithoutCompanion.countWhere(g => g.level >= 10) === 4,
     checkEvent: GAME_EVENT.REALITY_RESET_BEFORE,
     description: "Eternity count boosts Glyph level",
-    effect: () => Math.max(Math.sqrt(Currency.eternities.value.plus(1).log10()) * 0.45, 1),
+    effect: () => Decimal.max(Decimal.sqrt(Currency.eternities.value.plus(1).log10()).times(0.45), 1).toNumber(),
     formatCost: value => format(value, 1, 0)
   },
   {
