@@ -484,7 +484,7 @@ export const normalTimeStudies = [
     requirement: [191],
     reqType: TS_REQUIREMENT_TYPE.AT_LEAST_ONE,
     description: "All Galaxies are stronger based on your Time Shards",
-    effect: () => Math.pow(Currency.timeShards.value.clampMin(2).log2(), 0.008),
+    effect: () => Decimal.pow(Currency.timeShards.value.clampMin(2).log2(), 0.008).toNumber(),
     cap: 1.2,
     formatEffect: value => `+${formatPercents(value - 1, 3)}`
   },
