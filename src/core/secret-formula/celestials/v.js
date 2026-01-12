@@ -36,7 +36,7 @@ export const v = {
       resource: () => Currency.realities.value,
       requirement: 1250,
       format: x => formatInt(x),
-      progress: () => Currency.realities.value / EndgameMastery(51).effectOrDefault(1250),
+      progress: () => new Decimal(Currency.realities.value).div(EndgameMastery(51).effectOrDefault(1250)),
     },
     eternities: {
       id: 2,
@@ -44,7 +44,7 @@ export const v = {
       resource: () => Currency.eternities.value,
       requirement: 1e70,
       format: x => format(x, 2),
-      progress: () => emphasizeEnd(Currency.eternities.value.pLog10() / 70),
+      progress: () => emphasizeEnd(Currency.eternities.value.pLog10().div(70)),
     },
     infinities: {
       id: 3,
@@ -52,7 +52,7 @@ export const v = {
       resource: () => Currency.infinitiesTotal.value,
       requirement: 1e160,
       format: x => format(x, 2),
-      progress: () => emphasizeEnd(Currency.infinitiesTotal.value.pLog10() / 160),
+      progress: () => emphasizeEnd(Currency.infinitiesTotal.value.pLog10().div(160)),
     },
     dilatedTime: {
       id: 4,
@@ -60,7 +60,7 @@ export const v = {
       resource: () => player.records.thisReality.maxDT,
       requirement: DC.E320,
       format: x => format(x, 2),
-      progress: () => emphasizeEnd(player.records.thisReality.maxDT.pLog10() / 320),
+      progress: () => emphasizeEnd(player.records.thisReality.maxDT.pLog10().div(320)),
     },
     replicanti: {
       id: 5,
@@ -68,7 +68,7 @@ export const v = {
       resource: () => player.records.thisReality.maxReplicanti,
       requirement: DC.E320000,
       format: x => format(x, 2),
-      progress: () => emphasizeEnd(player.records.thisReality.maxReplicanti.pLog10() / 320000),
+      progress: () => emphasizeEnd(player.records.thisReality.maxReplicanti.pLog10().div(320000)),
     },
     realityMachines: {
       id: 6,
@@ -76,7 +76,7 @@ export const v = {
       resource: () => Currency.realityMachines.value,
       requirement: 1e60,
       format: x => format(x, 2),
-      progress: () => emphasizeEnd(Currency.realityMachines.value.pLog10() / 60),
+      progress: () => emphasizeEnd(Currency.realityMachines.value.pLog10().div(60)),
     },
   },
   runUnlocks: [
@@ -87,7 +87,7 @@ export const v = {
       // This achievement has internally negated values since the check is always greater than
       values: [-5, -4, -3, -2, -1, 0],
       condition: () => V.isRunning && TimeStudy.reality.isBought,
-      currentValue: () => -Glyphs.activeWithoutCompanion.length,
+      currentValue: () => new Decimal(-Glyphs.activeWithoutCompanion.length),
       formatRecord: x => (x >= -5 ? formatInt(-x) : "Not reached"),
       shardReduction: () => 0,
       maxShardReduction: () => 0,
@@ -99,7 +99,7 @@ export const v = {
       description: value => `Have ${formatInt(value)} total Galaxies from all types.`,
       values: [4000, 4300, 4600, 4900, 5200, 5500],
       condition: () => V.isRunning,
-      currentValue: () => Replicanti.galaxies.total.add(player.galaxies).add(player.dilation.totalTachyonGalaxies).toNumber(),
+      currentValue: () => Replicanti.galaxies.total.add(player.galaxies).add(player.dilation.totalTachyonGalaxies),
       formatRecord: x => formatInt(x),
       shardReduction: tiers => Math.floor(300 * tiers),
       maxShardReduction: goal => goal - 4000,
@@ -152,7 +152,7 @@ export const v = {
       description: value => `Get ${formatInt(value)} Dimension Boosts while Dilated and inside Eternity Challenge 5.`,
       values: [51, 52, 53, 54, 55, 56],
       condition: () => V.isRunning && player.dilation.active && EternityChallenge(5).isRunning,
-      currentValue: () => DimBoost.purchasedBoosts.toNumber(),
+      currentValue: () => DimBoost.purchasedBoosts,
       formatRecord: x => formatInt(x),
       shardReduction: tiers => Math.floor(tiers),
       maxShardReduction: () => 5,
@@ -167,7 +167,7 @@ export const v = {
       // This achievement has internally negated values since the check is always greater than
       values: [1, 4, 7, 10, 13],
       condition: () => V.isRunning && TimeStudy.reality.isBought,
-      currentValue: () => -player.requirementChecks.reality.maxGlyphs,
+      currentValue: () => new Decimal(-player.requirementChecks.reality.maxGlyphs),
       formatRecord: x => formatInt(-x),
       shardReduction: () => 0,
       maxShardReduction: () => 0,
@@ -181,7 +181,7 @@ export const v = {
         Black Hole or slower, without discharging or entering EC12.`,
       values: [100, 150, 200, 250, 300],
       condition: () => V.isRunning,
-      currentValue: () => (
+      currentValue: () => new Decimal(
         // Dirty hack I know lmao
         Currency.timeTheorems.gte(400000)
           ? -Math.log10(player.requirementChecks.reality.slowestBH)
@@ -200,7 +200,7 @@ export const v = {
       description: value => `Reach a Glyph of level ${formatInt(value)}.`,
       values: [6500, 7000, 8000, 9000, 10000],
       condition: () => V.isRunning,
-      currentValue: () => gainedGlyphLevel().actualLevel,
+      currentValue: () => new Decimal(gainedGlyphLevel().actualLevel),
       formatRecord: x => formatInt(x),
       shardReduction: tiers => Math.floor(500 * tiers),
       maxShardReduction: () => 500,
