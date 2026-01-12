@@ -427,24 +427,20 @@ export const Pelle = {
     let ep = this.cel.records.totalEternityPoints.plus(1).log10();
 
     if (PelleStrikes.dilation.hasStrike) {
-      am *= 500;
-      ip *= 10;
-      ep *= 5;
+      am = am.times(500);
+      ip = ip.times(10);
+      ep = ep.times(5);
     }
 
     if (EndgameMilestone.remnantFormula.isReached) {
-      am *= 10000;
-      ip *= 500;
-      ep *= 25;
+      am = am.times(10000);
+      ip = ip.times(500);
+      ep = ep.times(25);
     }
 
-    const gainOld = (
-      (Math.log10(am + 2) + Math.log10(ip + 2) + Math.log10(ep + 2)) / 1.7
-    ) ** 8;
+    const gainOld = Decimal.pow((Decimal.log10(am.add(2)).add(Decimal.log10(ip.add(2))).add(Decimal.log10(ep.add(2)))).div(1.7), 8).toNumber();
 
-    const gainNew = (
-      (Math.log10(am + 2) + Math.log10(ip + 2) + Math.log10(ep + 2)) / 1.6
-    ) ** 8.2;
+    const gainNew = Decimal.pow((Decimal.log10(am.add(2)).add(Decimal.log10(ip.add(2))).add(Decimal.log10(ep.add(2)))).div(1.6), 8.2).toNumber();
 
     const gain = EndgameMilestone.remnantFormula.isReached ? gainNew : gainOld;
     
