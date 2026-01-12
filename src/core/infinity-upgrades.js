@@ -150,7 +150,7 @@ class InfinityIPMultUpgrade extends GameMechanicState {
   }
 
   get purchasesAtIncrease() {
-    return this.costIncreaseThreshold.log10() - 1;
+    return this.costIncreaseThreshold.log10().sub(1).toNumber();
   }
 
   get hasIncreasedCost() {
