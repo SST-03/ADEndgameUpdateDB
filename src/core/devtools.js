@@ -223,11 +223,11 @@ dev.buyAllPerks = function() {
 
 // This should help for balancing different glyph types, strong rounding of values is intentional
 dev.printResourceTotals = function() {
-  console.log(`Antimatter: e${Currency.antimatter.exponent.toPrecision(3)}`);
+  console.log(`Antimatter: e${Currency.antimatter.log10().toPrecision(3)}`);
   console.log(`RM: e${Decimal.round(MachineHandler.gainedRealityMachines.log10())}`);
   console.log(`Glyph level: ${100 * Math.floor(gainedGlyphLevel().actualLevel / 100 + 0.5)}`);
 
-  console.log(`Tickspeed: e${-Tickspeed.current.exponent.toPrecision(3)}`);
+  console.log(`Tickspeed: e${-Tickspeed.current.log10().toPrecision(3)}`);
   console.log(`Gamespeed: ${Decimal.pow(getGameSpeedupFactor(), 1.2).toPrecision(1)}`);
   const aGalaxy = Decimal.floor(player.galaxies.div(100).add(0.5)).times(100);
   const rGalaxy = Decimal.floor(Replicanti.galaxies.total.div(100).add(0.5)).times(100);
@@ -482,9 +482,9 @@ dev.testGlyphs = function(config) {
     const done = padString(`${Math.floor(100 * (index + 1) / glyphSets.length)}%`, 4, true);
     const rm = padString(MachineHandler.gainedRealityMachines.toPrecision(2), 9);
     const gl = padString(gainedGlyphLevel().actualLevel, 4);
-    const ep = padString(player.eternityPoints.exponent.toString(), 6);
-    const ip = padString(player.infinityPoints.exponent.toString(), 8);
-    const am = padString(Currency.antimatter.exponent.toString(), 12);
+    const ep = padString(player.eternityPoints.log10().toString(), 6);
+    const ip = padString(player.infinityPoints.log10().toString(), 8);
+    const am = padString(Currency.antimatter.log10().toString(), 12);
     const dimboosts = DimBoost.purchasedBoosts;
     const galaxies = Replicanti.galaxies.total.add(player.galaxies).add(player.dilation.totalTachyonGalaxies);
     const glyphData = glyphSets[index].map(glyphToShortString).sum();
