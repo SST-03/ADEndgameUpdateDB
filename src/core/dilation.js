@@ -137,7 +137,7 @@ export function getDilationGainPerSecond() {
     if (PelleCelestialUpgrade.raNameless4.isBought) pelleExtraDT = pelleExtraDT.timesEffectOf(Ra.unlocks.peakGamespeedDT);
     if (PelleDestructionUpgrade.destroyedGlyphEffects.isBought) pelleExtraDT = pelleExtraDT.times(getAdjustedGlyphEffect("dilationDT"));
     if (PelleDestructionUpgrade.destroyedGlyphEffects.isBought) pelleExtraDT = pelleExtraDT.times(
-      Decimal.clampMin(Decimal.log10(Replicanti.amount).times(getAdjustedGlyphEffect("replicationdtgain")), 1));
+      Decimal.clampMin(Decimal.log10(Replicanti.amount.add(1)).times(getAdjustedGlyphEffect("replicationdtgain")), 1));
     if (!PelleDestructionUpgrade.disableDTNerf.isBought) pelleExtraDT = pelleExtraDT.div(1e5);
     if (EndgameMilestone.realityShardDTBoost.isReached) pelleExtraDT = pelleExtraDT.times(Currency.realityShards.value.plus(1));
     const tachyonEffect = Currency.tachyonParticles.value.pow(PelleRifts.paradox.milestones[1].effectOrDefault(1));
