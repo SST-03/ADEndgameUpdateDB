@@ -276,7 +276,7 @@ export const endgameUpgrades = [
     checkRequirement: () => BreakEternityUpgrade.tesseractMultiplier.isBought,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "Celestial Points delay the Free Tesseract Softcap",
-    effect: () => Math.pow(1 + Decimal.log10(Decimal.max(Decimal.log10(player.endgame.celestialPoints).div(200), 1)).toNumber(), 2),
+    effect: () => Math.pow(1 + Decimal.log10(Decimal.max(Decimal.log10(player.endgame.celestialPoints.add(1)).div(200), 1)).toNumber(), 2),
     formatEffect: value => formatX(value, 2, 2)
   },
   {
@@ -288,7 +288,7 @@ export const endgameUpgrades = [
     checkRequirement: () => BreakEternityUpgrade.glyphSacrificeUncap.isBought,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "All Glyph Sacrifice Values are increased based on Celestial Matter",
-    effect: () => Decimal.pow(Decimal.max(Decimal.log10(Decimal.log10(player.endgame.celestialMatter)).div(2), 1), 1.5).toNumber(),
+    effect: () => Decimal.pow(Decimal.max(Decimal.log10(Decimal.log10(player.endgame.celestialMatter.add(1)).add(1)).div(2), 1), 1.5).toNumber(),
     formatEffect: value => formatPow(value, 2, 3)
   },
   {
@@ -300,7 +300,7 @@ export const endgameUpgrades = [
     checkRequirement: () => BreakEternityUpgrade.glyphSlotImprovement.isBought,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: "Glyph Level gains a multiplier based on Antimatter which applies after Instability",
-    effect: () => Decimal.min(Decimal.pow(Decimal.max(Decimal.log10(Decimal.log10(player.antimatter)).div(100), 1), 0.05), 1.2).toNumber(),
+    effect: () => Decimal.min(Decimal.pow(Decimal.max(Decimal.log10(Decimal.log10(player.antimatter.add(1)).add(1)).div(100), 1), 0.05), 1.2).toNumber(),
     formatEffect: value => formatX(value, 2, 2)
   },
 ];
