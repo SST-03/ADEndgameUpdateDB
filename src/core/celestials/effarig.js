@@ -71,7 +71,7 @@ export const Effarig = {
   get shardsGained() {
     const extraBoost = ExpansionPack.effarigPack.isBought ? Decimal.log10(player.antimatter) : DC.D1;
     if (!TeresaUnlocks.effarig.canBeApplied && !EndgameMilestone.celestialEarlyUnlock.isReached) return new Decimal(0);
-    return Decimal.floor(Decimal.pow(Currency.eternityPoints.value.log10().div(7500), this.glyphEffectAmount)).times(
+    return Decimal.floor(Decimal.pow(Currency.eternityPoints.value.add(1).log10().div(7500), this.glyphEffectAmount)).times(
       AlchemyResource.effarig.effectValue).times(extraBoost).timesEffectOf(Ra.unlocks.relicShardBoost);
   },
   get maxRarityBoost() {
