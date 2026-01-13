@@ -279,6 +279,23 @@ window.getCostWithLinearCostScaling = function getCostWithLinearCostScaling(
   return preScalingCost * postScalingCost;
 };
 
+//Since our old formula fails after some time
+window.decimalGetCostWithLinearCostScaling = function decimalGetCostWithLinearCostScaling(
+  amountOfPurchases, costScalingStart, initialCost, costMult, costMultGrowth
+) {
+  let decimalPurchaseCount = new Decimal(amountOfPurchases);
+  let decimalScalingStart = new Decimal(costScalingStart);
+  let decimalInitialCost = new Decimal(initialCost);
+  let decimalCostMult = new Decimal(costMult);
+  let decimalCostGrowth = new Decimal(costMultGrowth);
+  const preScalingPurchases = Decimal.max(0, Decimal.floor(Decimal.log(decimalScalingStart.div(decimalInitialCost)).div(Decimal.log(decimalCostMult))));
+  const preScalingCost = Decimal.ceil(Decimal.pow(decimalCostMult, Decimal.min(preScalingPurchases, decimalPurchaseCount)).times(decimalInitialCost));
+  const scaling = new LinearMultiplierScaling(decimalCostMult, decimalCostGrowth);
+  const postScalingCost = Decimal.exp(scaling.logTotalMultiplierAfterPurchases(
+    Decimal.max(0, decimalPurchaseCount.sub(preScalingPurchases)).toNumber()));
+  return preScalingCost.times(postScalingCost);
+};
+
 // Using the same arguments as getCostWithLinearCostScaling() above, do a binary search for the first purchase with a
 // cost of Infinity.
 window.findFirstInfiniteCostPurchase = function findFirstInfiniteCostPurchase(
@@ -644,7 +661,8 @@ window.getHybridCostScaling = function getHybridCostScaling(
   const normalCost = getCostWithLinearCostScaling(amountOfPurchases, linCostScalingStart, linInitialCost,
     linCostMult, linCostMultGrowth);
   if (Number.isFinite(normalCost)) {
-    return new Decimal(normalCost);
+    return decimalGetCostWithLinearCostScaling(amountOfPurchases, linCostScalingStart, linInitialCost,
+      linCostMult, linCostMultGrowth);
   }
   const postInfinityAmount = amountOfPurchases - findFirstInfiniteCostPurchase(linCostScalingStart, linInitialCost,
     linCostMult, linCostMultGrowth);
