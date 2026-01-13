@@ -267,7 +267,7 @@ export const imaginaryUpgrades = [
     canLock: true,
     lockEvent: "enable Continuum",
     description: "Annihilation multiplier gain is improved based on Imaginary Machines",
-    effect: () => Decimal.clampMin(Decimal.pow(Decimal.log10(Currency.imaginaryMachines.value).sub(10), 3), 1).toNumber(),
+    effect: () => Decimal.clampMin(Decimal.pow(Decimal.log10(Currency.imaginaryMachines.value.add(1)).sub(10), 3), 1).toNumber(),
     formatEffect: value => `${formatX(value, 2, 1)}`,
     isDisabledInDoomed: () => !PelleImaginaryUpgrade.existentialElimination.isBought
   },
