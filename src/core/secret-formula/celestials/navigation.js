@@ -228,7 +228,7 @@ export const celestialNavigation = {
   "teresa-reality-unlock": {
     visible: () => true,
     complete: () => (TeresaUnlocks.run.canBeApplied
-      ? 1 : Decimal.pLog10(Teresa.pouredAmount).div(Math.log10(TeresaUnlocks.run.price))).toNumber(),
+      ? 1 : Decimal.pLog10(Teresa.pouredAmount.add(1)).div(Math.log10(TeresaUnlocks.run.price))).toNumber(),
     node: {
       completeClass: "c-celestial-nav__test-complete",
       incompleteClass: "c-celestial-nav__test-incomplete",
@@ -288,7 +288,7 @@ export const celestialNavigation = {
   "teresa-pp-shop": {
     visible: () => true,
     complete: () => (TeresaUnlocks.shop.canBeApplied
-      ? 1 : Decimal.pLog10(Teresa.pouredAmount).div(Math.log10(TeresaUnlocks.shop.price))).toNumber(),
+      ? 1 : Decimal.pLog10(Teresa.pouredAmount.add(1)).div(Math.log10(TeresaUnlocks.shop.price))).toNumber(),
     node: {
       clickAction: () => Tab.celestials.teresa.show(true),
       completeClass: "c-celestial-nav__test-complete",
@@ -324,7 +324,7 @@ export const celestialNavigation = {
   "effarig-shop": {
     visible: () => true,
     complete: () => (TeresaUnlocks.effarig.canBeApplied
-      ? 1 : Decimal.pLog10(Teresa.pouredAmount).div(Math.log10(TeresaUnlocks.effarig.price))).toNumber(),
+      ? 1 : Decimal.pLog10(Teresa.pouredAmount.add(1)).div(Math.log10(TeresaUnlocks.effarig.price))).toNumber(),
     node: {
       clickAction: () => Tab.celestials.effarig.show(true),
       completeClass: "c-celestial-nav__effarig",
@@ -360,7 +360,7 @@ export const celestialNavigation = {
     // If the upgrade to unlock the reality isn't yet bought, clamp the progress at 99.9%,
     // even if the player has enough relic shards to buy it.
     complete: () => (EffarigUnlock.run.isUnlocked
-      ? 1 : Decimal.clampMax(0.999, Decimal.pLog10(Currency.relicShards.value).div(
+      ? 1 : Decimal.clampMax(0.999, Decimal.pLog10(Currency.relicShards.value.add(1)).div(
         Math.log10(EffarigUnlock.run.cost))).toNumber()),
     node: {
       clickAction: () => Tab.celestials.effarig.show(true),
@@ -1808,7 +1808,7 @@ export const celestialNavigation = {
     visible: () => Laitela.difficultyTier > 4,
     complete: () => {
       if (Pelle.isUnlocked) return 1;
-      const imCost = Math.clampMax(emphasizeEnd(Decimal.log10(Currency.imaginaryMachines.value).div(Math.log10(1.6e15)).toNumber()), 1);
+      const imCost = Math.clampMax(emphasizeEnd(Decimal.log10(Currency.imaginaryMachines.value.add(1)).div(Math.log10(1.6e15)).toNumber()), 1);
       let laitelaProgress = Laitela.isRunning ? Decimal.min(Currency.eternityPoints.value.add(1).log10().div(4000), 0.99).toNumber() : 0;
       if (Laitela.difficultyTier !== 8 || Glyphs.activeWithoutCompanion.length > 1) laitelaProgress = 0;
       else if (ImaginaryUpgrade(25).isAvailableForPurchase) laitelaProgress = 1;
@@ -1908,7 +1908,7 @@ export const celestialNavigation = {
     visible: () => PlayerProgress.endgameUnlocked(),
     complete: () => {
       if (ImaginaryUpgrade(30).isAvailableForPurchase) return 1;
-      const imCost = Decimal.clampMax(Decimal.log10(Currency.imaginaryMachines.value).div(Math.log10(Number.MAX_VALUE)), 1).toNumber();
+      const imCost = Decimal.clampMax(Decimal.log10(Currency.imaginaryMachines.value.add(1)).div(Math.log10(Number.MAX_VALUE)), 1).toNumber();
       const nerfsLeft = (PelleAchievementUpgrade.all.filter(u => u.isBought).length +
         PelleDestructionUpgrade.all.filter(u => u.isBought).length + PelleRealityUpgrade.all.filter(u => u.isBought).length +
         PelleImaginaryUpgrade.all.filter(u => u.isBought).length + PelleCelestialUpgrade.all.filter(u => u.isBought).length +
