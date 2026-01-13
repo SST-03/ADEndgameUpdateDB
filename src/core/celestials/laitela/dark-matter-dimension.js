@@ -85,8 +85,8 @@ export class DarkMatterDimensionState extends DimensionState {
       .times(this.commonDarkMult)
       .times(Decimal.pow(this.powerDMPerAscension, this.ascensions))
       .timesEffectsOf(SingularityMilestone.darkMatterMult, SingularityMilestone.multFromInfinitied)
-      .times(ExpansionPack.laitelaPack.isBought ? Decimal.max(Decimal.log10(Decimal.log10(player.antimatter)), Decimal.log10(
-        player.reality.imaginaryMachines)) : 1)
+      .times(ExpansionPack.laitelaPack.isBought ? Decimal.max(Decimal.log10(Decimal.log10(player.antimatter.add(1)).add(1)), Decimal.log10(
+        player.reality.imaginaryMachines.add(1))) : 1)
       .dividedBy(Decimal.pow(1e4, Decimal.pow(this.tier - 1, 0.5)));
   }
 
