@@ -50,7 +50,7 @@ export const Teresa = {
     player.celestials.teresa.pouredAmount = amount;
   },
   get fill() {
-    return Decimal.min(Decimal.log10(this.pouredAmount).div(24), 1).toNumber();
+    return Decimal.min(Decimal.log10(this.pouredAmount.add(1)).div(24), 1).toNumber();
   },
   get possibleFill() {
     return Decimal.min(Currency.realityMachines.value.plus(this.pouredAmount).add(1).log10().div(24), 1).toNumber();
