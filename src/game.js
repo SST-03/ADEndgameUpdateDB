@@ -647,7 +647,7 @@ export function gameLoop(passedDiff, options = {}) {
   updateImaginaryMachines(realDiff);
 
   if (ExpansionPack.teresaPack.isBought && player.celestials.teresa.autoPour) {
-    Teresa.pourRM(realDiff);
+    Teresa.pourRM(realDiff, true);
   }
 
   if (!Pelle.isDoomed) {
