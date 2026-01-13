@@ -18,7 +18,7 @@ export const Teresa = {
   pourRM(diff, auto = false) {
     if (this.pouredAmount.gte(Teresa.pouredAmountCap)) return;
     if (auto) {
-      const autoPouredRM = Decimal.min(MachineHandler.hardcapRM.div(1000), Currency.realityMachines.value);
+      const autoPouredRM = Decimal.min(MachineHandler.hardcapRM.div(1000), Currency.realityMachines.value.div(1000));
       this.pouredAmount = this.pouredAmount.add(autoPouredRM);
       Currency.realityMachines.subtract(autoPouredRM);
       this.checkForUnlocks();
