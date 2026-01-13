@@ -398,7 +398,7 @@ export const celestialNavigation = {
       if (EffarigUnlock.infinity.isUnlocked) return 1;
       if (!Effarig.isRunning) return 0;
 
-      return Currency.antimatter.value.pLog10().div(DC.NUMMAX.log10()).toNumber();
+      return Currency.antimatter.value.add(1).pLog10().div(DC.NUMMAX.log10()).toNumber();
     },
     node: {
       clickAction: () => Tab.celestials.effarig.show(true),
@@ -439,7 +439,7 @@ export const celestialNavigation = {
       if (EffarigUnlock.eternity.isUnlocked) return 1;
       if (!Effarig.isRunning) return 0;
 
-      return Currency.infinityPoints.value.pLog10().div(DC.NUMMAX.log10()).toNumber();
+      return Currency.infinityPoints.value.add(1).pLog10().div(DC.NUMMAX.log10()).toNumber();
     },
     node: {
       clickAction: () => Tab.celestials.effarig.show(true),
@@ -488,7 +488,7 @@ export const celestialNavigation = {
       if (EffarigUnlock.reality.isUnlocked) return 1;
       if (!Effarig.isRunning) return 0;
 
-      return Currency.eternityPoints.value.pLog10().div(4000).toNumber();
+      return Currency.eternityPoints.value.add(1).pLog10().div(4000).toNumber();
     },
     node: {
       clickAction: () => Tab.celestials.effarig.show(true),
@@ -655,7 +655,7 @@ export const celestialNavigation = {
       if (Enslaved.isCompleted) return 1;
       if (!Enslaved.isRunning) return 0;
 
-      return Currency.eternityPoints.value.pLog10().div(4000).toNumber();
+      return Currency.eternityPoints.value.add(1).pLog10().div(4000).toNumber();
     },
     node: {
       clickAction: () => Tab.celestials.enslaved.show(true),
@@ -1429,9 +1429,9 @@ export const celestialNavigation = {
       if (DarkMatterDimension(1).unlockUpgrade.canBeBought || Laitela.isUnlocked) return 1;
       if (MachineHandler.isIMUnlocked) {
         if (player.requirementChecks.reality.maxID1.neq(0)) return 0.5;
-        return 0.5 + 0.5 * Math.clampMax(0.999, player.antimatter.log10().toNumber() / 1.5e12);
+        return 0.5 + 0.5 * Math.clampMax(0.999, player.antimatter.add(1).log10().toNumber() / 1.5e12);
       }
-      return Decimal.clampMax(0.5, Currency.realityMachines.value.pLog10().div(MachineHandler.baseRMCap.log10())).toNumber();
+      return Decimal.clampMax(0.5, Currency.realityMachines.value.add(1).pLog10().div(MachineHandler.baseRMCap.log10())).toNumber();
     },
     drawOrder: -1,
     node: {
@@ -1809,7 +1809,7 @@ export const celestialNavigation = {
     complete: () => {
       if (Pelle.isUnlocked) return 1;
       const imCost = Math.clampMax(emphasizeEnd(Decimal.log10(Currency.imaginaryMachines.value).div(Math.log10(1.6e15)).toNumber()), 1);
-      let laitelaProgress = Laitela.isRunning ? Decimal.min(Currency.eternityPoints.value.log10().div(4000), 0.99).toNumber() : 0;
+      let laitelaProgress = Laitela.isRunning ? Decimal.min(Currency.eternityPoints.value.add(1).log10().div(4000), 0.99).toNumber() : 0;
       if (Laitela.difficultyTier !== 8 || Glyphs.activeWithoutCompanion.length > 1) laitelaProgress = 0;
       else if (ImaginaryUpgrade(25).isAvailableForPurchase) laitelaProgress = 1;
       return (imCost + laitelaProgress) / 2;
@@ -1920,7 +1920,7 @@ export const celestialNavigation = {
       if (MachineHandler.isIMUnlocked) {
         return 0.25 + (0.25 * Math.clampMax(0.249, imCost)) + (0.25 * nerfsLeft) + (0.25 * strikesLeft);
       }
-      return Decimal.clampMax(0.25, Currency.realityMachines.value.pLog10().div(MachineHandler.baseRMCap.log10())).toNumber();
+      return Decimal.clampMax(0.25, Currency.realityMachines.value.add(1).pLog10().div(MachineHandler.baseRMCap.log10())).toNumber();
     },
     node: {
       clickAction: () => Tab.endgame.show(true),
