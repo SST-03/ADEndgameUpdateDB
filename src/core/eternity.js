@@ -346,7 +346,7 @@ class EPMultiplierState extends GameMechanicState {
       bulk = Decimal.floor(this.costIncreaseThresholds[0].div(500).log(50));
       tempVal = DC.E2.pow(bulk).times(500);
       cur = cur.div(tempVal.max(1 / 100));
-      return Math.floor(bulk.add(cur.log(100)).add(1)).toNumber();
+      return Decimal.floor(bulk.add(cur.log(100)).add(1)).toNumber();
     }
     return Decimal.floor(cur.div(500).max(1 / 50).log(50).add(1)).toNumber();
   }
