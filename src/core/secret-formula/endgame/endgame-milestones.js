@@ -73,7 +73,7 @@ export const endgameMilestones = {
     reward: () => {
       return "Gain a power to Antimatter Production based on Endgames, which is stronger in Pelle " + 
         (player.endgames >= 10000
-         ? `(Currently: ${formatPow(Pelle.isDoomed ? 1 + (Math.log10(Currency.endgames.value + 1) / 80) : 1 + (Math.log10(Currency.endgames.value + 1) / 200), 2, 3)})`
+         ? `(Currently: ${formatPow(Pelle.isDoomed ? 1 + (Math.log10(Math.min(eg, 1e6) * (Math.log2(eg + 1) - 5) + 1) / 80) : 1 + (Math.log10(Math.min(eg, 1e6) * (Math.log2(eg + 1) - 5) + 1) / 200), 2, 3)})`
          : "(You have not yet reached this milestone)");
     }
   },
