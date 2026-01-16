@@ -648,7 +648,7 @@ export const Endgame = {
       lockAchievementsOnEndgame();
     }
     player.records.totalTimePlayed = new Decimal(player.records.realTimePlayed);
-    player.records.timePlayedAtBHUnlock = DC.BEMAX;
+    player.records.timePlayedAtBHUnlock = DC.E9E15;
     player.records.realTimeDoomed = 0;
     player.records.totalEndgameAntimatter = DC.E1;
     player.records.totalRealityAntimatter = DC.E1;
