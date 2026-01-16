@@ -1073,7 +1073,7 @@ function applyAutoprestige(diff) {
       .times(getGameSpeedupFactor().times(diff).div(1000)).timesEffectOf(Ra.unlocks.continuousTTBoost.effects.autoPrestige));
   }
 
-  if (InfinityUpgrade.ipGen.isCharged) {
+  if (InfinityUpgrade.ipGen.isCharged && !Pelle.isDoomed) {
     const addedRM = MachineHandler.gainedRealityMachines
       .timesEffectsOf(InfinityUpgrade.ipGen.chargedEffect)
       .times(diff).div(1000);
