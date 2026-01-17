@@ -63,6 +63,7 @@ export const Pelle = {
       return;
     }
 
+    EventHub.dispatch(GAME_EVENT.DOOM_REALITY_BEFORE);
     Glyphs.harshAutoClean();
     if (!Glyphs.unequipAll()) {
       Modal.hideAll();
@@ -151,6 +152,7 @@ export const Pelle = {
       Pelle.quotes.doomE55DP.show();
     }
     GameStorage.save(true);
+    EventHub.dispatch(GAME_EVENT.DOOM_REALITY_AFTER);
   },
 
   get displayName() {
