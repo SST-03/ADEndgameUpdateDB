@@ -1100,7 +1100,7 @@ function updateTachyonGalaxies() {
     .pow(player.dilation.baseTachyonGalaxies));
   player.dilation.totalTachyonGalaxies =
     Decimal.min(player.dilation.baseTachyonGalaxies.times(tachyonGalaxyMult), tachyonGalaxyThreshold).add(
-    Decimal.max(player.dilation.baseTachyonGalaxies.times(tachyonGalaxyMult).sub(tachyonGalaxyThreshold), 0)).div(tachyonGalaxyMult);
+    Decimal.max(player.dilation.baseTachyonGalaxies.times(tachyonGalaxyMult).sub(tachyonGalaxyThreshold), 0).div(tachyonGalaxyMult));
 
   player.dilation.totalTachyonGalaxies = player.dilation.totalTachyonGalaxies.times(DilationUpgrade.galaxyMultiplier.effectValue);
 }
