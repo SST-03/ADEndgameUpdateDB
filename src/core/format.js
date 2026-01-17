@@ -10,7 +10,7 @@ window.format = function format(value, places = 0, placesUnder1000 = 0) {
   if (isEND()) return "END";
   if (!(value instanceof Decimal)) value = new Decimal(value);
   if (value.lt("e9e15")) return Notations.current.format(value, places, placesUnder1000, 3);
-  return LNotations.current.formatLDecimal(value, places);
+  return LNotations.current.formatLDecimal(value, 4);
 };
 
 window.formatInt = function formatInt(value) {
