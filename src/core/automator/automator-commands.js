@@ -18,7 +18,7 @@ function prestigeNotify(flag) {
 EventHub.logic.on(GAME_EVENT.BIG_CRUNCH_AFTER, () => prestigeNotify(T.Infinity.$prestigeLevel));
 EventHub.logic.on(GAME_EVENT.ETERNITY_RESET_AFTER, () => prestigeNotify(T.Eternity.$prestigeLevel));
 EventHub.logic.on(GAME_EVENT.REALITY_RESET_AFTER, () => prestigeNotify(T.Reality.$prestigeLevel));
-EventHub.logic.on(GAME_EVENT.ARMAGEDDON_AFTER, () => prestigeNotify(T.Doom.$prestigeLevel));
+EventHub.logic.on(GAME_EVENT.DOOM_REALITY_AFTER, () => prestigeNotify(T.Doom.$prestigeLevel));
 EventHub.logic.on(GAME_EVENT.ARMAGEDDON_AFTER, () => prestigeNotify(T.Armageddon.$prestigeLevel));
 EventHub.logic.on(GAME_EVENT.ENDGAME_RESET_AFTER, () => prestigeNotify(T.Endgame.$prestigeLevel));
 
