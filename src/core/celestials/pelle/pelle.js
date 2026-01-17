@@ -81,8 +81,6 @@ export const Pelle = {
     for (const type of BASIC_GLYPH_TYPES) Glyphs.addToInventory(GlyphGenerator.doomedGlyph(type));
     Glyphs.refreshActive();
     player.options.confirmations.glyphReplace = true;
-    player.reality.automator.state.repeat = false;
-    player.reality.automator.state.forceRestart = false;
     if (BlackHoles.arePaused) BlackHoles.togglePause();
     player.celestials.pelle.doomed = true;
     Pelle.armageddon(false);
@@ -125,7 +123,9 @@ export const Pelle = {
     if (!PelleAlchemyUpgrade.alchemyBoundless.isBought) player.celestials.ra.alchemy[18].amount = 0;
     if (!PelleAlchemyUpgrade.alchemyUnpredictability.isBought) player.celestials.ra.alchemy[19].amount = 0;
     if (!PelleAlchemyUpgrade.alchemyReality.isBought) player.celestials.ra.alchemy[20].amount = 0;
-    AutomatorBackend.stop();
+    if (!ExpansionPack.pellePack.isBought) {
+      AutomatorBackend.stop();
+    }
 
     // Force-unhide all tabs except for the shop tab, for which we retain the hide state instead
     const shopTab = ~1 & (1 << GameDatabase.tabs.find(t => t.key === "shop").id);
