@@ -134,7 +134,7 @@ export const glyphEffects = {
     combine: effects => {
       const prod = effects.reduce(Number.prodReducer, 1);
       return prod < 0.4
-        ? { value: 0.4 - Math.pow(0.4 - prod, 1.7), capped: true }
+        ? { value: Math.max(0.4 - Math.pow(0.4 - prod, 1.7), 0.1) / Math.abs(prod - 2), capped: true }
         : { value: prod, capped: false };
     },
     enabledInDoomed: true,
