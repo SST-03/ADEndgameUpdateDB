@@ -7,6 +7,10 @@ export const Ethereal = {
   },
   get sectorThreshold() {
     return Decimal.pow(this.cosmicSector, this.cosmicSector);
+  },
+  get sectorBoost() {
+    //if (Alpha.isRunning) return Decimal.pow(2, this.cosmicSector - 1);
+    return Decimal.pow(2, Math.pow(this.cosmicSector - 1, 2));
   }
 };
 
