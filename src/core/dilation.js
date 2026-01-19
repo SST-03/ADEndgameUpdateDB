@@ -77,7 +77,10 @@ export function buyDilationUpgrade(id, bulk = 1) {
     buying = Math.clampMax(buying, bulk);
     buying = Math.clampMax(buying, upgrade.purchaseCap - upgAmount);
     if (upgrade.cost.lt(DilationUpgradeScaling.PRIMARY_SCALING)) buying = Math.clampMax(buying, upgrade.capIncreaseAt - upgAmount);
-    if (upgrade.cost.gte(DilationUpgradeScaling.PRIMARY_SCALING)) buying = 1;
+    const hasBoughtOverThreshold = upgAmount - upgrade.capIncreaseAt;
+    const dtOverThreshold = Decimal.log10(Currency.dilatedTime.value.div(DilationUpgradeScaling.PRIMARY_SCALING)).toNumber();
+    const canBuyOverThreshold = Math.floor(Math.sqrt((dtOverThreshold * 2) + 0.5) - 0.5);
+    if (upgrade.cost.gte(DilationUpgradeScaling.PRIMARY_SCALING)) buying = canBuyOverThreshold - hasBoughtOverThreshold;
     const cost = Decimal.sumGeometricSeries(buying, upgrade.config.initialCost, upgrade.config.increment, upgAmount);
     Currency.dilatedTime.subtract(cost);
     player.dilation.rebuyables[id] += buying;
