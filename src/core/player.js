@@ -904,7 +904,7 @@ window.player = {
     },
     ethereal: {
       power: DC.D0,
-      sector: 0
+      sector: 1
     },
   },
   endgameMasteries: {
