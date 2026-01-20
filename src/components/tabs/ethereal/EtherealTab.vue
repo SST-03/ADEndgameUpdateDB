@@ -15,7 +15,7 @@ export default {
       if (this.etherealPower.lt(1)) return `${format(this.etherealPower, 3, 3)}`;
       if (this.etherealPower.lt(10)) return `${format(this.etherealPower, 2, 2)}`;
       if (this.etherealPower.lt(100)) return `${format(this.etherealPower, 1, 1)}`;
-      return `${formatHybridSmall(this.etherealPower, 3)}`;
+      return `${formatHybridLarge(this.etherealPower, 3)}`;
     }
   },
   methods: {
@@ -36,7 +36,7 @@ export default {
       <span class="c-normal-ethereal-text">You have </span>
       <span class="c-really-cool-ethereal-text">{{ etherealPowerDisplay }}</span>
       <span class="c-normal-ethereal-text"> Ethereal Power. </span>
-      <span class="c-really-cool-ethereal-text">+{{ format(etherealPowerPerSecond, 2, 2) }}/s</span>
+      <span class="c-really-cool-ethereal-text">+{{ format(etherealPowerPerSecond, 3, 3) }}/s</span>
     </div>
     <div>
       <span class="c-normal-ethereal-text">
@@ -49,11 +49,11 @@ export default {
       <span class="c-really-cool-ethereal-text">{{ formatInt(cosmicSector) }}</span>
       <span class="c-normal-ethereal-text">, which is currently multiplying all Celestial Dimensions and delaying
       the Celestial Matter Softcap by </span>
-      <span class="c-really-cool-ethereal-text">{{ format(sectorBoost, 2, 2) }}</span><span class="c-normal-ethereal-text">.</span>
+      <span class="c-really-cool-ethereal-text">{{ formatX(sectorBoost, 3) }}</span><span class="c-normal-ethereal-text">.</span>
     </div>
     <div>
       <span class="c-normal-ethereal-text">You will ascend into the next Cosmic Sector at </span>
-      <span class="c-really-cool-ethereal-text">{{ formatHybridSmall(nextSectorAt, 3) }}</span>
+      <span class="c-really-cool-ethereal-text">{{ formatHybridLarge(nextSectorAt, 3) }}</span>
       <span class="c-normal-ethereal-text"> Ethereal Power.</span>
     </div>
   </div>
