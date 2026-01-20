@@ -45,7 +45,7 @@ export default {
     </div>
     <div>
       <span class="c-normal-ethereal-text">You will ascend into the next Cosmic Sector at </span>
-      <span class="c-really-cool-ethereal-text">{{ format(nextSectorAt, 2, 2) }}</span>
+      <span class="c-really-cool-ethereal-text">{{ formatHybridSmall(nextSectorAt, 3) }}</span>
       <span class="c-normal-ethereal-text"> Ethereal Power.</span>
     </div>
   </div>
