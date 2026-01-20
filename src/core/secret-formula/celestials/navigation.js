@@ -228,7 +228,7 @@ export const celestialNavigation = {
   "teresa-reality-unlock": {
     visible: () => true,
     complete: () => (TeresaUnlocks.run.canBeApplied
-      ? 1 : Decimal.pLog10(Teresa.pouredAmount.add(1)).div(Math.log10(TeresaUnlocks.run.price))).toNumber(),
+      ? 1 : Decimal.pLog10(Teresa.pouredAmount.add(1)).div(Math.log10(TeresaUnlocks.run.price)).toNumber()),
     node: {
       completeClass: "c-celestial-nav__test-complete",
       incompleteClass: "c-celestial-nav__test-incomplete",
@@ -288,7 +288,7 @@ export const celestialNavigation = {
   "teresa-pp-shop": {
     visible: () => true,
     complete: () => (TeresaUnlocks.shop.canBeApplied
-      ? 1 : Decimal.pLog10(Teresa.pouredAmount.add(1)).div(Math.log10(TeresaUnlocks.shop.price))).toNumber(),
+      ? 1 : Decimal.pLog10(Teresa.pouredAmount.add(1)).div(Math.log10(TeresaUnlocks.shop.price)).toNumber()),
     node: {
       clickAction: () => Tab.celestials.teresa.show(true),
       completeClass: "c-celestial-nav__test-complete",
@@ -324,7 +324,7 @@ export const celestialNavigation = {
   "effarig-shop": {
     visible: () => true,
     complete: () => (TeresaUnlocks.effarig.canBeApplied
-      ? 1 : Decimal.pLog10(Teresa.pouredAmount.add(1)).div(Math.log10(TeresaUnlocks.effarig.price))).toNumber(),
+      ? 1 : Decimal.pLog10(Teresa.pouredAmount.add(1)).div(Math.log10(TeresaUnlocks.effarig.price)).toNumber()),
     node: {
       clickAction: () => Tab.celestials.effarig.show(true),
       completeClass: "c-celestial-nav__effarig",
@@ -1725,7 +1725,7 @@ export const celestialNavigation = {
       if (upgrade.canBeBought || upgrade.isBought) return 1;
       if (upgrade.isAvailableForPurchase) return Currency.imaginaryMachines.value.div(upgrade.cost);
       return upgrade.isPossible
-        ? Tickspeed.continuumValue / 3850000
+        ? Tickspeed.continuumValue.div(3850000).toNumber()
         : 0;
     },
     node: {
