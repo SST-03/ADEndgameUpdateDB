@@ -170,7 +170,7 @@ export const infinityUpgrades = {
       if (Teresa.isRunning || V.isRunning) return "Disabled in this reality";
       if (Pelle.isDoomed && !PelleDestructionUpgrade.x2IPUpgrade.isBought) return "Disabled";
       if (player.records.bestInfinity.time.gte(999999999999)) return "Too slow to generate";
-      return `${format(value, 2)} every ${Time.bestInfinity.totalMilliseconds.times(10).toStringShort()}`;
+      return `${format(value, 2)} every ${TimeSpan.fromMilliseconds(Time.bestInfinity.totalMilliseconds.times(10)).toStringShort()}`;
     },
     charged: {
       description: () =>
