@@ -173,7 +173,7 @@ export class DarkMatterDimensionState extends DimensionState {
   }
 
   get canBuyInterval() {
-    return Currency.darkMatter.gte(this.intervalCost) && this.interval.gt(this.intervalPurchaseCap);
+    return Currency.darkMatter.gte(this.intervalCost);
   }
 
   get canBuyPowerDM() {
@@ -235,7 +235,7 @@ export class DarkMatterDimensionState extends DimensionState {
     const intervalReduction = ExpansionPack.laitelaPack.isBought ? 200 : 0;
     const intervalIncrease = SingularityMilestone.ascensionIntervalScaling.effectOrDefault(new Decimal(1200).sub(intervalReduction));
     const purchasesToMax = Decimal.log(intervalIncrease, DC.D1.div(INTERVAL_PER_UPGRADE));
-    const intervalBeyondCap = this.intervalPurchaseCap.div(this.interval);
+    const intervalBeyondCap = this.intervalPurchaseCap.div(this.rawInterval);
     const purchasesBeyondCap = Decimal.log(intervalBeyondCap, DC.D1.div(INTERVAL_PER_UPGRADE));
     const rawAscensions = purchasesBeyondCap.div(purchasesToMax);
     return rawAscensions.add(1).floor();
