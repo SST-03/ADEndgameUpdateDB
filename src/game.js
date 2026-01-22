@@ -775,7 +775,7 @@ export function gameLoop(passedDiff, options = {}) {
   replicantiLoop(diff);
 
   if (PlayerProgress.dilationUnlocked()) {
-    Currency.dilatedTime.add(getDilationGainPerSecond());
+    Currency.dilatedTime.add(getDilationGainPerSecond(diff));
   }
 
   updateTachyonGalaxies();
