@@ -50,6 +50,9 @@ export class BulkSingularityAutobuyerState extends AutobuyerState {
   }
 
   tick() {
+    if (player.celestials.laitela.singularities.lte(10)) {
+      player.celestials.laitela.singularityCapIncreases = DC.E1;
+    }
     if (Singularity.timePerCondense.gt(this.upperBound) && this.data.hasUpperBound && player.celestials.laitela.singularityCapIncreases.gt(0)) {
       const bulk = Decimal.floor(Decimal.log10(Singularity.timePerCondense.div(this.upperBound))).add(1);
       player.celestials.laitela.singularityCapIncreases = Decimal.max(player.celestials.laitela.singularityCapIncreases.sub(bulk), 0);
