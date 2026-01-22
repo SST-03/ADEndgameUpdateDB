@@ -112,8 +112,8 @@ export class DarkMatterDimensionState extends DimensionState {
     const purchases = Decimal.affordGeometricSeries(Currency.darkMatter.value, this.rawIntervalCost,
       this.intervalCostIncrease, 0);
     const intervalReduction = ExpansionPack.laitelaPack.isBought ? 200 : 0;
-    return Decimal.clampMin(this.intervalPurchaseCap, SingularityMilestone.ascensionIntervalScaling.effectOrDefault(
-      new Decimal(1200).sub(intervalReduction)).times(this.rawInterval.times(Decimal.pow(INTERVAL_PER_UPGRADE, purchases))));
+    return SingularityMilestone.ascensionIntervalScaling.effectOrDefault(
+      new Decimal(1200).sub(intervalReduction)).times(this.rawInterval.times(Decimal.pow(INTERVAL_PER_UPGRADE, purchases)));
   }
 
   get adjustedStartingCost() {
@@ -185,8 +185,8 @@ export class DarkMatterDimensionState extends DimensionState {
   }
 
   get maxIntervalPurchases() {
-    return Decimal.ceil(new Decimal(Decimal.log10(this.intervalPurchaseCap.div(this.interval)))
-      .div(new Decimal(Decimal.log10(INTERVAL_PER_UPGRADE))));
+    //return Decimal.ceil(new Decimal(Decimal.log10(this.intervalPurchaseCap.div(this.interval))).div(new Decimal(Decimal.log10(INTERVAL_PER_UPGRADE))));
+    return DC.NUMMAX;
   }
 
   buyManyInterval(x) {
