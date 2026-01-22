@@ -190,9 +190,6 @@ export class DarkMatterDimensionState extends DimensionState {
   }
 
   buyManyInterval(x) {
-    if (new Decimal(x).gt(this.maxIntervalPurchases)) {
-      x = this.maxIntervalPurchases;
-    }
     const cost = this.rawIntervalCost.times(
       Decimal.pow(this.intervalCostIncrease, x).minus(1)).div(this.intervalCostIncrease.sub(1)).floor();
     if (!Currency.darkMatter.purchase(cost)) return false;
@@ -247,9 +244,6 @@ export class DarkMatterDimensionState extends DimensionState {
   ascend() {
     if (this.interval.gt(this.intervalPurchaseCap)) return;
     this.data.ascensionCount = this.data.ascensionCount.add(this.affordableAscensions);
-
-    // Immediately buy as many interval upgrades as possible
-    this.buyManyInterval(Infinity);
   }
 
   static get dimensionCount() { return 8; }
