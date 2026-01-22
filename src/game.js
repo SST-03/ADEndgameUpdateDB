@@ -774,7 +774,7 @@ export function gameLoop(passedDiff, options = {}) {
 
   replicantiLoop(diff);
 
-  updateDilatedTime(diff);
+  Currency.dilatedTime.add(getDilationGainPerSecond());
 
   updateTachyonGalaxies();
   Currency.timeTheorems.add(getTTPerSecond().times(diff).div(1000));
@@ -1091,12 +1091,6 @@ function applyAutoprestige(diff) {
 function updateImaginaryMachines(diff) {
   MachineHandler.updateIMCap();
   Currency.imaginaryMachines.add(MachineHandler.gainedImaginaryMachines(diff));
-}
-
-function updateDilatedTime(diff) {
-  if (PlayerProgress.dilationUnlocked()) {
-    Currency.dilatedTime.add(getDilationGainPerSecond(diff));
-  }
 }
 
 function updateTachyonGalaxies() {
