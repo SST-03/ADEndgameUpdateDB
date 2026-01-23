@@ -256,8 +256,8 @@ export const tabNotifications = {
         tab: "celestial"
       }
     ],
-    condition: () => player.endgames <= 1,
-    events: [GAME_EVENT.ENDGAME_RESET_AFTER]
+    condition: () => !PlayerProgress.endgameUnlocked(),
+    events: [GAME_EVENT.ENDGAME_RESET_BEFORE]
   },
   breakEternity: {
     id: 18,
