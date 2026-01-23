@@ -6,6 +6,9 @@ import { Quotes } from "./quotes";
 export const Alpha = {
   displayName: "Alpha",
   possessiveName: "Alpha's",
+  get isUnlocked() {
+    return ImaginaryUpgrade(30).isBought;
+  },
   initializeRun() {
     Endgame.resetNoReward();
     //player.isRealityDisabled = true;
