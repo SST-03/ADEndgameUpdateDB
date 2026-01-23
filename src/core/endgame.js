@@ -205,8 +205,6 @@ export const Endgame = {
     if (!EndgameMastery(61).isBought) {
       lockAchievementsOnEndgame();
     }
-    player.tabNotifications = new Set();
-    player.triggeredTabNotificationBits = 0;
     player.tutorialState = 0;
     player.tutorialActive = true;
     player.options.confirmations.glyphSelection = true;
