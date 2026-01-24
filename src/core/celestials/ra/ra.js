@@ -315,7 +315,7 @@ export const Ra = {
   },
   get levelCap() {
     if (!ExpansionPack.raPack.isBought) return 25;
-    return Math.floor(Math.max(25, Math.log10(player.records.bestAntimatterExponentOutsideDoom)));
+    return Math.floor(Math.max(25, Decimal.log10(player.records.bestAntimatterExponentOutsideDoom).toNumber()));
   },
   get maxTotalPetLevel() {
     return this.levelCap * this.pets.all.length;
