@@ -166,7 +166,7 @@ export const pelleRifts = {
         resource: "recursion",
         requirement: 0.15,
         description: "Infinity Dimensions are stronger based on EC completions",
-        effect: () => Decimal.pow("1e1500", ((EternityChallenges.completions - 25) / 20) ** 1.7).max(1),
+        effect: () => Decimal.pow("1e1500", (Math.max(EternityChallenges.completions - 25, 0) / 20) ** 1.7).max(1),
         formatEffect: x => `Infinity Dimensions ${formatX(x)}`
       },
       {
