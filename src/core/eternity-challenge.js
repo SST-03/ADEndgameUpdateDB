@@ -361,7 +361,7 @@ export const EternityChallenges = {
 
     get interval() {
       if (!Perk.autocompleteEC1.canBeApplied && !EndgameMastery(22).isBought) return Infinity;
-      let startingmin = Number.MAX_VALUE;
+      let startingmin = 1e300;
       if (EndgameMastery(22).isBought) startingmin = 60;
       let minutes = new Decimal(Effects.min(
         startingmin,
