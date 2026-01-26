@@ -1232,8 +1232,11 @@ export function guardFromNaNValues(obj) {
         configurable: true,
         get: () => value,
         set: function guardedSetter(newValue) {
-          if (newValue === null || newValue === undefined) {
-            throw new Error("null/undefined player property assignment");
+          if (newValue === null) {
+            throw new Error("Null numerical player property assignment");
+          }
+          if (newValue === undefined) {
+            throw new Error("Undefined numerical player property assignment");
           }
           if (typeof newValue !== "number") {
             throw new Error("Non-Number assignment to Number player property");
@@ -1252,18 +1255,32 @@ export function guardFromNaNValues(obj) {
         configurable: true,
         get: () => value,
         set: function guardedSetter(newValue) {
-          if (newValue === null || newValue === undefined) {
-            throw new Error("null/undefined player property assignment");
+          if (newValue === null) {
+            throw new Error("Null Decimal player property assignment");
+          }
+          if (newValue === undefined) {
+            throw new Error("Undefined Decimal player property assignment");
           }
           if (!(newValue instanceof Decimal)) {
             throw new Error("Non-Decimal assignment to Decimal player property");
-          }/*
-          if (!isFinite(newValue.mantissa) || !isFinite(newValue.exponent)) {
-            throw new Error("NaN player property assignment (old decimal value)");
-          }*/
-          if (!isFinite(newValue.mag) || !isFinite(newValue.sign) || !isFinite(newValue.layer)) {
-            throw new Error("NaN player property assignment (new decimal value)");
           }
+          if (!isFinite(newValue.mag)) {
+            throw new Error("NaN player property assignment (new decimal mag value) this usually means Layer failed to work properly");
+          }
+          if (!isFinite(newValue.sign)) {
+            throw new Error("NaN player property assignment (new decimal sign value) this usually means Decimal iteration failed");
+          }
+          if (!isFinite(newValue.layer)) {
+            throw new Error("NaN player property assignment (new decimal layer value) this usually means you exceeded Infinity");
+          }
+          /*
+          if (!isFinite(newValue.mantissa)) {
+            throw new Error("NaN player property assignment (old decimal value) old log10 failed ignore this error");
+          }
+          if (!isFinite(newValue.exponent)) {
+            throw new Error("NaN player property assignment (old decimal value) number exceeded ee308 on some end ignore this error");
+          }
+          */
           value = newValue;
         }
       });
