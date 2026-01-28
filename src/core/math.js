@@ -59,7 +59,16 @@ window.decimalCubicSolutionX = function decimalCubicSolutionX(a, b, c, d) {
   const p = b.neg().div(a.times(3));
   const q = Decimal.pow(p, 3).add((b.times(c).sub(a.times(d).times(3))).div(Decimal.pow(a, 2).times(6)));
   const r = c.div(a.times(3));
-  const x = Decimal.pow(q.add(Decimal.pow(Decimal.pow(q, 2).add(Decimal.pow(r.sub(Decimal.pow(p, 2)), 3)), 0.5)), new Decimal(1 / 3)).add(Decimal.pow(q.sub(Decimal.pow(Decimal.pow(q, 2).add(Decimal.pow(r.sub(Decimal.pow(p, 2)), 3)), 0.5)), new Decimal(1 / 3))).add(p);
+  const a = Decimal.pow(q, 2).add(Decimal.pow(r.sub(Decimal.pow(p, 2)), 3));
+  const na = a.abs();
+  const sa = Decimal.sign(a);
+  const b1 = q.add(Decimal.pow(na, 0.5).mul(sa));
+  const b2 = q.sub(Decimal.pow(na, 0.5).mul(sa));
+  const nb1 = b1.abs();
+  const sb1 = Decimal.sign(b1);
+  const nb2 = b2.abs();
+  const sb2 = Decimal.sign(b2);
+  const x = Decimal.pow(nb1, new Decimal(1 / 3)).mul(sb1).add(Decimal.pow(nb2, new Decimal(1 / 3)).mul(sb2)).add(p);
   return x;
 };
 
