@@ -288,7 +288,7 @@ export const Ra = {
   },
   // This is the exp required ON "level" in order to reach "level + 1"
   requiredMemoriesForLevel(level) {
-    if (level >= Ra.levelCap) return new Decimal(Infinity);
+    if (level >= Ra.levelCap) return DC.BEMAX;
     const adjustedLevel = Decimal.pow(level, 2).div(10).add(level);
     const post15Scaling = Decimal.pow(1.5, Decimal.max(0, level - 15));
     const post25Scaling = Decimal.pow(Decimal.max(0, level - 25).add(10), Decimal.max(0, level - 25).times(2));
