@@ -449,7 +449,7 @@ window.ExponentialCostScaling = class ExponentialCostScaling {
 
   updateCostScale() {
     this._precalcDiscriminant = Decimal.pow((2 * this._logBaseIncrease + this._logCostScale), 2).sub(
-      DC.D8.times(this._logCostScale).times(new Decimal(this._purchasesBeforeScaling).times(this._logBaseIncrease).add(this._logBaseCost))).toNumber();
+      DC.D8.times(this._logCostScale).times(new Decimal(this._purchasesBeforeScaling).times(this._logBaseIncrease).add(this._logBaseCost)));
     this._precalcCenter = -this._logBaseIncrease / this._logCostScale + this._purchasesBeforeScaling + 0.5;
   }
 
@@ -506,18 +506,16 @@ window.ExponentialCostScaling = class ExponentialCostScaling {
     // so that we don't, for example, buy all of a set of 10 dimensions
     // when we can only afford 1.
     const money = rawMoney.div(numberPerSet);
-    const logMoney = money.max(1).log10().toNumber();
+    const logMoney = money.clampMin(1).log10();
     const logMult = this._logBaseIncrease;
     const logBase = this._logBaseCost;
     // The 1 + is because the multiplier isn't applied to the first purchase
-    let newPurchases = Decimal.floor((new Decimal(logMoney).sub(logBase)).div(logMult).add(1)).toNumber();
+    let newPurchases = Decimal.floor((logMoney.sub(logBase)).div(logMult).add(1)).toNumber();
     // We can use the linear method up to one purchase past the threshold, because the first purchase
     // past the threshold doesn't have cost scaling in it yet.
     if (newPurchases > this._purchasesBeforeScaling) {
-      const discrim = this._precalcDiscriminant + 8 * this._logCostScale * logMoney;
-      if (discrim < 0) {
-        return null;
-      }
+      const discrim = this._precalcDiscriminant.toNumber() + 8 * this._logCostScale * logMoney.toNumber();
+      if (discrim < 0) return null;
       newPurchases = Math.floor(this._precalcCenter + Math.sqrt(discrim) / (2 * this._logCostScale));
     }
     if (newPurchases <= currentPurchases) return null;

@@ -105,13 +105,15 @@ const ReactivityComplainer = {
   complain() {
     this.checkReactivity(player, "player");
   },
+  // If you are not a developer just ignore it. I guess it's used to tell devs there may be lagging when pressing buttons
+  throwErrorForDev() {
+    throw new Error(`[Dev only] Boi you fukked up - ${path} became REACTIVE (oh shite)`);
+  },
   checkReactivity(obj, path) {
     if (obj === undefined || obj === null) {
       return;
     }
-    if (obj.__ob__ !== undefined) {
-      throw new Error(`Boi you fukked up - ${path} became REACTIVE (oh shite)`);
-    }
+    if (obj.__ob__ !== undefined) throwErrorForDev();
     for (const key in obj) {
       if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
       const prop = obj[key];
