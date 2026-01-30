@@ -12,11 +12,13 @@ export class DilationUpgradeAutobuyerState extends IntervaledAutobuyerState {
   }
 
   get interval() {
-    return 1000 * Perk.autobuyerFasterDilation.effectOrDefault(1) / PerkShopUpgrade.autoSpeed.effectOrDefault(1);
+    return player.disablePostReality
+      ? 1000
+      : 1000 * Perk.autobuyerFasterDilation.effectOrDefault(1) / PerkShopUpgrade.autoSpeed.effectOrDefault(1);
   }
 
   get isUnlocked() {
-    return Perk.autobuyerDilation.isEffectActive && (!Pelle.isDoomed || PellePerkUpgrade.perkDAU.isBought);
+    return (Perk.autobuyerDilation.isEffectActive && (!Pelle.isDoomed || PellePerkUpgrade.perkDAU.isBought)) && !player.disablePostReality;
   }
 
   get resetTickOn() {
