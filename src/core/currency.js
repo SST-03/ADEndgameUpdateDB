@@ -245,6 +245,16 @@ Currency.antimatter = new class extends DecimalCurrency {
   }
 
   get startingValue() {
+    if (player.disablePostReality) {
+      return Effects.max(
+        10,
+        Achievement(21),
+        Achievement(37),
+        Achievement(54),
+        Achievement(55),
+        Achievement(78)
+      ).toDecimal();
+    }
     if (Pelle.isDoomed) {
       if (PellePerkUpgrade.perkSAM.isBought) return Effects.max(10, Perk.startAM).toDecimal();
       if (PelleAchievementUpgrade.achievement78.isBought) return Effects.max(10, Achievement(78)).toDecimal();
@@ -301,6 +311,12 @@ Currency.infinityPoints = new class extends DecimalCurrency {
   }
 
   get startingValue() {
+    if (player.disablePostReality) {
+      return Effects.max(
+        0,
+        Achievement(104)
+      ).toDecimal();
+    }
     if (Pelle.isDisabled()) {
       if (PellePerkUpgrade.perkSIP2.isBought) return Effects.max(0, Perk.startIP2).toDecimal();
       if (PellePerkUpgrade.perkSIP1.isBought) return Effects.max(0, Perk.startIP1).toDecimal();
@@ -359,6 +375,7 @@ Currency.eternityPoints = new class extends DecimalCurrency {
   }
 
   get startingValue() {
+    if (player.disablePostReality) return DC.D0;
     if (Pelle.isDisabled()) {
       if (PellePerkUpgrade.perkSEP3.isBought) return Effects.max(0, Perk.startEP3).toDecimal();
       if (PellePerkUpgrade.perkSEP2.isBought) return Effects.max(0, Perk.startEP2).toDecimal();
