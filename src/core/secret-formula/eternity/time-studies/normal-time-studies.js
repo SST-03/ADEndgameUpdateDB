@@ -6,7 +6,7 @@ const thisInfinityMult = thisInfinity => {
 };
 const passiveIPMult = () => {
   const isEffarigLimited = Effarig.isRunning && Effarig.currentStage === EFFARIG_STAGES.ETERNITY;
-  const normalValue = Perk.studyPassive.isBought ? 1e50 : 1e25;
+  const normalValue = (Perk.studyPassive.isBought && !player.disablePostReality) ? 1e50 : 1e25;
   return isEffarigLimited
     ? Math.min(normalValue, Effarig.eternityCap.toNumber())
     : normalValue;
@@ -132,7 +132,7 @@ export const normalTimeStudies = [
   {
     id: 62,
     cost: 3,
-    requirement: [42, () => Perk.bypassEC5Lock.isBought || EternityChallenge(5).completions > 0],
+    requirement: [42, () => (Perk.bypassEC5Lock.isBought && !player.disablePostReality) || EternityChallenge(5).completions > 0],
     reqType: TS_REQUIREMENT_TYPE.ALL,
     description: () => `You gain Replicanti ${formatInt(3)} times faster`,
     effect: 3
@@ -140,7 +140,7 @@ export const normalTimeStudies = [
   {
     id: 71,
     cost: 4,
-    requirement: [61, () => Perk.studyECRequirement.isBought || !EternityChallenge(12).isUnlocked],
+    requirement: [61, () => (Perk.studyECRequirement.isBought && !player.disablePostReality) || !EternityChallenge(12).isUnlocked],
     reqType: TS_REQUIREMENT_TYPE.DIMENSION_PATH,
     description: "Dimensional Sacrifice affects all other Antimatter Dimensions with reduced effect",
     effect: () => Sacrifice.totalBoost.pow(0.25).clampMin(1),
@@ -151,7 +151,7 @@ export const normalTimeStudies = [
     id: 72,
     cost: 6,
     requirement: [61,
-      () => Perk.studyECRequirement.isBought ||
+      () => (Perk.studyECRequirement.isBought && !player.disablePostReality) ||
         (!EternityChallenge(11).isUnlocked && !EternityChallenge(12).isUnlocked)],
     reqType: TS_REQUIREMENT_TYPE.DIMENSION_PATH,
     description: "Dimensional Sacrifice affects 4th Infinity Dimension with greatly reduced effect",
@@ -162,7 +162,7 @@ export const normalTimeStudies = [
   {
     id: 73,
     cost: 5,
-    requirement: [61, () => Perk.studyECRequirement.isBought || !EternityChallenge(11).isUnlocked],
+    requirement: [61, () => (Perk.studyECRequirement.isBought && !player.disablePostReality) || !EternityChallenge(11).isUnlocked],
     reqType: TS_REQUIREMENT_TYPE.DIMENSION_PATH,
     description: "Dimensional Sacrifice affects 3rd Time Dimension with greatly reduced effect",
     effect: () => Sacrifice.totalBoost.pow(0.005).clampMin(1),
@@ -270,14 +270,14 @@ export const normalTimeStudies = [
     requirement: [111],
     reqType: TS_REQUIREMENT_TYPE.AT_LEAST_ONE,
     requiresST: [122, 123],
-    description: () => (Perk.studyActiveEP.isBought
+    description: () => ((Perk.studyActiveEP.isBought && !player.disablePostReality)
       ? `You gain ${formatX(50)} more Eternity Points`
       : `You gain more EP based on how fast your last ten Eternities
       were${PlayerProgress.realityUnlocked() ? " (real time)" : ""}`),
-    effect: () => (Perk.studyActiveEP.isBought
+    effect: () => ((Perk.studyActiveEP.isBought && !player.disablePostReality)
       ? 50
       : Math.clamp(250 / Player.averageRealTimePerEternity, 1, 50)),
-    formatEffect: value => (Perk.studyActiveEP.isBought ? undefined : formatX(value, 1, 1)),
+    formatEffect: value => ((Perk.studyActiveEP.isBought && !player.disablePostReality) ? undefined : formatX(value, 1, 1)),
     cap: 50
   },
   {
@@ -287,10 +287,10 @@ export const normalTimeStudies = [
     requirement: [111],
     reqType: TS_REQUIREMENT_TYPE.AT_LEAST_ONE,
     requiresST: [121, 123],
-    description: () => (Perk.studyPassive.isBought
+    description: () => ((Perk.studyPassive.isBought && !player.disablePostReality)
       ? `You gain ${formatX(50)} more Eternity Points`
       : `You gain ${formatX(35)} more Eternity Points`),
-    effect: () => (Perk.studyPassive.isBought ? 50 : 35)
+    effect: () => ((Perk.studyPassive.isBought && !player.disablePostReality) ? 50 : 35)
   },
   {
     id: 123,
@@ -301,7 +301,9 @@ export const normalTimeStudies = [
     requiresST: [121, 122],
     description: "You gain more Eternity Points based on time spent this Eternity",
     effect: () => {
-      const perkEffect = TimeSpan.fromMinutes(new Decimal(Perk.studyIdleEP.effectOrDefault(0)));
+      const perkEffect = (player.disablePostReality
+        ? TimeSpan.fromMinutes(DC.D0)
+        : TimeSpan.fromMinutes(new Decimal(Perk.studyIdleEP.effectOrDefault(0))));
       const totalSeconds = Time.thisEternity.plus(perkEffect).totalSeconds;
       return Decimal.sqrt(new Decimal(1.39).times(totalSeconds));
     },
@@ -329,7 +331,7 @@ export const normalTimeStudies = [
     description: () => ((Pelle.isDoomed && !PelleDestructionUpgrade.timestudy132.isBought)
       ? `Replicanti Galaxies are ${formatPercents(0.4)} stronger`
       : `Replicanti Galaxies are ${formatPercents(0.4)} stronger and Replicanti are 
-        ${Perk.studyPassive.isBought ? formatX(3) : formatX(1.5, 1, 1)} faster`),
+        ${(Perk.studyPassive.isBought && !player.disablePostReality) ? formatX(3) : formatX(1.5, 1, 1)} faster`),
     effect: 0.4
   },
   {
@@ -352,13 +354,13 @@ export const normalTimeStudies = [
     requirement: [131],
     reqType: TS_REQUIREMENT_TYPE.AT_LEAST_ONE,
     requiresST: [142, 143],
-    description: () => (Perk.studyActiveEP.isBought
+    description: () => ((Perk.studyActiveEP.isBought && !player.disablePostReality)
       ? `You gain ${formatX(DC.E45)} more Infinity Points`
       : "Multiplier to Infinity Points, which decays over this Infinity"),
-    effect: () => (Perk.studyActiveEP.isBought
+    effect: () => ((Perk.studyActiveEP.isBought && !player.disablePostReality)
       ? DC.E45
       : DC.E45.divide(thisInfinityMult(Time.thisInfinity.totalSeconds)).clampMin(1)),
-    formatEffect: value => (Perk.studyActiveEP.isBought ? undefined : formatX(value, 2, 1))
+    formatEffect: value => ((Perk.studyActiveEP.isBought && !player.disablePostReality) ? undefined : formatX(value, 2, 1))
   },
   {
     id: 142,
@@ -380,7 +382,9 @@ export const normalTimeStudies = [
     requiresST: [141, 142],
     description: "Multiplier to Infinity Points, which increases over this Infinity",
     effect: () => {
-      const perkEffect = TimeSpan.fromMinutes(new Decimal(Perk.studyIdleEP.effectOrDefault(0)));
+      const perkEffect = (player.disablePostReality
+        ? TimeSpan.fromMinutes(DC.D0)
+        : TimeSpan.fromMinutes(new Decimal(Perk.studyIdleEP.effectOrDefault(0))));
       const totalSeconds = Time.thisInfinity.plus(perkEffect).totalSeconds;
       return thisInfinityMult(totalSeconds);
     },
@@ -424,9 +428,9 @@ export const normalTimeStudies = [
     id: 181,
     cost: 200,
     requirement: [171,
-      () => EternityChallenge(1).completions > 0 || Perk.bypassEC1Lock.isBought,
-      () => EternityChallenge(2).completions > 0 || Perk.bypassEC2Lock.isBought,
-      () => EternityChallenge(3).completions > 0 || Perk.bypassEC3Lock.isBought],
+      () => EternityChallenge(1).completions > 0 || (Perk.bypassEC1Lock.isBought && !player.disablePostReality),
+      () => EternityChallenge(2).completions > 0 || (Perk.bypassEC2Lock.isBought && !player.disablePostReality),
+      () => EternityChallenge(3).completions > 0 || (Perk.bypassEC3Lock.isBought && !player.disablePostReality)],
     reqType: TS_REQUIREMENT_TYPE.ALL,
     description: () => `You gain ${formatPercents(0.01)} of your Infinity Points gained on crunch each second`,
     effect: () => gainedInfinityPoints().times(Time.deltaTime.div(100))
