@@ -13,7 +13,7 @@ export default {
       level: 0,
       memories: new Decimal(0),
       requiredMemories: new Decimal(0),
-      nextLevelEstimate: new Decimal(0),
+      nextLevelEstimate: "",
     };
   },
   computed: {
@@ -106,7 +106,7 @@ export default {
       this.memories.copyFrom(pet.memories);
       this.level = pet.level;
       this.requiredMemories.copyFrom(pet.requiredMemories);
-      this.nextLevelEstimate.copyFrom(Ra.timeToGoalString(this.pet, this.requiredMemories.sub(this.memories)));
+      this.nextLevelEstimate = Ra.timeToGoalString(this.pet, this.requiredMemories.sub(this.memories));
     },
     isImportant(level) {
       return this.importantLevels.includes(level);
