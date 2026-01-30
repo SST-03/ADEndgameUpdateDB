@@ -123,7 +123,7 @@ export default {
         :style="barStyle"
       />
     </div>
-    <div
+    <button
       :class="classObject"
       @click="pet.levelUp()"
     >
@@ -146,6 +146,13 @@ export default {
           <span v-if="memories.lte(requiredMemories)">{{ nextLevelEstimate }}</span>
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </template>
+
+<style scoped>
+.c-ra-pet-upgrade__tooltip {
+  font-family: Typewriter, serif;
+  line-height: 1.5;
+}
+</style>
