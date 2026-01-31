@@ -16,7 +16,7 @@ export class GalaxyGeneratorAutobuyerState extends IntervaledAutobuyerState {
   }
 
   get isUnlocked() {
-    return ExpansionPack.pellePack.isBought;
+    return ExpansionPack.pellePack.isBought && !player.disablePostReality;
   }
 
   get resetTickOn() {
