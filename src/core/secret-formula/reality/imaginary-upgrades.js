@@ -112,7 +112,7 @@ export const imaginaryUpgrades = [
     costMult: 2000,
     description: () => `Increase Singularity gain`,
     effect: 1,
-    formatEffect: value => `${formatX(EndgameMastery(131).isBought ? Decimal.pow(1 + value, value) : new Decimal(1 + value), 2)}`,
+    formatEffect: value => `${formatX((EndgameMastery(131).isBought && !player.disablePostReality) ? Decimal.pow(1 + value, value) : new Decimal(1 + value), 2)}`,
     isDisabledInDoomed: () => !PelleImaginaryUpgrade.entropicCondensing.isBought
   }),
   {
