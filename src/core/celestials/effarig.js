@@ -125,7 +125,7 @@ class EffarigUnlockState extends BitUpgradeState {
   }
 
   get isEffectActive() {
-    return !Pelle.isDisabled("effarig");
+    return !Pelle.isDisabled("effarig") && !player.disablePostReality;
   }
 
   purchase() {
