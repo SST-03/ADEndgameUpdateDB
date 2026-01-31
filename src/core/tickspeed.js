@@ -208,7 +208,7 @@ export const FreeTickspeed = {
 
   get softcap() {
     let softcap = FreeTickspeed.BASE_SOFTCAP;
-    if (Enslaved.has(ENSLAVED_UNLOCKS.FREE_TICKSPEED_SOFTCAP)) {
+    if (Enslaved.has(ENSLAVED_UNLOCKS.FREE_TICKSPEED_SOFTCAP) && !player.disablePostReality) {
       softcap += 100000;
     }
     return softcap;
