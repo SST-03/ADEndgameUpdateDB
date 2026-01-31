@@ -50,7 +50,7 @@ export class DarkMatterDimensionState extends DimensionState {
   get rawInterval() {
     const perUpgrade = INTERVAL_PER_UPGRADE;
     const tierFactor = Decimal.pow(4, this.tier - 1);
-    const intervalReduction = ExpansionPack.laitelaPack.isBought ? 200 : 0;
+    const intervalReduction = (ExpansionPack.laitelaPack.isBought && !player.disablePostReality) ? 200 : 0;
     return DC.E3.mul(tierFactor).mul(Decimal.pow(perUpgrade, this.data.intervalUpgrades)).mul(
       Decimal.pow(SingularityMilestone.ascensionIntervalScaling.effectOrDefault(new Decimal(1200)).sub(
       intervalReduction), this.ascensions)).mul(SingularityMilestone.darkDimensionIntervalReduction.effectOrDefault(1));
@@ -85,7 +85,7 @@ export class DarkMatterDimensionState extends DimensionState {
       .times(this.commonDarkMult)
       .times(Decimal.pow(this.powerDMPerAscension, this.ascensions))
       .timesEffectsOf(SingularityMilestone.darkMatterMult, SingularityMilestone.multFromInfinitied)
-      .times(ExpansionPack.laitelaPack.isBought ? Decimal.max(Decimal.log10(Decimal.log10(player.antimatter.add(1)).add(1)), Decimal.log10(
+      .times((ExpansionPack.laitelaPack.isBought && !player.disablePostReality) ? Decimal.max(Decimal.log10(Decimal.log10(player.antimatter.add(1)).add(1)), Decimal.log10(
         player.reality.imaginaryMachines.add(1))) : 1)
       .dividedBy(Decimal.pow(1e4, Decimal.pow(this.tier - 1, 0.5)));
   }
@@ -99,7 +99,7 @@ export class DarkMatterDimensionState extends DimensionState {
       .mul(Decimal.pow(1.005, this.data.powerDEUpgrades)).mul(tierFactor).div(1000)
       .times(this.commonDarkMult)
       .times(Decimal.pow(POWER_DE_PER_ASCENSION, this.ascensions))
-      .times(ExpansionPack.laitelaPack.isBought ? Decimal.pow(Decimal.log10(player.celestials.laitela.singularities.add(1)), 2) : 1)
+      .times((ExpansionPack.laitelaPack.isBought && !player.disablePostReality) ? Decimal.pow(Decimal.log10(player.celestials.laitela.singularities.add(1)), 2) : 1)
       .timesEffectsOf(
         SingularityMilestone.darkEnergyMult,
         SingularityMilestone.realityDEMultiplier,
@@ -111,7 +111,7 @@ export class DarkMatterDimensionState extends DimensionState {
   get intervalAfterAscension() {
     const purchases = Decimal.affordGeometricSeries(Currency.darkMatter.value, this.rawIntervalCost,
       this.intervalCostIncrease, 0);
-    const intervalReduction = ExpansionPack.laitelaPack.isBought ? 200 : 0;
+    const intervalReduction = (ExpansionPack.laitelaPack.isBought && !player.disablePostReality) ? 200 : 0;
     return Decimal.max(SingularityMilestone.ascensionIntervalScaling.effectOrDefault(new Decimal(1200).sub(intervalReduction))
       .times(this.rawInterval.times(Decimal.pow(INTERVAL_PER_UPGRADE, purchases))), this.intervalPurchaseCap);
   }
@@ -232,7 +232,7 @@ export class DarkMatterDimensionState extends DimensionState {
   }
 
   get affordableAscensions() {
-    const intervalReduction = ExpansionPack.laitelaPack.isBought ? 200 : 0;
+    const intervalReduction = (ExpansionPack.laitelaPack.isBought && !player.disablePostReality) ? 200 : 0;
     const intervalIncrease = SingularityMilestone.ascensionIntervalScaling.effectOrDefault(new Decimal(1200).sub(intervalReduction));
     const purchasesToMax = Decimal.log(intervalIncrease, DC.D1.div(INTERVAL_PER_UPGRADE));
     const intervalBeyondCap = this.intervalPurchaseCap.div(this.rawInterval);
