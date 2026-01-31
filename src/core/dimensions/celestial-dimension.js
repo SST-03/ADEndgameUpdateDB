@@ -273,6 +273,8 @@ export const CelestialDimensions = {
   },
 
   get conversionExponent() {
+    if (player.disablePostReality && !Alpha.isRunning) return 0;
+    if (Alpha.isRunning) return Alpha.celestialMatterConversionNerf;
     let base = 2;
     if (Pelle.isDoomed) base /= 10;
     let exponent = 1;
