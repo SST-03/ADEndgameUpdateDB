@@ -390,7 +390,7 @@ export const Ra = {
     this.updateAlchemyFlow(realityRealTime);
   },
   get alchemyResourceCap() {
-    return ExpansionPack.effarigPack.isBought
+    return (ExpansionPack.effarigPack.isBought && !player.disablePostReality)
       ? Math.max(25000, (player.records.bestEndgame.glyphLevel / 3) * Ra.unlocks.alchemyCapIncrease.effectOrDefault(1))
       : 25000 * Ra.unlocks.alchemyCapIncrease.effectOrDefault(1);
   },
