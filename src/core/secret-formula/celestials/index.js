@@ -1,6 +1,7 @@
 import { finalSigil } from "./navigation-sigils/final-sigil";
 import { galaxyIcon } from "./navigation-sigils/galaxy-icon";
 import { alchemyResources } from "./alchemy";
+import { alphaUnlocks } from "./alpha";
 import { effarigUnlocks } from "./effarig";
 import { enslaved } from "./enslaved";
 import { pelleGalaxyGeneratorUpgrades } from "./galaxy-generator";
@@ -30,6 +31,9 @@ export const celestials = {
   },
   alchemy: {
     resources: alchemyResources
+  },
+  alpha: {
+    unlocks: alphaUnlocks
   },
   pelle: {
     galaxyGeneratorUpgrades: pelleGalaxyGeneratorUpgrades,
