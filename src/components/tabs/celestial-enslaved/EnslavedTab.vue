@@ -135,7 +135,7 @@ export default {
       this.isStoringReal = Enslaved.isStoringRealTime;
       this.autoStoreReal = player.celestials.enslaved.autoStoreReal;
       this.offlineEnabled = player.options.offlineProgress;
-      this.hasAutoRelease = Ra.unlocks.autoPulseTime.canBeApplied;
+      this.hasAutoRelease = Ra.unlocks.autoPulseTime.canBeApplied && !player.disablePostReality;
       this.isRunning = Enslaved.isRunning;
       this.completed = Enslaved.isCompleted && !this.isDoomed && !player.disablePostReality;
       this.storedReal = player.celestials.enslaved.storedReal;
