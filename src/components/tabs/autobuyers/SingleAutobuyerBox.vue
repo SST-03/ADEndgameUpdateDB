@@ -39,7 +39,7 @@ export default {
   methods: {
     update() {
       this.isUnlocked = this.autobuyer.isUnlocked;
-      this.isHiddenSacrifice = this.isSacrifice && Achievement(118).canBeApplied;
+      this.isHiddenSacrifice = this.isSacrifice && Achievement(118).canBeApplied && !player.disablePostReality;
       this.annihilationMode = player.auto.annihilation.mode;
     },
     modeToggle() {
