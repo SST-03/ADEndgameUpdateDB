@@ -95,7 +95,7 @@ export default {
       this.ipMultHardCap = InfinityUpgrade.ipMult.costCap;
       this.eternityUnlocked = PlayerProgress.current.isEternityUnlocked;
       this.bottomRowUnlocked = Achievement(41).isUnlocked;
-      this.isUncapped = BreakEternityUpgrade.doubleIPUncap.isBought;
+      this.isUncapped = BreakEternityUpgrade.doubleIPUncap.isBought && !player.disablePostReality;
       this.isSoftcapApplicable = !EndgameUpgrade(21).isBought;
     },
     btnClassObject(column) {
