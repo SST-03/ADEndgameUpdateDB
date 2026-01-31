@@ -66,13 +66,13 @@ export const Laitela = {
   },
   // Note that entropy goes from 0 to 1, with 1 being completion
   get entropyGainPerSecond() {
-    const maxSpeed = ExpansionPack.laitelaPack.isBought ? 1000 : 100;
+    const maxSpeed = (ExpansionPack.laitelaPack.isBought && !player.disablePostReality) ? 1000 : 100;
     const hadronizeBump = this.hadronizes > 0 ? 1e12 : 1;
     const hadronizeAntimatter = Decimal.pow(1000, this.hadronizes).times(hadronizeBump).times(1e11);
     return Decimal.clamp(Decimal.pow(new Decimal(Currency.antimatter.value.add(1).log10()).div(hadronizeAntimatter), 2), 0, maxSpeed).div(200);
   },
   get darkMatterMultGain() {
-    const extraPow = ExpansionPack.laitelaPack.isBought
+    const extraPow = (ExpansionPack.laitelaPack.isBought && !player.disablePostReality)
       ? Decimal.pow((Decimal.log10(Decimal.log10(Currency.darkMatter.value.add(1)).add(1)).add(1)).div(2), 2).add(1) : 1;
     return Decimal.pow(Decimal.pow(Currency.darkMatter.value.dividedBy(this.annihilationDMRequirement)
       .plus(1).log10(), 1.5).times(ImaginaryUpgrade(21).effectOrDefault(1)), extraPow);
@@ -89,7 +89,7 @@ export const Laitela = {
     if (ImaginaryUpgrade(27).isBought) baseCap = DC.E4000;
     if (ImaginaryUpgrade(28).isBought) baseCap = DC.E20000;
     if (ImaginaryUpgrade(29).isBought) baseCap = DC.E100000;
-    const realityReward = ExpansionPack.laitelaPack.isBought ? this.realityReward : 1;
+    const realityReward = (ExpansionPack.laitelaPack.isBought && !player.disablePostReality) ? this.realityReward : 1;
     return baseCap.times(EndgameUpgrade(4).effectOrDefault(1)).times(realityReward);
   },
   get annihilationUnlocked() {
