@@ -170,7 +170,7 @@ export const imaginaryUpgrades = [
     checkRequirement: () => EternityChallenge(5).isRunning && Tickspeed.perSecond.log10().gte(7.5e10),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: () => `Raise all Dimension per-purchase multipliers to ${formatPow(1.5, 0, 1)}`,
-    effect: player.disablePostReality ? 1 : 1.5,
+    effect: () => player.disablePostReality ? 1 : 1.5,
     isDisabledInDoomed: () => !PelleImaginaryUpgrade.recollectionOfIntrusion.isBought
   },
   {
@@ -251,7 +251,7 @@ export const imaginaryUpgrades = [
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: () => `Unlock Autobuyers for repeatable Imaginary Upgrades and generate Imaginary Machines
       ${formatInt(10)} times faster`,
-    effect: player.disablePostReality ? 1 : 10,
+    effect: () => player.disablePostReality ? 1 : 10,
     isDisabledInDoomed: () => !PelleImaginaryUpgrade.vacuumAcceleration.isBought
   },
   {
@@ -283,7 +283,7 @@ export const imaginaryUpgrades = [
       Currency.antimatter.value.add(1).log10().gte(1.5e11),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: () => `All Glyph Sacrifice totals are increased to ${format(1e100)}`,
-    effect: player.disablePostReality ? DC.D0 : new Decimal(1e100),
+    effect: () => player.disablePostReality ? DC.D0 : new Decimal(1e100),
     isDisabledInDoomed: () => !PelleImaginaryUpgrade.totalTermination.isBought
   },
   {
