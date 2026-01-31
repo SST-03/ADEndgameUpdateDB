@@ -5,7 +5,7 @@ export const dilationTimeStudies = [
     cost: 5000,
     requirement: () => {
       const ttRequirement = Currency.timeTheorems.max.gte(TimeStudy.dilation.totalTimeTheoremRequirement);
-      if (Ra.unlocks.autoUnlockDilation.canBeApplied &&
+      if ((Ra.unlocks.autoUnlockDilation.canBeApplied && !player.disablePostReality) &&
           ttRequirement &&
           !isInCelestialReality() && !Pelle.isDoomed
       ) {
