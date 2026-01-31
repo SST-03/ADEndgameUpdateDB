@@ -364,7 +364,7 @@ export const Ra = {
     return this.totalCharges - player.celestials.ra.charged.size;
   },
   get canBuyTriad() {
-    return Ra.unlocks.unlockHardV.canBeApplied;
+    return Ra.unlocks.unlockHardV.canBeApplied && !player.disablePostReality;
   },
   get petWithRemembrance() {
     return player.celestials.ra.petWithRemembrance;
