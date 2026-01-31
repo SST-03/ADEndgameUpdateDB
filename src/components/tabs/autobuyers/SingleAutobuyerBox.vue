@@ -33,7 +33,7 @@ export default {
       return this.name === "Dimensional Sacrifice";
     },
     isAnnihilation() {
-      return this.name === "Annihilation" && ExpansionPack.laitelaPack.isBought;
+      return this.name === "Annihilation" && (ExpansionPack.laitelaPack.isBought && !player.disablePostReality);
     }
   },
   methods: {
