@@ -63,7 +63,7 @@ class AlphaUnlockState extends BitUpgradeState {
     return this.config.requirement;
   }
 
-  get areEffectsActive() {
+  get isEffectActive() {
     return player.celestials.alpha.stage >= this.requirement;
   }
 }
