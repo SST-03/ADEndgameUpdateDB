@@ -38,8 +38,8 @@ export default {
       this.best.ip.copyFrom(player.celestials.pelle.records.totalInfinityPoints);
       this.best.ep.copyFrom(player.celestials.pelle.records.totalEternityPoints);
       this.dilationMult = PelleStrikes.dilation.hasStrike ? [500, 10, 5] : [1, 1, 1];
-      this.milestoneMult = EndgameMilestone.remnantFormula.isReached ? [10000, 500, 25] : [1, 1, 1];
-      this.hasMilestone = EndgameMilestone.remnantFormula.isReached;
+      this.milestoneMult = (EndgameMilestone.remnantFormula.isReached && !player.disablePostReality) ? [10000, 500, 25] : [1, 1, 1];
+      this.hasMilestone = (EndgameMilestone.remnantFormula.isReached && !player.disablePostReality);
       this.remnants = Pelle.cel.remnants;
       this.remnantsGain = Pelle.remnantsGain;
     }
