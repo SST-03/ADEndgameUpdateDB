@@ -88,7 +88,7 @@ export default {
       this.chunkUpgradeCapped = pet.chunkUpgradeCapped;
       this.currentMemoryMult.copyFrom(pet.memoryUpgradeCurrentMult);
       this.currentChunkMult.copyFrom(pet.chunkUpgradeCurrentMult);
-      this.isExpanded = ExpansionPack.raPack.isBought;
+      this.isExpanded = ExpansionPack.raPack.isBought && !player.disablePostReality;
 
       this.nextMemoryUpgradeEstimate = Ra.timeToGoalString(pet, this.memoryUpgradeCost.sub(this.memories));
       this.nextMemoryChunkUpgradeEstimate = Ra.timeToGoalString(pet, this.chunkUpgradeCost.sub(this.memories));
