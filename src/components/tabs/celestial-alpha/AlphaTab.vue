@@ -25,7 +25,7 @@ export default {
     },
     buffs() {
       return AlphaDescriptions.buffRow;
-    }
+    },
     /*
     runButtonOuterClass() {
       return {
