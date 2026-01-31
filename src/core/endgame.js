@@ -25,7 +25,7 @@ function updateEndgameRecords() {
 }
 
 function giveEndgameRewards() {
-  const endgameMultiplier = (ExpansionPack.enslavedPack.isBought
+  const endgameMultiplier = ((ExpansionPack.enslavedPack.isBought && !player.disablePostReality)
     ? Math.floor(1 + Math.pow(Math.log10(Math.min(Tesseracts.effectiveCount, 1000) * Math.max(Math.log10(Tesseracts.effectiveCount) - 2, 1) + 1), Math.log10(player.endgames + 1)))
     : 1);
   Currency.celestialPoints.add(gainedCelestialPoints());
@@ -361,7 +361,7 @@ export const Endgame = {
     player.celestials.enslaved.isStoringReal = false;
     player.celestials.enslaved.storedReal = 0;
     player.celestials.enslaved.autoStoreReal = false;
-    if (!ExpansionPack.raPack.isBought) {
+    if (!ExpansionPack.raPack.isBought || player.disablePostReality) {
       player.celestials.enslaved.isAutoReleasing = false;
     }
     if (!ExpansionPacks.areUnlocked) {
@@ -437,7 +437,7 @@ export const Endgame = {
       player.celestials.ra.highestRefinementValue.dilation = 0;
       player.celestials.ra.highestRefinementValue.effarig = 0;
     }
-    if (ExpansionPack.effarigPack.isBought) {
+    if (ExpansionPack.effarigPack.isBought && !player.disablePostReality) {
       player.celestials.ra.alchemy[0].amount = player.celestials.ra.alchemy[0].bestPreDoom;
       player.celestials.ra.alchemy[1].amount = player.celestials.ra.alchemy[1].bestPreDoom;
       player.celestials.ra.alchemy[2].amount = player.celestials.ra.alchemy[2].bestPreDoom;
