@@ -140,7 +140,7 @@ class RaPetState extends GameMechanicState {
       Effects.product(Ra.unlocks.continuousTTBoost.effects.memoryChunks)).times(GlyphSacrifice.reality.effectValue);
     if (this.hasRemembrance) res = res.times(Ra.remembrance.multiplier);
     else if (Ra.petWithRemembrance) res = res.times(Ra.remembrance.nerf);
-    if (ExpansionPack.raPack.isBought) res = res.times(10);
+    if (ExpansionPack.raPack.isBought && !player.disablePostReality) res = res.times(10);
     return res;
   }
 
@@ -271,7 +271,7 @@ export const Ra = {
     for (const pet of Ra.pets.all) {
       if (pet.isUnlocked) res = res.times(pet.memoryProductionMultiplier);
     }
-    if (ExpansionPack.raPack.isBought) res = res.times(10);
+    if (ExpansionPack.raPack.isBought && !player.disablePostReality) res = res.times(10);
     return res;
   },
   get memoryBoostResources() {
@@ -314,7 +314,7 @@ export const Ra = {
     return this.pets.all.map(pet => (pet.isUnlocked ? pet.level : 0)).sum();
   },
   get levelCap() {
-    if (!ExpansionPack.raPack.isBought) return 25;
+    if (!ExpansionPack.raPack.isBought || player.disablePostReality) return 25;
     return Math.floor(Math.max(25, Decimal.log10(player.records.bestAntimatterExponentOutsideDoom).toNumber()));
   },
   get maxTotalPetLevel() {
