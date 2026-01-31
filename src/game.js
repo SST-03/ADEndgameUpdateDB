@@ -656,7 +656,7 @@ export function gameLoop(passedDiff, options = {}) {
   updateImaginaryMachines(realDiff);
   updateDualMachines(realDiff);
 
-  if (ExpansionPack.teresaPack.isBought && player.celestials.teresa.autoPour) {
+  if (ExpansionPack.teresaPack.isBought && player.celestials.teresa.autoPour && !player.disablePostReality) {
     Teresa.pourRM(realDiff, true);
   }
 
