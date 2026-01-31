@@ -47,7 +47,8 @@ export const GlyphSacrificeHandler = {
     if (glyph.type === "reality") return new Decimal(glyph.level).times(0.01).times(Achievement(171).effectOrDefault(1));
     const pre10kFactor = Decimal.pow(Decimal.clampMax(glyph.level, 10000).add(10), 2.5);
     const post10kFactor = Decimal.clampMin(glyph.level - 10000, 0).div(100).add(1);
-    const power = Effects.product(Ra.unlocks.maxGlyphRarityAndShardSacrificeBoost, EndgameUpgrade(24), Ra.unlocks.sacrificePower);
+    const power = player.disablePostReality
+      ? 1 : Effects.product(Ra.unlocks.maxGlyphRarityAndShardSacrificeBoost, EndgameUpgrade(24), Ra.unlocks.sacrificePower);
     return Decimal.pow(pre10kFactor.times(post10kFactor).times(glyph.strength).times(
       Teresa.runRewardMultiplier).times(Achievement(171).effectOrDefault(1)), power);
   },
