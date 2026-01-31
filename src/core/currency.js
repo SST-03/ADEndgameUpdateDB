@@ -443,7 +443,7 @@ Currency.realities = new class extends NumberCurrency {
   set value(value) { player.realities = value; }
 
   get startingValue() {
-    if (EndgameUpgrade(6).isBought) {
+    if (EndgameUpgrade(6).isBought && !player.disablePostReality) {
       return 1000;
     }
     return Effects.max(
