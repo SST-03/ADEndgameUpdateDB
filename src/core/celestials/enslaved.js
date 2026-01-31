@@ -287,6 +287,7 @@ export const Tesseracts = {
   },
 
   get totalMult() {
+    if (player.disablePostReality) return 1;
     return 1 * Effects.product(BreakEternityUpgrade.tesseractMultiplier);
   },
 
