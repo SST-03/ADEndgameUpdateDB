@@ -491,7 +491,7 @@ export const Pelle = {
       ep = ep.times(5);
     }
 
-    if (EndgameMilestone.remnantFormula.isReached) {
+    if (EndgameMilestone.remnantFormula.isReached && !player.disablePostReality) {
       am = am.times(10000);
       ip = ip.times(500);
       ep = ep.times(25);
@@ -501,7 +501,7 @@ export const Pelle = {
 
     const gainNew = Decimal.pow((Decimal.log10(am.add(2)).add(Decimal.log10(ip.add(2))).add(Decimal.log10(ep.add(2)))).div(1.6), 8.2).toNumber();
 
-    const gain = EndgameMilestone.remnantFormula.isReached ? gainNew : gainOld;
+    const gain = (EndgameMilestone.remnantFormula.isReached && !player.disablePostReality) ? gainNew : gainOld;
     
     return gain < 1 ? gain : Math.floor(gain - this.cel.remnants);
   },
