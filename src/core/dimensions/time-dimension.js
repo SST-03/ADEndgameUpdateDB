@@ -244,8 +244,15 @@ class TimeDimensionState extends DimensionState {
         tier === 4 ? TimeStudy(227) : null
       );
 
+    let bought;
     const dim = TimeDimension(tier);
-    const bought = tier === 8 ? Math.clampMax(dim.bought, 1e8) : dim.bought;
+    if (Laitela.continuumActive) {
+      bought = TimeDimension(tier).continuumValue;
+    } else {
+      bought = new Decimal(dim.bought);
+    }
+
+    bought = tier === 8 ? Decimal.clampMax(bought, 1e8).times(Laitela.matterExtraPurchaseFactor) : bought;
     mult = mult.times(Decimal.pow(dim.powerMultiplier, bought));
 
     mult = mult.pow(getAdjustedGlyphEffect("timepow"));
@@ -285,9 +292,9 @@ class TimeDimensionState extends DimensionState {
       return DC.D0;
     }
     if (EternityChallenge(11).isRunning) {
-      return this.amount;
+      return this.totalAmount;
     }
-    let production = this.amount.times(this.multiplier);
+    let production = this.totalAmount.times(this.multiplier);
     if (EternityChallenge(7).isRunning) {
       production = production.times(Tickspeed.perSecond);
     }
@@ -303,7 +310,7 @@ class TimeDimensionState extends DimensionState {
       return DC.D0;
     }
     const toGain = TimeDimension(tier + 1).productionPerSecond;
-    const current = Decimal.max(this.amount, 1);
+    const current = Decimal.max(this.totalAmount, 1);
     return toGain.times(10).dividedBy(current).times(getGameSpeedupForDisplay());
   }
 
@@ -314,7 +321,30 @@ class TimeDimensionState extends DimensionState {
       (Laitela.isRunning && tier > Laitela.maxAllowedDimension)) {
       return false;
     }
-    return this.amount.gt(0);
+    return this.totalAmount.gt(0);
+  }
+
+  get continuumValue() {
+    if (!this.isAvailableForPurchase) return DC.D0;
+    // Nameless limits dim purchases to 1 only
+    // Continuum should be no different
+    if (Enslaved.isRunning) return DC.D1;
+    // It's safe to use dimension.currencyAmount because this is
+    // a dimension-only method (so don't just copy it over to tickspeed).
+    // We need to use dimension.currencyAmount here because of different costs in NC6.
+    return this.costScale.getContinuumValue(Currency.eternityPoints.value, 1).times(Laitela.matterExtraPurchaseFactor);
+  }
+
+  /**
+   * @returns {number}
+   */
+  get continuumAmount() {
+    if (!Laitela.continuumActive) return DC.D0;
+    return Decimal.floor(this.continuumValue);
+  }
+
+  get totalAmount() {
+    return this.amount.max(this.continuumAmount);
   }
 
   get baseCost() {
