@@ -255,14 +255,18 @@ class InfinityDimensionState extends DimensionState {
     // It's safe to use dimension.currencyAmount because this is
     // a dimension-only method (so don't just copy it over to tickspeed).
     // We need to use dimension.currencyAmount here because of different costs in NC6.
-    return Decimal.min(this.costScale.getContinuumValue(Currency.infinityPoints.value, 1), this.purchaseCap).times(Laitela.matterExtraPurchaseFactor);
+    return this.getContinuumValue(Currency.infinityPoints.value).times(Laitela.matterExtraPurchaseFactor);
+  }
+
+  get getContinuumValue(currency) {
+    return Decimal.min(Decimal.log(currency.div(this.baseCost), this.costMultiplier), this.purchaseCap);
   }
 
   /**
    * @returns {number}
    */
   get continuumAmount() {
-    if (!Laitela.continuumActive) return DC.D0;
+    if (!Laitela.continuumActive || EternityChallenge(8).isRunning) return DC.D0;
     return Decimal.floor(this.continuumValue.times(10));
   }
 
