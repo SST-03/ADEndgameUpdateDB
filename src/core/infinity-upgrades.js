@@ -27,6 +27,10 @@ export class InfinityUpgradeState extends SetPurchasableMechanicState {
     return player.infinityUpgrades;
   }
 
+  get cost() {
+    return this.config.cost();
+  }
+
   get isAvailableForPurchase() {
     return this.config.checkRequirement?.() ?? true;
   }
