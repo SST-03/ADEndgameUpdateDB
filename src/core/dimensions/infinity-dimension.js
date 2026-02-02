@@ -196,6 +196,24 @@ class InfinityDimensionState extends DimensionState {
 
     if (!player.disablePostReality) mult = mult.pow(AlphaUnlocks.infinityChallenges.effects.buff.effectOrDefault(1));
 
+    if (tier === 8 && !player.disablePostReality) {
+      mult = mult.pow(AlphaUnlocks.infinityDimensions.effects.buff.effectOrDefault(1));
+    }
+
+    if (tier === 1 && !player.disablePostReality) {
+      mult = mult.pow(AlphaUnlocks.eternityUpgrades.effects.buff.effectOrDefault(1));
+    }
+
+    if (Alpha.isRunning) mult = mult.pow(AlphaUnlocks.eternityUpgrades.effects.nerf.effectOrDefault(1));
+    if (Alpha.isRunning && player.challenge.eternity.current > 0) {
+      mult = mult.pow(Effects.min(
+        1,
+        AlphaUnlocks.eternityChallengeUnlock.effects.nerf,
+        AlphaUnlocks.ecCompletion1.effects.nerf,
+        AlphaUnlocks.ecCompletion5.effects.nerf
+      ));
+    }
+
     if (mult.gte(InfinityDimensions.OVERFLOW)) mult = Decimal.pow(10, Decimal.pow(mult.log10().div(Decimal.log10(InfinityDimensions.OVERFLOW)), 1 / InfinityDimensions.compressionMagnitude).times(Decimal.log10(InfinityDimensions.OVERFLOW)));
 
     return mult;
