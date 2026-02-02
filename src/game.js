@@ -145,6 +145,10 @@ export function gainedInfinityPoints() {
     ip = ip.pow(AlphaUnlocks.infinity.effects.buff.effectOrDefault(1));
   }
 
+  if (Alpha.isRunning && Alpha.currentStage < 12) {
+    ip = ip.pow(AlphaUnlocks.infinityDimensions.effects.nerf.effectOrDefault(1));
+  }
+
   return ip.floor();
 }
 
