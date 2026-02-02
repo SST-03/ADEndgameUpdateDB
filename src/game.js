@@ -197,6 +197,9 @@ export function gainedEternityPoints() {
   }
   ep = ep.powEffectOf(Ra.unlocks.eternityPointPower);
 
+  if (Alpha.isRunning) ep = ep.pow(AlphaUnlocks.eternityChallenge10.effects.nerf.effectOrDefault(1));
+  if (Alpha.isRunning) ep = ep.pow(AlphaUnlocks.timeDimension8.effects.nerf.effectOrDefault(1));
+
   return ep.floor();
 }
 
