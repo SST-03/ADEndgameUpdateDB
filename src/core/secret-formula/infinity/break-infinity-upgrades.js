@@ -102,7 +102,7 @@ export const breakInfinityUpgrades = {
     id: 0,
     initialCost: () => 1e6 * (Alpha.isRunning ? AlphaUnlocks.breakInfinity.effects.nerfA.effectOrDefault(1) : 1),
     costIncrease: 5,
-    maxUpgrades: 8,
+    maxUpgrades: () => 8 + (Alpha.isRunning ? AlphaUnlocks.breakInfinity.effects.nerfB.effectOrDefault(0) - 10 : 0),
     description: "Reduce post-infinity Tickspeed Upgrade cost multiplier scaling",
     afterEC: () => (EternityChallenge(11).completions > 0
       ? `After EC11: ${formatX(Player.tickSpeedMultDecrease, 2, 2)}`
@@ -115,7 +115,7 @@ export const breakInfinityUpgrades = {
     id: 1,
     initialCost: () => 1e7 * (Alpha.isRunning ? AlphaUnlocks.breakInfinity.effects.nerfA.effectOrDefault(1) : 1),
     costIncrease: 5e3,
-    maxUpgrades: 7,
+    maxUpgrades: () => 7 + (Alpha.isRunning ? AlphaUnlocks.breakInfinity.effects.nerfB.effectOrDefault(0) - 10 : 0),
     description: "Reduce post-infinity Antimatter Dimension cost multiplier scaling",
     afterEC: () => (EternityChallenge(6).completions > 0
       ? `After EC6: ${formatX(Player.dimensionMultDecrease, 2, 2)}`
@@ -128,7 +128,7 @@ export const breakInfinityUpgrades = {
     id: 2,
     initialCost: () => 1e7 * (Alpha.isRunning ? AlphaUnlocks.breakInfinity.effects.nerfA.effectOrDefault(1) : 1),
     costIncrease: 10,
-    maxUpgrades: 10,
+    maxUpgrades: () => 10,
     effect: value => Player.bestRunIPPM.times(value / 10),
     description: () => {
       let generation = `Generate ${formatInt(10 * player.infinityRebuyables[2])}%`;
