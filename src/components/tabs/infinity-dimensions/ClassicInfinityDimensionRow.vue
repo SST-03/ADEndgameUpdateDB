@@ -182,3 +182,21 @@ export default {
     </div>
   </div>
 </template>
+
+<style scoped>
+.o-non-clickable {
+  cursor: auto;
+}
+
+.o-continuum {
+  border-color: var(--color-laitela--accent);
+  color: var(--color-laitela--accent);
+  background: var(--color-laitela--base);
+}
+
+.o-continuum:hover {
+  border-color: var(--color-laitela--accent);
+  color: var(--color-laitela--base);
+  background: var(--color-laitela--accent);
+}
+</style>
