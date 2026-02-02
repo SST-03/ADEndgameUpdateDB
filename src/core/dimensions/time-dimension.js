@@ -301,6 +301,9 @@ class TimeDimensionState extends DimensionState {
     if (EternityChallenge(11).isRunning) {
       return this.totalAmount;
     }
+    if (this.tier === this.highestProducingDimension && Alpha.isRunning && Alpha.currentStage >= 14) {
+      return this.totalAmount;
+    }
     let production = this.totalAmount.times(this.multiplier);
     if (EternityChallenge(7).isRunning) {
       production = production.times(Tickspeed.perSecond);
@@ -329,6 +332,18 @@ class TimeDimensionState extends DimensionState {
       return false;
     }
     return this.totalAmount.gt(0);
+  }
+
+  get highestProducingDimension() {
+    if (TimeDimension(8).isProducing) return 8;
+    if (TimeDimension(7).isProducing) return 7;
+    if (TimeDimension(6).isProducing) return 6;
+    if (TimeDimension(5).isProducing) return 5;
+    if (TimeDimension(4).isProducing) return 4;
+    if (TimeDimension(3).isProducing) return 3;
+    if (TimeDimension(2).isProducing) return 2;
+    if (TimeDimension(1).isProducing) return 1;
+    return 1;
   }
 
   get continuumValue() {
@@ -366,8 +381,14 @@ class TimeDimensionState extends DimensionState {
     return this._costMultiplier;
   }
 
+  get basePowerMultiplier() {
+    if (Alpha.isRunning) return new Decimal(AlphaUnlocks.eternity.effects.nerf.effectOrDefault(4));
+    if (!player.disablePostReality) return new Decimal(AlphaUnlocks.timeDimension4.effects.buff.effectOrDefault(4));
+    return DC.D4;
+  }
+
   get powerMultiplier() {
-    return DC.D4
+    return this.basePowerMultiplier
       .timesEffectsOf(this._tier === 8 ? GlyphSacrifice.time : null)
       .powEffectsOf(ImaginaryUpgrade(14), SingularityMilestone.perPurchaseDimMult);
   }
