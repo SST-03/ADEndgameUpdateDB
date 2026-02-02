@@ -162,6 +162,7 @@ function totalEPMult() {
     if (PelleDestructionUpgrade.timestudy123.isBought) ep = ep.timesEffectOf(TimeStudy(123));
     if (PelleRealityUpgrade.knowingExistence.isBought) ep = ep.timesEffectOf(RealityUpgrade(12));
     if (PelleDestructionUpgrade.destroyedGlyphEffects.isBought) ep = ep.timesEffectOf(GlyphEffect.epMult);
+    if (!player.disablePostReality) ep = ep.times(AlphaUnlocks.timestudy62.effects.buff.effectOrDefault(1));
     return ep;
   }
   return getAdjustedGlyphEffect("cursedEP")
@@ -174,7 +175,7 @@ function totalEPMult() {
       TimeStudy(123),
       RealityUpgrade(12),
       GlyphEffect.epMult
-    );
+    ).times(AlphaUnlocks.timestudy62.effects.buff.effectOrDefault(1));
 }
 
 export function gainedEternityPoints() {
