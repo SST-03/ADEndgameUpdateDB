@@ -281,6 +281,13 @@ class TimeDimensionState extends DimensionState {
       BreakEternityUpgrade.infinityDimensionPow
     );
 
+    if (!player.disablePostReality) mult = mult.pow(AlphaUnlocks.ecCompletion1.effects.buff.effectOrDefault(1));
+    if (!player.disablePostReality) mult = mult.pow(AlphaUnlocks.ecCompletion5.effects.buff.effectOrDefault(1));
+
+    if (tier === 8 && !player.disablePostReality) {
+      mult = mult.pow(AlphaUnlocks.timeDimension8.effects.buff.effectOrDefault(1));
+    }
+
     if (mult.gte(TimeDimensions.OVERFLOW)) mult = Decimal.pow(10, Decimal.pow(mult.log10().div(Decimal.log10(TimeDimensions.OVERFLOW)), 1 / TimeDimensions.compressionMagnitude).times(Decimal.log10(TimeDimensions.OVERFLOW)));
 
     return mult;
