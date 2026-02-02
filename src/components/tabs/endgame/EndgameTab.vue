@@ -51,7 +51,7 @@ export default {
 
 .l-endgame-tab-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
