@@ -139,7 +139,7 @@ export default {
     },
     maxButtonClass() {
       return {
-        "o-primary-btn--td-auto": true,
+        "o-primary-btn--buy-td-auto": true,
         "o-non-clickable o-continuum": this.isContinuumActive
       };
     }
