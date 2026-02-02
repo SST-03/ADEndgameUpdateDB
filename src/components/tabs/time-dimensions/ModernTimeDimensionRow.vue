@@ -30,6 +30,8 @@ export default {
       rateOfChange: new Decimal(0),
       cost: new Decimal(0),
       isAvailableForPurchase: false,
+      isContinuumActive: false,
+      continuumValue: 0,
       isAutobuyerOn: false,
       requirementReached: false,
       realityUnlocked: false,
@@ -55,6 +57,7 @@ export default {
     tooltipContents() {
       if (this.showTTCost) return `${this.formattedEPCost}<br>${this.timeEstimate}`;
       if (this.isCapped) return `Nameless prevents the purchase of more than ${format(1)} Time Dimension`;
+      if (this.isContinuumActive) return "Continuum produces all your Time Dimensions";
       return `Purchased ${quantifyHybridLarge("time", this.bought)}`;
     },
     showRow() {
@@ -64,7 +67,12 @@ export default {
       return `Unlock: ${format(this.ttCost)} TT`;
     },
     formattedEPCost() {
-      return this.isCapped ? "Capped" : `${this.showCostTitle ? "Cost: " : ""}${format(this.cost, 2)} EP`;
+      if (this.isCapped) return "Capped";
+      if (this.isContinuumActive) return `Continuum: ${this.continuumString}`;
+      return `${this.showCostTitle ? "Cost: " : ""}${format(this.cost, 2)} EP`;
+    },
+    continuumString() {
+      return formatHybridFloat(this.continuumValue, 2);
     },
     hasLongText() {
       return this.buttonContents.length > 20;
@@ -100,6 +108,8 @@ export default {
       if (!this.isUnlocked) {
         this.isAvailableForPurchase = dimension.requirementReached;
       }
+      this.isContinuumActive = Laitela.continuumActive && Alpha.currentStage >= 17 && !player.disablePostReality;
+      if (this.isContinuumActive) this.continuumValue = dimension.continuumValue;
       this.requirementReached = dimension.requirementReached;
       this.isAutobuyerOn = Autobuyer.timeDimension(this.tier).isActive;
       this.realityUnlocked = PlayerProgress.realityUnlocked();
@@ -113,10 +123,25 @@ export default {
         TimeDimension(this.tier).tryUnlock();
         return;
       }
+      if (this.isContinuumActive) return;
       buySingleTimeDimension(this.tier);
     },
     buyMaxTimeDimension() {
+      if (this.isContinuumActive) return;
       buyMaxTimeDimension(this.tier);
+    },
+    buttonClass() {
+      return {
+        "o-primary-btn--buy-td o-primary-btn o-primary-btn--new o-primary-btn--buy-dim": true,
+        "l-dim-row-small-text": this.hasLongText,
+        "o-non-clickable o-continuum": this.isContinuumActive
+      };
+    },
+    maxButtonClass() {
+      return {
+        "o-primary-btn--td-auto": true,
+        "o-non-clickable o-continuum": this.isContinuumActive
+      };
     }
   }
 };
@@ -141,8 +166,7 @@ export default {
       </div>
       <PrimaryButton
         :enabled="isAvailableForPurchase && !isCapped"
-        class="o-primary-btn--buy-td o-primary-btn o-primary-btn--new o-primary-btn--buy-dim"
-        :class="{ 'l-dim-row-small-text': hasLongText }"
+        :class="buttonClass()"
         @click="buyTimeDimension"
       >
         {{ buttonContents }}
@@ -156,7 +180,7 @@ export default {
       <PrimaryButton
         v-else
         :enabled="isAvailableForPurchase && !isCapped"
-        class="o-primary-btn--buy-td-auto"
+        :class="maxButtonClass()"
         @click="buyMaxTimeDimension"
       >
         Buy Max
@@ -180,5 +204,21 @@ export default {
   transform: translate(calc(-175% - 1rem), -50%);
   padding: 0.5rem;
   visibility: hidden;
+}
+
+.o-non-clickable {
+  cursor: auto;
+}
+
+.o-continuum {
+  border-color: var(--color-laitela--accent);
+  color: var(--color-laitela--accent);
+  background: var(--color-laitela--base);
+}
+
+.o-continuum:hover {
+  border-color: var(--color-laitela--accent);
+  color: var(--color-laitela--base);
+  background: var(--color-laitela--accent);
 }
 </style>
