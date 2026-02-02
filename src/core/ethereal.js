@@ -52,9 +52,7 @@ export class EtherealStarState {
 
 export const EtherealStars = mapGameDataToObject(
   GameDatabase.endgame.stars,
-  config => (config.isBaseResource
-    ? new EtherealStarState(config)
-    : new EtherealStarState(config))
+  config => new EtherealStarState(config)
 );
 
 export function getEtherealPowerGainPerSecond() {
