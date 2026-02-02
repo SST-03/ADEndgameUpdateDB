@@ -1289,10 +1289,10 @@ export function guardFromNaNValues(obj) {
           if (!isFinite(newValue.mag)) {
             throw new Error("NaN player property assignment (new decimal mag value) this usually means Layer failed to work properly");
           }
-          if (!isFinite(newValue.mantissa)) {
+          if (!isFinite(newValue.mantissa) && player.DEV) {
             console.log("NaN player property assignment (old decimal value) old log10 failed ignore this error");
           }
-          if (!isFinite(newValue.exponent)) {
+          if (!isFinite(newValue.exponent) && player.DEV) {
             console.log("NaN player property assignment (old decimal value) number exceeded ee308 on some end ignore this error");
           }
           value = newValue;
