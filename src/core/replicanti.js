@@ -7,6 +7,7 @@ export const ReplicantiGrowth = {
   get scaleFactor() {
     if (PelleStrikes.eternity.hasStrike && !PelleStrikes.eternity.isDestroyed() && Replicanti.amount.gte(DC.E2000)) return 10;
     if (Pelle.isDoomed) return 2;
+    if (Alpha.isRunning) return AlphaUnlocks.timestudy192.effects.nerf.effectOrDefault(1.2);
     return AlchemyResource.cardinality.effectValue;
   }
 };
@@ -123,6 +124,11 @@ export function getReplicantiInterval(overCapOverride, intervalIn) {
   interval = interval.powEffectsOf(
     BreakEternityUpgrade.replicantiIntervalPow
   );
+
+  if (Alpha.isRunning) interval = interval.pow(AlphaUnlocks.replicanti.effects.nerf.effectOrDefault(1));
+
+  if (!player.disablePostReality) interval = interval.pow(AlphaUnlocks.replicanti.effects.buff.effectOrDefault(1));
+  if (!player.disablePostReality) interval = interval.pow(AlphaUnlocks.timestudy192.effects.buff.effectOrDefault(1));
   
   return interval;
 }
