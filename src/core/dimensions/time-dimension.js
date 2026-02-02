@@ -246,7 +246,7 @@ class TimeDimensionState extends DimensionState {
 
     let bought;
     const dim = TimeDimension(tier);
-    if (Laitela.continuumActive) {
+    if (Laitela.continuumActive && Alpha.currentStage >= 17 && !player.disablePostReality) {
       bought = TimeDimension(tier).continuumValue;
     } else {
       bought = new Decimal(dim.bought);
