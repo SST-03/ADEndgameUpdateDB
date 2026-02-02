@@ -1163,7 +1163,7 @@ export function getTTPerSecond() {
 
   // Dilation TT generation
   const dilationTT = DilationUpgrade.ttGenerator.isBought
-    ? DilationUpgrade.ttGenerator.effectValue.times(Pelle.isDoomed ? pelleTTMult : ttMult)
+    ? DilationUpgrade.ttGenerator.effectValue.times(Pelle.isDoomed ? pelleTTMult : ttMult).times(Alpha.isRunning ? AlphaUnlocks.timeTheoremGeneration.effects.nerf.effectOrDefault(1) : 1)
     : DC.D0;
 
   // Lai'tela TT power
@@ -1172,6 +1172,7 @@ export function getTTPerSecond() {
     if (!Pelle.isDoomed || PelleDestructionUpgrade.singularityMilestones.isBought) {
       finalTT = finalTT.pow(SingularityMilestone.theoremPowerFromSingularities.effectOrDefault(1));
     }
+    finalTT = finalTT.pow(player.disablePostReality ? 1 : AlphaUnlocks.timeTheoremGeneration.effects.buff.effectOrDefault(1));
   }
 
   return finalTT;
