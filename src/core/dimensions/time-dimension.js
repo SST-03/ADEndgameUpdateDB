@@ -336,7 +336,7 @@ class TimeDimensionState extends DimensionState {
   }
 
   get getContinuumValue() {
-    return calcHighestPurchaseableTD(this.tier, Currency.eternityPoints.value);
+    return new Decimal(calcHighestPurchaseableTD(this.tier, Currency.eternityPoints.value));
   }
 
   /**
