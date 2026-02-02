@@ -36,7 +36,9 @@ export default {
     </div>
     <br>
     <div class="l-endgame-button-column">
-      <ResetEndgameButton/>
+      <div>
+        <ResetEndgameButton/>
+      </div>
     </div>
   </div>
 </template>
