@@ -371,7 +371,10 @@ export const InfinityDimensions = {
    * @type {InfinityDimensionState[]}
    */
   all: InfinityDimension.index.compact(),
-  HARDCAP_PURCHASES: 2000000,
+  get HARDCAP_PURCHASES() {
+    return Alpha.isRunning ? AlphaUnlocks.breakUpgrades.effects.nerf.effectOrDefault(2000000) : 2000000;
+  },
+
   get OVERFLOW() {
     return DC.E1E15.powEffectsOf(EndgameMastery(92));
   },
