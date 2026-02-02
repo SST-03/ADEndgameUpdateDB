@@ -88,6 +88,10 @@ export function getDimensionFinalMultiplierUncached(tier) {
     BreakEternityUpgrade.antimatterDimensionPow
   );
 
+  if (Alpha.isRunning) multiplier = multiplier.pow(AlphaUnlocks.timestudy181.effects.nerf.effectOrDefault(1));
+
+  if (!player.disablePostReality) multiplier = multiplier.pow(AlphaUnlocks.timestudy181.effects.buff.effectOrDefault(1));
+
   return multiplier;
 }
 
