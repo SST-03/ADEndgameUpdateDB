@@ -742,7 +742,7 @@ export function finishProcessReality(realityProps) {
 
   if (TeresaUnlocks.startEU.canBeApplied) {
     for (const id of [1, 2, 3, 4, 5, 6]) player.eternityUpgrades.add(id);
-  } else if (RealityUpgrade(14).isBought) {
+  } else if (RealityUpgrade(14).isBought && !player.disablePostReality) {
     // Eternal flow will always give eternities after the first tick,
     // better to try apply EU1 immediately once at the start rather than on every tick
     applyEU1();
