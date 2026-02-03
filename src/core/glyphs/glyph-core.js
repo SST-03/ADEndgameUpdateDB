@@ -811,8 +811,9 @@ export const Glyphs = {
       return;
     }
     const cursedCount = this.allGlyphs.filter(g => g !== null && g.type === "cursed").length;
-    if (cursedCount >= 5) {
-      GameUI.notify.error(`You don't need more than ${format(5)} Cursed Glyphs!`);
+    const maxCount = Math.max(this.activeSlotCount, 5);
+    if (cursedCount >= maxCount) {
+      GameUI.notify.error(`You don't need more than ${format(maxCount)} Cursed Glyphs!`);
     } else {
       this.addToInventory(GlyphGenerator.cursedGlyph());
       GameUI.notify.error("Created a Cursed Glyph");
