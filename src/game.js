@@ -51,7 +51,7 @@ export function playerInfinityUpgradesOnReset() {
     return;
   }
 
-  if (RealityUpgrade(10).isBought || EternityMilestone.keepBreakUpgrades.isReached) {
+  if ((RealityUpgrade(10).isBought && !player.disablePostReality) || EternityMilestone.keepBreakUpgrades.isReached) {
     player.infinityUpgrades = breakInfinityUpgrades;
     player.infinityRebuyables = [8, 7, 10];
   } else if (EternityMilestone.keepInfinityUpgrades.isReached) {
@@ -952,7 +952,7 @@ function globalPassivePrestigeGen(realDiff) {
 
 function passivePrestigeGen(realDiff) {
   let eternitiedGain = DC.D0;
-  if (RealityUpgrade(14).isBought && (!Pelle.isDoomed || PelleRealityUpgrade.eternalFlow.isBought)) {
+  if (RealityUpgrade(14).isBought && (!Pelle.isDoomed || PelleRealityUpgrade.eternalFlow.isBought) && !player.disablePostReality) {
     eternitiedGain = DC.D1.timesEffectsOf(
       Achievement(113),
       RealityUpgrade(3),
@@ -978,7 +978,7 @@ function passivePrestigeGen(realDiff) {
       );
       infGen = infGen.times(getAdjustedGlyphEffect("infinityinfmult"));
     }
-    if (RealityUpgrade(11).isBought && (!Pelle.isDoomed || PelleRealityUpgrade.boundlessFlow.isBought)) {
+    if (RealityUpgrade(11).isBought && (!Pelle.isDoomed || PelleRealityUpgrade.boundlessFlow.isBought) && !player.disablePostReality) {
       infGen = infGen.plus(RealityUpgrade(11).effectValue.times(Time.deltaTime));
     }
     if (EffarigUnlock.eternity.isUnlocked && (!Pelle.isDoomed || PelleCelestialUpgrade.effarigRewards.isBought)) {
