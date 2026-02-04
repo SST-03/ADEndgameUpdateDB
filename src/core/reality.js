@@ -733,7 +733,7 @@ export function finishProcessReality(realityProps) {
   AchievementTimers.marathon2.reset();
   Currency.infinityPoints.reset();
 
-  if (RealityUpgrade(10).isBought) applyRUPG10();
+  if (RealityUpgrade(10).isBought && !player.disablePostReality) applyRUPG10();
   else Tab.dimensions.antimatter.show();
 
   Lazy.invalidateAll();
@@ -742,7 +742,7 @@ export function finishProcessReality(realityProps) {
 
   if (TeresaUnlocks.startEU.canBeApplied) {
     for (const id of [1, 2, 3, 4, 5, 6]) player.eternityUpgrades.add(id);
-  } else if (RealityUpgrade(14).isBought) {
+  } else if (RealityUpgrade(14).isBought && !player.disablePostReality) {
     // Eternal flow will always give eternities after the first tick,
     // better to try apply EU1 immediately once at the start rather than on every tick
     applyEU1();
@@ -819,6 +819,7 @@ export function clearCelestialRuns() {
     v: player.celestials.v.run,
     ra: player.celestials.ra.run,
     laitela: player.celestials.laitela.run,
+    alpha: player.celestials.alpha.run
   };
   player.celestials.teresa.run = false;
   player.celestials.effarig.run = false;
@@ -836,6 +837,7 @@ export function clearCelestialRuns() {
   player.celestials.v.run = false;
   player.celestials.ra.run = false;
   player.celestials.laitela.run = false;
+  player.celestials.alpha.run = false;
   return saved;
 }
 
