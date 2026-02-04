@@ -105,6 +105,9 @@ export default {
           </p>
         </div>
       </div>
+      <span class="l-alpha-text">
+        Each Alpha layer beaten also doubles Endgame gain
+      </span>
     </div>
   </div>
 </template>
@@ -148,6 +151,11 @@ p {
 .l-alpha-header {
   font-size: 3rem;
   font-weight: bold;
+  color: var(--color-alpha--base);
+}
+
+.l-alpha-text {
+  font-size: 1rem;
   color: var(--color-alpha--base);
 }
 </style>
