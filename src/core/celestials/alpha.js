@@ -982,7 +982,7 @@ export const Alpha = {
     alphaRecords.respec = player.respec;
     alphaRecords.eterc8ids = player.eterc8ids;
     alphaRecords.eterc8repl = player.eterc8repl;
-    for (adts = 0; adts < 7; adts++) {
+    for (let adts = 0; adts < 7; adts++) {
       if (player.dilation.studies.includes(adts)) {
         alphaRecords.dilation.studies.push(adts);
       }
