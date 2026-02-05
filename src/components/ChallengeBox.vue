@@ -28,6 +28,11 @@ export default {
       required: false,
       default: undefined
     },
+    alphaLockedAt: {
+      type: Decimal,
+      required: false,
+      default: undefined
+    },
     overrideLabel: {
       type: String,
       required: false,
@@ -38,6 +43,7 @@ export default {
     return {
       inC1: Boolean,
       infinities: new Decimal(0),
+      infReq: new Decimal(0)
     };
   },
   computed: {
@@ -64,7 +70,7 @@ export default {
       if (this.isUnlocked) return "Start";
       const lockedText = this.lockedAt === undefined
         ? ""
-        : ` (${formatInt(this.infinities)}/${formatInt(this.lockedAt)})`;
+        : ` (${formatInt(this.infinities)}/${formatInt(this.infReq)})`;
       return `Locked${lockedText}`;
     }
   },
@@ -72,6 +78,7 @@ export default {
     update() {
       this.inC1 = this.name === "C1" && !this.isCompleted && !Player.isInAntimatterChallenge;
       this.infinities.copyFrom(Currency.infinities);
+      this.infReq = Alpha.isRunning ? this.alphaLockedAt : this.lockedAt;
     },
   }
 };
