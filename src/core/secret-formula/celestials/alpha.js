@@ -2,30 +2,30 @@ export const alphaUnlocks = {
   fourthDimboost: {
     id: 0,
     requirement: 1,
-    nerfDescription: "Square-root the Dimension Boost Multiplier",
+    nerfDescription: () => `The Dimension Boost Multiplier is raised ${formatPow(0.8, 2, 3)}`,
     buffDescription: "Square the Dimension Boost Multiplier",
     effects: {
-      nerf: 0.5,
+      nerf: 0.8,
       buff: 2
     }
   },
   fifthDimboost: {
     id: 1,
     requirement: 2,
-    nerfDescription: "Double the Dimension Boost Scaling Threshold",
+    nerfDescription: () => `Increase the Dimension Boost Scaling Threshold by ${formatPercents(0.5)}`,
     buffDescription: () => `Decrease the base Dimension Boost Scaling Threshold by ${formatInt(2)}`,
     effects: {
-      nerf: 2,
+      nerf: 1.5,
       buff: 2
     }
   },
   firstGalaxy: {
     id: 2,
     requirement: 3,
-    nerfDescription: () => `All Galaxies are ${formatPercents(1 - Math.clamp(Decimal.log10(Decimal.log10(Tickspeed.perSecond.add(1)).add(1)).div(100).toNumber(), 0.1, 1), 2)} weaker`,
+    nerfDescription: () => `All Galaxies are ${formatPercents(1 - Math.clamp(Decimal.log10(Decimal.log10(Tickspeed.perSecond.add(1)).add(1)).div(20).add(0.5).toNumber(), 0.5, 1), 2)} weaker`,
     buffDescription: "The Alternation Effect in Glyph Alchemy affects all Galaxy types",
     effects: {
-      nerf: () => Math.clamp(Decimal.log10(Decimal.log10(Tickspeed.perSecond.add(1)).add(1)).div(100).toNumber(), 0.1, 1)
+      nerf: () => Math.clamp(Decimal.log10(Decimal.log10(Tickspeed.perSecond.add(1)).add(1)).div(20).add(0.5).toNumber(), 0.5, 1)
     }
   },
   infinity: {
