@@ -229,9 +229,12 @@ export function manualRequestDimensionBoost(bulk) {
 export function requestDimensionBoost(bulk) {
   if (Currency.antimatter.gt(Player.infinityLimit) || !DimBoost.requirement.isSatisfied) return;
   if (!DimBoost.canBeBought) return;
+  if (Alpha.isRunning && DimBoost.purchasedBoosts.gte(4) && Alpha.currentStage < 1) return;
   Tutorial.turnOffEffect(TUTORIAL_STATE.DIMBOOST);
   if (BreakInfinityUpgrade.autobuyMaxDimboosts.isBought && bulk) maxBuyDimBoosts();
   else softReset(1);
+  if (Alpha.isRunning && DimBoost.purchasedBoosts.gte(4) && Alpha.currentStage === 0) Alpha.advanceLayer();
+  if (Alpha.isRunning && DimBoost.purchasedBoosts.gte(5) && Alpha.currentStage === 1) Alpha.advanceLayer();
 }
 
 function maxBuyDimBoosts() {
