@@ -128,7 +128,6 @@ export function getReplicantiInterval(overCapOverride, intervalIn) {
   if (Alpha.isRunning) interval = interval.pow(AlphaUnlocks.replicanti.effects.nerf.effectOrDefault(1));
 
   if (!player.disablePostReality) interval = interval.pow(AlphaUnlocks.replicanti.effects.buff.effectOrDefault(1));
-  if (!player.disablePostReality) interval = interval.pow(AlphaUnlocks.timestudy192.effects.buff.effectOrDefault(1));
   
   return interval;
 }

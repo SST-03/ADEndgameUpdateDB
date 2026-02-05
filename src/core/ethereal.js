@@ -60,7 +60,8 @@ export function getEtherealPowerGainPerSecond() {
   const singFactor = Decimal.pow(Decimal.log10(player.celestials.laitela.singularities.add(1)).div(20000), 3);
   const rmFactor = Decimal.pow(Decimal.log10(Decimal.log10(player.reality.realityMachines.add(1)).add(1)).div(5), 75);
   const gpFactor = Decimal.pow(Decimal.log10(Decimal.max(player.endgame.galacticPower, DC.NUMMAX)).div(308.25), 5);
-  return cpFactor.times(singFactor).times(rmFactor).times(gpFactor).div(1000).times(Achievement(206).effectOrDefault(1));
+  const alphaBoost = player.disablePostReality ? DC.D1 : Decimal.pow(1.25, Alpha.currentStage);
+  return cpFactor.times(singFactor).times(rmFactor).times(gpFactor).div(1000).times(Achievement(206).effectOrDefault(1)).times(alphaBoost);
 }
 
 export function tryAdvanceSector() {
