@@ -14,7 +14,7 @@ function rebuyable(config) {
     formatEffect: config.formatEffect ||
       (value => {
         const afterECText = config.afterEC ? config.afterEC() : "";
-        return value === config.maxUpgrades
+        return value === config.maxUpgrades()
           ? `Currently: ${formatX(10 - value)} ${afterECText}`
           : `Currently: ${formatX(10 - value)} | Next: ${formatX(10 - value - 1)}`;
       }),
