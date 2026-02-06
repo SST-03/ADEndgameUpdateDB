@@ -26,7 +26,6 @@ export default {
     buffs() {
       return AlphaDescriptions.buffRow;
     },
-    /*
     runButtonOuterClass() {
       return {
         "l-alpha-run-button": true,
@@ -40,7 +39,6 @@ export default {
     runButtonInnerClass() {
       return this.isRunning ? "c-alpha-run-button__inner--running" : "c-alpha-run-button__inner--not-running";
     },
-    */
     runDescription() {
       return `${GameDatabase.celestials.descriptions[6].effects()}\n
       ${GameDatabase.celestials.descriptions[6].description()}`;
@@ -109,6 +107,27 @@ export default {
           >
             {{ buff }}
           </p>
+        </div>
+      </div>
+      <div class="l-alpha-run">
+        <div class="c-alpha-run-description">
+          <span :class="{ 'o-pelle-disabled': isDoomed }">
+            Access Alpha's Reality.
+          </span>
+        </div>
+        <div
+          :class="runButtonOuterClass"
+          @click="startRun"
+        >
+          <div
+            :class="runButtonInnerClass"
+            :button-symbol="symbol"
+          >
+            {{ symbol }}
+          </div>
+        </div>
+        <div class="c-alpha-run-description">
+          {{ runDescription }}
         </div>
       </div>
     </div>
