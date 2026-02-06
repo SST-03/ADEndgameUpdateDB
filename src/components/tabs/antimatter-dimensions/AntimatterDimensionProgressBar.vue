@@ -33,7 +33,7 @@ export default {
       // the inside outwards, we show the goals in that priority as well. It only makes sense to check cel6 and not the
       // others because pre-cel3 completion it'll default to e4000 and cel4/5 don't have meaningful single goals
       const inSpecialRun = (Player.isInAntimatterChallenge || EternityChallenge.isRunning || player.dilation.active ||
-        Laitela.isRunning) && !Pelle.isDoomed && !player.antimatter.gte(DC.E9E15);
+        Laitela.isRunning) && !Pelle.isDoomed && !Alpha.isRunning && !player.antimatter.gte(DC.E9E15);
       if (inSpecialRun) {
         if (Player.isInAntimatterChallenge) {
           setProgress(Currency.antimatter.value, Player.antimatterChallenge.goal, "Percentage to Challenge goal");
@@ -89,6 +89,27 @@ export default {
           }
         } else {
           setProgress(Currency.antimatter.value, DC.NUMMAX, "Percentage to first Strike");
+        }
+      } else if (Alpha.isRunning) {
+        let req;
+        switch (Alpha.currentStage) {
+          case 0:
+            req = DimBoost.bulkRequirement(new Decimal(4).sub(DimBoost.purchasedBoost));
+            setProgress(Currency.antimatter.value, AntimatterDimension(req.tier).costScale.calculateCost(req.amount.div(10).sub(1).toNumber()), "Percentage to 4th Dim Boost")
+            break;
+          case 1:
+            req = DimBoost.bulkRequirement(new Decimal(5).sub(DimBoost.purchasedBoost));
+            setProgress(Currency.antimatter.value, AntimatterDimension(req.tier).costScale.calculateCost(req.amount.div(10).sub(1).toNumber()), "Percentage to 5th Dim Boost")
+            break;
+          case 2:
+            req = Galaxy.requirementAt(0);
+            setProgress(Currency.antimatter.value, AntimatterDimension(req.tier).costScale.calculateCost(req.amount.div(10).sub(1).toNumber()), "Percentage to 1st Galaxy")
+            break;
+          case 3:
+            setProgress(Currency.antimatter.value, DC.NUMMAX, "Percentage to Infinity");
+            break;
+          default:
+            setLinearProgress(new Decimal(0), new Decimal(1), "Percentage that is not implemented");
         }
       } else if (GalacticPower.isUnlocked && GalacticPower.nextPowerUnlockGP === undefined) {
         // Show all other goals from the top down, starting at features in the highest prestige layer
