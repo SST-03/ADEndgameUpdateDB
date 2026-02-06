@@ -660,7 +660,8 @@ export function gameLoop(passedDiff, options = {}) {
 
   // IP generation is broken into a couple of places in gameLoop; changing that might change the
   // behavior of eternity farming.
-  preProductionGenerateIP(diff);
+  if (!Alpha.isRunning) preProductionGenerateIP(diff);
+  if (Alpha.isRunning) preProductionGenerateIP(realDiff);
 
   passivePrestigeGen();
 
