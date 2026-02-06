@@ -79,7 +79,7 @@ export class DimBoost {
   static get canBeBought() {
     if (DimBoost.purchasedBoosts.gte(this.maxBoosts)) return false;
     if ((player.records.thisInfinity.maxAM.gt(Player.infinityGoal) &&
-       (!player.break || Player.isInAntimatterChallenge)) || (Alpha.isRunning && player.antimatter.lt(DC.NUMMAX))) return false;
+       (!player.break || Player.isInAntimatterChallenge)) && (!Alpha.isRunning || player.antimatter.gte(DC.NUMMAX))) return false;
     return true;
   }
 
