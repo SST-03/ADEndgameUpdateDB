@@ -1415,6 +1415,7 @@ export const Player = {
   },
 
   get infinityGoal() {
+    if (Alpha.isRunning && Alpha.currentStage < 3) return DC.E300;
     const challenge = NormalChallenge.current || InfinityChallenge.current;
     return challenge === undefined ? DC.NUMMAX : challenge.goal;
   },
