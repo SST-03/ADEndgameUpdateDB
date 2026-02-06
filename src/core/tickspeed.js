@@ -70,7 +70,7 @@ export function getTickSpeedMultiplier() {
   if (GalacticPowers.galaxyStrength.isUnlocked) galaxies = galaxies.times(GalacticPowers.galaxyStrength.reward);
 
   galaxies = galaxies.times(Pelle.specialGlyphEffect.power);
-  if (Alpha.isRunning) galaxies = galaxies.times(AlphaUnlocks.firstGalaxy.effects.nerf.effectOrDefault(1));
+  if (Alpha.isRunning && !Alpha.pauseNerf) galaxies = galaxies.times(AlphaUnlocks.firstGalaxy.effects.nerf.effectOrDefault(1));
   const perGalaxy = DC.D0_965;
   return perGalaxy.pow(galaxies.sub(2)).times(baseMultiplier);
 }
