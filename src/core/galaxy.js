@@ -141,8 +141,8 @@ export class Galaxy {
   static get canBeBought() {
     if (EternityChallenge(6).isRunning && !Enslaved.isRunning) return false;
     if (NormalChallenge(8).isRunning || InfinityChallenge(7).isRunning) return false;
-    if (player.records.thisInfinity.maxAM.gt(Player.infinityGoal) &&
-       (!player.break || Player.isInAntimatterChallenge)) return false;
+    if ((player.records.thisInfinity.maxAM.gt(Player.infinityGoal) &&
+       (!player.break || Player.isInAntimatterChallenge)) && (!Alpha.isRunning || player.antimatter.gte(DC.NUMMAX))) return false;
     return true;
   }
 
@@ -183,7 +183,7 @@ export class Galaxy {
 function galaxyReset() {
   EventHub.dispatch(GAME_EVENT.GALAXY_RESET_BEFORE);
   player.galaxies = player.galaxies.add(1);
-  if ((!Achievement(143).isUnlocked || ((Pelle.isDoomed && !PelleAchievementUpgrade.achievement143.isBought) && !PelleUpgrade.galaxyNoResetDimboost.canBeApplied)) && !player.disablePostReality) {
+  if ((!Achievement(143).isUnlocked || ((Pelle.isDoomed && !PelleAchievementUpgrade.achievement143.isBought) && !PelleUpgrade.galaxyNoResetDimboost.canBeApplied)) || player.disablePostReality) {
     player.dimensionBoosts = new Decimal(0);
   }
   softReset(0);
@@ -210,11 +210,13 @@ export function manualRequestGalaxyReset(bulk) {
 // All galaxy reset requests, both automatic and manual, eventually go through this function; therefore it suffices
 // to restrict galaxy count for RUPG7's requirement here and nowhere else
 export function requestGalaxyReset(bulk, limit = DC.BEMAX) {
+  if (Alpha.isRunning && player.galaxies.eq(0) && Alpha.currentStage < 2) return;
   const restrictedLimit = RealityUpgrade(7).isLockingMechanics ? new Decimal(1) : limit;
   if (EternityMilestone.autobuyMaxGalaxies.isReached && bulk) return maxBuyGalaxies(restrictedLimit);
   if (player.galaxies.gte(restrictedLimit) || !Galaxy.canBeBought || !Galaxy.requirement.isSatisfied) return false;
   Tutorial.turnOffEffect(TUTORIAL_STATE.GALAXY);
   galaxyReset();
+  if (Alpha.isRunning && player.galaxies.gte(1) && Alpha.currentStage === 2) Alpha.advanceLayer();
   return true;
 }
 

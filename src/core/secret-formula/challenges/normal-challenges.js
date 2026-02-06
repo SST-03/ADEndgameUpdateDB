@@ -15,7 +15,8 @@ export const normalChallenges = [
     },
     name: "1st Antimatter Dimension Autobuyer",
     reward: "Upgradeable 1st Antimatter Dimension Autobuyer",
-    lockedAt: () => player.disablePostReality ? DC.D0 : DC.D0,
+    lockedAt: DC.D0,
+    alphaLockedAt: DC.D0
   },
   {
     id: 2,
@@ -26,7 +27,8 @@ export const normalChallenges = [
       `Production gradually returns to normal over ${formatInt(3)} minutes.`,
     name: "2nd Antimatter Dimension Autobuyer",
     reward: "Upgradeable 2nd Antimatter Dimension Autobuyer",
-    lockedAt: () => player.disablePostReality ? DC.D1 : DC.D0,
+    lockedAt: DC.D0,
+    alphaLockedAt: DC.D1
   },
   {
     id: 3,
@@ -37,7 +39,8 @@ export const normalChallenges = [
         This multiplier resets after Dimension Boosts and Antimatter Galaxies.`,
     name: "3rd Antimatter Dimension",
     reward: "Upgradeable 3rd Antimatter Dimension Autobuyer",
-    lockedAt: () => player.disablePostReality ? DC.D1 : DC.D0,
+    lockedAt: DC.D0,
+    alphaLockedAt: DC.D1
   },
   {
     id: 4,
@@ -47,7 +50,8 @@ export const normalChallenges = [
       "like a sacrifice without the boost.",
     name: "4th Antimatter Dimension Autobuyer",
     reward: "Upgradeable 4th Antimatter Dimension Autobuyer",
-    lockedAt: () => player.disablePostReality ? DC.D1 : DC.D0,
+    lockedAt: DC.D0,
+    alphaLockedAt: DC.D1
   },
   {
     id: 5,
@@ -57,7 +61,8 @@ export const normalChallenges = [
       () => `the Tickspeed purchase multiplier starts at ${formatX(1.080, 0, 3)} instead of ${formatX(1.1245, 0, 3)}.`,
     name: "5th Antimatter Dimension Autobuyer",
     reward: "Upgradeable 5th Antimatter Dimension Autobuyer",
-    lockedAt: () => player.disablePostReality ? DC.D1 : DC.D0,
+    lockedAt: DC.D0,
+    alphaLockedAt: DC.D1
   },
   {
     id: 6,
@@ -67,7 +72,8 @@ export const normalChallenges = [
       "below it instead of antimatter. Antimatter Dimension prices are modified.",
     name: "6th Antimatter Dimension Autobuyer",
     reward: "Upgradeable 6th Antimatter Dimension Autobuyer",
-    lockedAt: () => player.disablePostReality ? DC.D1 : DC.D0,
+    lockedAt: DC.D0,
+    alphaLockedAt: DC.D1
   },
   {
     id: 7,
@@ -78,7 +84,8 @@ export const normalChallenges = [
         ${formatX(0.2, 1, 1)} per Dimension Boost, to a maximum of ${formatX(2)}, and is unaffected by any upgrades.`,
     name: "7th Antimatter Dimension Autobuyer",
     reward: "Upgradeable 7th Antimatter Dimension Autobuyer",
-    lockedAt: () => player.disablePostReality ? DC.D1 : DC.D0,
+    lockedAt: DC.D0,
+    alphaLockedAt: DC.D1
   },
   {
     id: 8,
@@ -88,7 +95,8 @@ export const normalChallenges = [
       Sacrifice resets antimatter and all Antimatter Dimensions, but also gives a significantly stronger multiplier.`,
     name: "8th Antimatter Dimension Autobuyer",
     reward: "Upgradeable 8th Antimatter Dimension Autobuyer",
-    lockedAt: () => player.disablePostReality ? DC.D1 : DC.D0,
+    lockedAt: DC.D0,
+    alphaLockedAt: DC.D1
   },
   {
     id: 9,
@@ -98,7 +106,8 @@ export const normalChallenges = [
       "everything else of equal cost will increase to its next cost step.",
     name: "Tickspeed Autobuyer",
     reward: "Upgradeable Tickspeed Autobuyer",
-    lockedAt: () => player.disablePostReality ? DC.D1 : DC.D0,
+    lockedAt: DC.D0,
+    alphaLockedAt: DC.D1
   },
   {
     id: 10,
@@ -108,7 +117,8 @@ export const normalChallenges = [
       "and Antimatter Galaxy costs are modified.",
     name: "Automated Dimension Boosts",
     reward: "Dimension Boosts Autobuyer",
-    lockedAt: () => player.disablePostReality ? DC.D16 : DC.D16,
+    lockedAt: DC.D16,
+    alphaLockedAt: DC.D16
   },
   {
     id: 11,
@@ -118,7 +128,8 @@ export const normalChallenges = [
       "Dimension. If it exceeds your antimatter, it will Dimension Boost without giving the bonus.",
     name: "Automated Antimatter Galaxies",
     reward: "Antimatter Galaxies Autobuyer",
-    lockedAt: () => player.disablePostReality ? DC.D16 : DC.D16,
+    lockedAt: DC.D16,
+    alphaLockedAt: DC.D16
   },
   {
     id: 12,
@@ -129,6 +140,7 @@ export const normalChallenges = [
       The 2nd, 4th, and 6th Dimensions are made stronger to compensate.`,
     name: "Automated Big Crunches",
     reward: "Big Crunches Autobuyer",
-    lockedAt: () => player.disablePostReality ? DC.D16 : DC.D16,
+    lockedAt: DC.D16,
+    alphaLockedAt: DC.D16
   }
 ];
