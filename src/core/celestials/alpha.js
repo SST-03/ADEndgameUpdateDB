@@ -1049,7 +1049,6 @@ export const Alpha = {
   },
   quotes: Quotes.alpha,
   symbol: "α",
-  pauseNerf: false, // Used to pause nerf to prevent crash
   AllBIULayerCheck(isBIUPowerUpGalaxy = false) {
     if (!Alpha.isRunning || Alpha.currentStage > 7) return;
     let isAllBIUBoughtMax = true;
