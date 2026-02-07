@@ -33,7 +33,7 @@ export const breakInfinityUpgrades = {
     id: "totalMult",
     cost: () => 1e4 * (Alpha.isRunning ? AlphaUnlocks.breakInfinity.effects.nerfA.effectOrDefault(1) : 1),
     description: "Antimatter Dimensions gain a multiplier based on total antimatter produced",
-    effect: () => Decimal.pow(player.records.totalAntimatter.add(1).log10().add(1), 1.5),
+    effect: () => Decimal.pow(player.records.totalEndgameAntimatter.add(1).log10().add(1), 1.5),
     formatEffect: value => formatX(value, 2, 2)
   },
   currentAMMult: {
