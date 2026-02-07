@@ -23,10 +23,10 @@ export class BreakInfinityUpgradeState extends SetPurchasableMechanicState {
     return this.config.cost();
   }
 
-  get canBeBought() {
-    if (Alpha.isRunning && Alpha.currentStage < 6 && this.id === "postGalaxy") return false;
-    if (Alpha.isRunning && Alpha.currentStage < 7 && this.id === "autoBuyerUpgrade") return false;
-    return super.canBeBought;
+  get isAvailableForPurchase() {
+    if (this.id === "postGalaxy" && Alpha.isRunning && Alpha.currentStage < 6) return false;
+    if (this.id === "autoBuyerUpgrade" && Alpha.isRunning && Alpha.currentStage < 7) return false;
+    return true;
   }
 
   onPurchased() {
